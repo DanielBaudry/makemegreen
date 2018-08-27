@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+  mmg_database:
+    image: postgres:10.1
+    env_file:
+      - docker/env_file
+    networks:
+      - db_nw
+    command: postgres -c logging_collector=on -c log_destination=stderr -c log_min_duration_statement=0 -c log_statement=all -c log_duration=on
+
+  mmg_api:
+    build: docker/api
+    volumes:
+      - .:/opt/services/flaskapp/src
+    env_file:
+      - docker/env_file
+    environment:
+      - ENV=${ENV:-development}
+    ports:
+      - 80:5000
+    networks:
+      - db_nw
+    depends_on:
+      - mmg_database
+
+networks:
+  db_nw:
+    driver: bridge
+

@@ -1,0 +1,10 @@
+bcrypt
+Flask
+flask_cors
+flask-login
+flask_sqlalchemy
+psycopg2-binary
+simplejson
+requests
+pytest
+pytest-flask
