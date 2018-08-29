@@ -1,0 +1,289 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Checkout example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Footprint form</h2>
+        <p class="lead">Questions pour calculer ton empreinte écologique</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 order-md-1">
+            <h4 class="mb-3">Question 1</h4>
+            <form class="needs-validation" action="http://localhost/footprint/compute" method="POST" novalidate>
+
+                <div class="mb-3">
+                    <label for="question-1">A quelle fréquence manges-tu de la viande ?</label>
+                    <select class="form-control" id="question-1">
+                        <option>jamais</option>
+                        <option>1 à 2 fois par semaine</option>
+                        <option>3 à 5 fois par semaine</option>
+                        <option>5 à 7 fois par semaine</option>
+                        <option>à chaque repas</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="question-2">Quelle proportion de nourriture manges-tu non transformée, non emballée ou cultivée localement ?</label>
+                    <select class="form-control" id="question-2">
+                        <option>0 %</option>
+                        <option>10 %</option>
+                        <option>20 %</option>
+                        <option>30 %</option>
+                        <option>40 %</option>
+                        <option>50 %</option>
+                        <option>60 %</option>
+                        <option>70 %</option>
+                        <option>80 %</option>
+                        <option>90 %</option>
+                        <option>100 %</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-3">Quel type de logement décrit le mieux ta maison ?<span class="text-muted">(Optional)</span></label>
+                    <select class="custom-select d-block w-100" id="question-3" required>
+                        <option value="">Choix...</option>
+                        <option>Autonome, sans eau courante</option>
+                        <option>autoportant, eau courante</option>
+                        <option>appartement à plusieurs étages</option>
+                        <option>duplex, maison en rangée ou immeuble de 2 à 4 logements</option>
+                        <option>condominium de luxe</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-4">Combien de personnes vivent dans ton ménage?</label>
+                    <select class="form-control" id="question-4">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6+</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-5">Quelle est la taille de ta maison ?</label>
+                    <select class="form-control" id="question-5">
+                        <option>moins de 10m²</option>
+                        <option>de 10 à 30m²</option>
+                        <option>de 30 à 50m²</option>
+                        <option>de 50 à 80m²</option>
+                        <option>de 80 à 120m²</option>
+                        <option>plus de 120m²</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-6">Quelle est l’efficacité énergétique de ta maison ?</label>
+                    <select class="form-control" id="question-6">
+                        <option>Un peu</option>
+                        <option>Beaucoup</option>
+                        <option>Passionément</option>
+                        <option>A la folie</option>
+                        <option>Pas du tout</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-7">Quel pourcentage de l'électricité de ta maison provient de sources renouvelables ?</label>
+                    <select class="form-control" id="question-7">
+                        <option>0 %</option>
+                        <option>10 %</option>
+                        <option>20 %</option>
+                        <option>30 %</option>
+                        <option>40 %</option>
+                        <option>50 %</option>
+                        <option>60 %</option>
+                        <option>70 %</option>
+                        <option>80 %</option>
+                        <option>90 %</option>
+                        <option>100 %</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-8">Quels poids de déchets généres-tu par mois ?</label>
+                    <select class="form-control" id="question-8">
+                        <option>0 à 1 kg</option>
+                        <option>1 à 5 kg</option>
+                        <option>6 à 10 kg</option>
+                        <option>11 à 15 kg</option>
+                        <option>16 à 20 kg</option>
+                        <option>21 à 25 kg</option>
+                        <option>+ de 25 kg</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-9">Quels poids distance parcours-tu en véhicule à moteur (hors transports en commun) par semaine ?</label>
+                    <select class="form-control" id="question-9">
+                        <option>0 à 10 km</option>
+                        <option>10 à 50 km</option>
+                        <option>51 à 100 km</option>
+                        <option>101 à 150 km</option>
+                        <option>151 à 200 km</option>
+                        <option>201 à 250 km</option>
+                        <option>+ de 250 km</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-10">Quelle est la consommation de carburant moyenne des véhicules que tu utilises le plus souvent ?</label>
+                    <select class="form-control" id="question-10">
+                        <option>2 L/100km</option>
+                        <option>4 L/100km</option>
+                        <option>6 L/100km</option>
+                        <option>10 L/100km</option>
+                        <option>14 L/100km</option>
+                        <option>16 L/100km</option>
+                        <option>+ de 20L/100km</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-11">Lorsque tu voyages en voiture, à quelle fréquence fais-tu du covoiturage ?</label>
+                    <select class="form-control" id="question-11">
+                        <option>0 %</option>
+                        <option>10 %</option>
+                        <option>20 %</option>
+                        <option>30 %</option>
+                        <option>40 %</option>
+                        <option>50 %</option>
+                        <option>60 %</option>
+                        <option>70 %</option>
+                        <option>80 %</option>
+                        <option>90 %</option>
+                        <option>100 %</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-12">Quelle distance parcours-tu en transports en commun chaque semaine ?</label>
+                    <select class="form-control" id="question-12">
+                        <option>0 à 100 km</option>
+                        <option>101 à 200 km</option>
+                        <option>201 à 300 km</option>
+                        <option>301 à 400 km</option>
+                        <option>401 à 500 km</option>
+                        <option>501 à 600 km</option>
+                        <option>601 à 700 km</option>
+                        <option>701 à 800 km</option>
+                        <option>801 à 900 km</option>
+                        <option>901 à 1000 km</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-13">Pendant combien d'heures prends-tu l'avion chaque année ?</label>
+                    <select class="form-control" id="question-13">
+                        <option>0 à 100 km</option>
+                        <option>101 à 200 km</option>
+                        <option>201 à 300 km</option>
+                        <option>301 à 400 km</option>
+                        <option>401 à 500 km</option>
+                        <option>501 à 600 km</option>
+                        <option>601 à 700 km</option>
+                        <option>701 à 800 km</option>
+                        <option>801 à 900 km</option>
+                        <option>901 à 1000 km</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Calculer mon empreinte écologique</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Make Me Green</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>
