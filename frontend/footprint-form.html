@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+    <!--<link rel="icon" href="favicon.ico">-->
 
     <title>Checkout example for Bootstrap</title>
 
@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
+    <!--<link href="form-validation.css" rel="stylesheet">-->
 </head>
 
 <body class="bg-light">
 
 <div class="container">
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <!--<img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
         <h2>Footprint form</h2>
         <p class="lead">Questions pour calculer ton empreinte écologique</p>
     </div>
@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-md-12 order-md-1">
             <h4 class="mb-3">Question 1</h4>
-            <form class="needs-validation" action="http://localhost/footprint/compute" method="POST" novalidate>
+            <form class="needs-validation" onsubmit='return onSubmit(this)' id="footprint-form" novalidate>
 
                 <div class="mb-3">
                     <label for="question-1">A quelle fréquence manges-tu de la viande ?</label>
@@ -59,9 +59,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-3">Quel type de logement décrit le mieux ta maison ?<span class="text-muted">(Optional)</span></label>
-                    <select class="custom-select d-block w-100" id="question-3" required>
-                        <option value="">Choix...</option>
+                    <label for="question-3">Quel type de logement décrit le mieux ta maison ?</label>
+                    <select class="form-control" id="question-3" required>
                         <option>Autonome, sans eau courante</option>
                         <option>autoportant, eau courante</option>
                         <option>appartement à plusieurs étages</option>
@@ -74,7 +73,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-4">Combien de personnes vivent dans ton ménage?</label>
+                    <label for="question-4">Combien de personnes vivent dans ton ménage ?</label>
                     <select class="form-control" id="question-4">
                         <option>1</option>
                         <option>2</option>
@@ -260,10 +259,33 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>')</script>
+<!--<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>')</script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script>
+
+
+    function onSubmit( form ){
+
+        var data= new Array();
+        $('.form-control').each(function(){
+            data.push($(this).attr('id') + " : " + $(this).val());
+        })
+        var data = JSON.stringify( data ); //  <-----------
+        console.log( data );
+        // SEND POST DATA
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/footprint/compute",
+            data: data,
+            dataType: "json",
+            contentType : "application/json"
+        });
+    }
+
+
+
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
         'use strict';

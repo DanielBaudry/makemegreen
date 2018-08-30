@@ -5,8 +5,11 @@ from flask_login import current_user, login_required, logout_user, login_user
 
 @app.route("/footprint/compute", methods=["POST"])
 def compute():
+    app.logger.info("Start footprint computation")
     data = request.get_json()
+    app.logger.info(data)
+
     # TODO: Charles
-    print(data)
+
     result = "80 kg / CO2"
     return jsonify(result)
