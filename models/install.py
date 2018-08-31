@@ -1,8 +1,9 @@
 """ install """
 from sqlalchemy import orm
-from sqlalchemy.exc import ProgrammingError
+from models.db import db
 
-from models.db import db, Model
 
 def install_models():
+    orm.configure_mappers()
     db.create_all()
+    db.session.commit()

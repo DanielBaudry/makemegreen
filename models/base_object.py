@@ -230,12 +230,6 @@ class BaseObject():
         # COMMIT
         try:
             db.session.commit()
-        except DataError as de:
-            api_errors.addError(*BaseObject.restize_data_error(de))
-            raise api_errors
-        except IntegrityError as ie:
-            api_errors.addError(*BaseObject.restize_integrity_error(ie))
-            raise api_errors
         except TypeError as te:
             api_errors.addError(*BaseObject.restize_type_error(te))
             raise api_errors

@@ -3,15 +3,17 @@ from datetime import datetime
 from sqlalchemy import Binary, Column, DateTime, String
 import bcrypt
 
-from models.db import Model
+from models.db import Model, db
 from models.base_object import BaseObject
 
 
-class User(BaseObject,
-           Model):
+class User(BaseObject, Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(64), nullable=False)
+    username = db.Column(db.String(80), nullable=False)
 
-    email = Column(String(120), nullable=False, unique=True)
-    password = Column(Binary(60), nullable=False)
+    footprints = db.relationship('Footprint', backref='user', lazy=True)
 
     dateCreated = Column(DateTime,
                          nullable=False,
