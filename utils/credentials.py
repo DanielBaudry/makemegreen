@@ -5,6 +5,8 @@ from models.api_errors import ApiErrors
 from models.base_object import BaseObject
 from models.user import User
 
+from flask import current_app as app
+
 
 def get_user_with_credentials(identifier, password):
     errors = ApiErrors()
@@ -17,6 +19,9 @@ def get_user_with_credentials(identifier, password):
     errors.maybeRaise()
 
     user = User.query.filter_by(email=identifier).first()
+    app.logger.info(identifier)
+    app.logger.info(user)
+    app.logger.info("toto")
 
     if not user:
         errors.addError('identifier', 'Identifiant incorrect')

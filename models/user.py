@@ -1,6 +1,6 @@
 """User model"""
 from datetime import datetime
-from sqlalchemy import Binary, Column, DateTime, String
+from sqlalchemy import Column, DateTime
 import bcrypt
 
 from models.db import Model, db
@@ -10,7 +10,7 @@ from models.base_object import BaseObject
 class User(BaseObject, Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(64), nullable=False)
+    password = db.Column(db.Binary(60), nullable=False)
     username = db.Column(db.String(80), nullable=False)
 
     footprints = db.relationship('Footprint', backref='user', lazy=True)

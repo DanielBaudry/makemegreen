@@ -16,10 +16,10 @@ def get_profile():
 
 @app.route("/users/signin", methods=["POST"])
 def signin():
-    json = request.get_json()
-    identifier = json.get("identifier")
-    password = json.get("password")
-    user = get_user_with_credentials(identifier, password)
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+    user = get_user_with_credentials(email, password)
     return jsonify(user._asdict(include=USER_INCLUDES)), 200
 
 

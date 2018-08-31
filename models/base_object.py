@@ -3,6 +3,7 @@ from collections import OrderedDict
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from pprint import pprint
+import re
 from psycopg2.extras import DateTimeRange
 from sqlalchemy import CHAR,\
                        BigInteger,\
@@ -13,6 +14,7 @@ from sqlalchemy import CHAR,\
                        Numeric,\
                        String
 from sqlalchemy.orm.collections import InstrumentedList
+from sqlalchemy.exc import DataError, IntegrityError
 
 from models.api_errors import ApiErrors
 from models.db import db
@@ -176,6 +178,52 @@ class BaseObject():
         if apiErrors.errors:
             raise apiErrors
 
+    @staticmethod
+    def restize_global_error(e):
+        logger.error("UNHANDLED ERROR : ")
+        traceback.print_exc()
+        return ["global", "Une erreur technique s'est produite. Elle a été notée, et nous allons investiguer au plus vite."]
+
+    @staticmethod
+    def restize_data_error(e):
+        if e.args and len(e.args) > 0 and e.args[0].startswith('(psycopg2.DataError) value too long for type'):
+            max_length = re.search('\(psycopg2.DataError\) value too long for type (.*?) varying\((.*?)\)', e.args[0], re.IGNORECASE).group(2)
+            return ['global', "La valeur d'une entrée est trop longue (max " + max_length + ")"]
+        else:
+            return BaseObject.restize_global_error(e)
+
+    @staticmethod
+    def restize_integrity_error(e):
+        if hasattr(e, 'orig') and hasattr(e.orig, 'pgcode') and e.orig.pgcode == DUPLICATE_KEY_ERROR_CODE:
+            field = re.search('Key \((.*?)\)=', str(e._message), re.IGNORECASE).group(1)
+            return [field, 'Une entrée avec cet identifiant existe déjà dans notre base de données']
+        elif hasattr(e, 'orig') and hasattr(e.orig, 'pgcode') and e.orig.pgcode == NOT_FOUND_KEY_ERROR_CODE:
+            field = re.search('Key \((.*?)\)=', str(e._message), re.IGNORECASE).group(1)
+            return [field, 'Aucun objet ne correspond à cet identifiant dans notre base de données']
+        elif hasattr(e, 'orig') and hasattr(e.orig, 'pgcode') and e.orig.pgcode == OBLIGATORY_FIELD_ERROR_CODE:
+            field = re.search('column "(.*?)"', e.orig.pgerror, re.IGNORECASE).group(1)
+            return [field, 'Ce champ est obligatoire']
+        else:
+            return BaseObject.restize_global_error(e)
+
+    @staticmethod
+    def restize_type_error(e):
+        if e.args and len(e.args)>1 and e.args[1] == 'geography':
+            return [e.args[2], 'doit etre une liste de nombre décimaux comme par exemple : [2.22, 3.22]']
+        elif e.args and len(e.args)>1 and e.args[1] and e.args[1]=='decimal':
+            return [e.args[2], 'doit être un nombre décimal']
+        elif e.args and len(e.args)>1 and e.args[1] and e.args[1]=='integer':
+            return [e.args[2], 'doit être un entier']
+        else:
+            return BaseObject.restize_global_error(e)
+
+    @staticmethod
+    def restize_value_error(e):
+        if len(e.args)>1 and e.args[1] == 'enum':
+            return [e.args[2], ' doit etre dans cette liste : '+",".join(map(lambda x : '"'+x+'"', e.args[3]))]
+        else:
+            return BaseObject.restize_global_error(e)      
+
     def populateFromDict(self, dct, skipped_keys=[]):
         data = dct.copy()
         if data.__contains__('id'):
@@ -230,6 +278,12 @@ class BaseObject():
         # COMMIT
         try:
             db.session.commit()
+        except DataError as de:
+            api_errors.addError(*BaseObject.restize_data_error(de))
+            raise api_errors
+        except IntegrityError as ie:
+            api_errors.addError(*BaseObject.restize_integrity_error(ie))
+            raise api_errors
         except TypeError as te:
             api_errors.addError(*BaseObject.restize_type_error(te))
             raise api_errors
