@@ -3,6 +3,8 @@ from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
 from engine.footprint import GetFootprint
 
+from models import *
+
 
 @app.route("/footprint/compute", methods=["POST"])
 def compute():
@@ -11,7 +13,11 @@ def compute():
     app.logger.info(data)
     # TODO: Charles
 
-    result = "80 kg / CO2"
+    # TO REMOVE: test data for front
+    result = dict({'carbon_footprint': 80,
+                    'waste_footprint': 560,
+                    'water_footprint': 1200})
+
     return jsonify(result)
 
 

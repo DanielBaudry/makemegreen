@@ -8,13 +8,13 @@
     <meta name="author" content="">
     <!--<link rel="icon" href="favicon.ico">-->
 
-    <title>Checkout example for Bootstrap</title>
+    <title>Footprint form</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <!--<link href="form-validation.css" rel="stylesheet">-->
+    <!--<link href="footprint-form.css" rel="stylesheet">-->
 </head>
 
 <body class="bg-light">
@@ -245,7 +245,7 @@
         </div>
     </div>
 
-    <footer class="my-5 pt-5 text-muted text-center text-small">
+    <footer class="footer my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2017-2018 Make Me Green</p>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Privacy</a></li>
@@ -279,6 +279,75 @@
             type: "POST",
             url: "http://localhost/footprint/compute",
             data: data,
+            success: function(result){
+                $(".container").replaceWith("<div class=\"py-5 text-center\">" +
+                    "        <h2>Ton empreinte écologique</h2>" +
+                    "<p class=\"lead\">Résultats</p>" +
+                    "</div>" +
+
+                    "<div class=\"container\">" +
+                        "<div class=\"row\" id =\"results\">" +
+                            "<div class=\"col\" id=\"carbon-footprint\">" +
+                                "<div class=\"card\" style=\"width: 18rem;\">\n" +
+                                "<div style=\"width: 150px; display:block; margin:auto;\">" +
+                                "  <img class=\"card-img-top\" src=\"co2.jpg\" height=\"150px\" alt=\"Card image cap\">\n" +
+                                "</div>" +
+                                "  <div class=\"card-body\">\n" +
+                                "    <h5 class=\"card-title\">Empreinte carbone</h5>\n" +
+                                "    <p class=\"card-text\" style=\"text-align: center; font-size: x-large; color: rgb(177, 140, 218);\">" +
+                                "<strong>" + result.carbon_footprint + "</strong>" +
+                                "</p>" +
+                                "<a href=\"#\" class=\"btn btn-primary\">Details</a>\n" +
+                                " </div>\n" +
+                                "</div>" +
+                            "</div>" +
+                            "<div class=\"col\" id=\"water-footprint\">" +
+                                "<div class=\"card\" style=\"width: 18rem;\">\n" +
+                                "<div style=\"width: 150px; display:block; margin:auto; margin-top: 40px\">" +
+                                "  <img class=\"card-img-top\" src=\"water.png\" height=\"110px\" alt=\"Card image cap\">\n" +
+                                "</div>" +
+                                "  <div class=\"card-body\">\n" +
+                                "    <h5 class=\"card-title\">Empreinte eau</h5>\n" +
+                                "    <p class=\"card-text\" style=\"text-align: center; font-size: x-large; color: rgb(177, 140, 218);\">" +
+                                "<strong>" + result.water_footprint + "</strong>" +
+                                "</p>" +
+                                "<a href=\"#\" class=\"btn btn-primary\">Details</a>\n" +
+                                "</div>\n" +
+                                "</div>" +
+                            "</div>" +
+                            "<div class=\"col\" id=\"waste-footprint\">" +
+                                "<div class=\"card\" style=\"width: 18rem;\">\n" +
+                                "<div style=\"width: 150px; display:block; margin:auto;\">" +
+                                "  <img class=\"card-img-top\" src=\"waste.png\" height=\"150px\" alt=\"Card image cap\">\n" +
+                                "</div>" +
+                                "  <div class=\"card-body\">\n" +
+                                "    <h5 class=\"card-title\">Empreinte déchets</h5>\n" +
+                                "    <p class=\"card-text\" style=\"text-align: center; font-size: x-large; color: rgb(177, 140, 218);\">" +
+                                "<strong>" + result.waste_footprint + "</strong>" +
+                                "</p>" +
+                                "<a href=\"#\" class=\"btn btn-primary\">Details</a>\n" +
+                                " </div>\n" +
+                                "</div>" +
+                            "</div>" +
+                        "</div>" +
+                        "<div class=\"my-5 pt-5 text-center\">" +
+                            "<a href=\"signin.html\" class=\"btn btn-primary btn-lg active\" role=\"button\" aria-pressed=\"true\">Connexion</a>" +
+                            "<a href=\"signup.html\" class=\"btn btn-info btn-lg active\" role=\"button\" aria-pressed=\"true\">Inscription</a>" +
+                        "</div>" +
+                    "</div>" +
+                    "<footer class=\"my-5 pt-5 text-muted text-center text-small\">\n" +
+                    "        <p class=\"mb-1\">&copy; 2017-2018 Make Me Green</p>\n" +
+                    "        <ul class=\"list-inline\">\n" +
+                    "            <li class=\"list-inline-item\"><a href=\"#\">Privacy</a></li>\n" +
+                    "            <li class=\"list-inline-item\"><a href=\"#\">Terms</a></li>\n" +
+                    "            <li class=\"list-inline-item\"><a href=\"#\">Support</a></li>\n" +
+                    "        </ul>\n" +
+                    "    </footer>" );
+
+
+
+                console.log(result);
+            },
             dataType: "json",
             contentType : "application/json"
         });

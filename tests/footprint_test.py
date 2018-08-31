@@ -19,7 +19,7 @@ def test_get_footprint_for_user(app):
     # user = User()
     # user.username = 'Test'
     # user.email = 'test@test.com'
-    # user.setPassword('testpwd');
+    # user.setPassword('testpsswd')
     # footprint = Footprint()
     # footprint.user_id = 1
     # footprint.carbon_footprint = 45
