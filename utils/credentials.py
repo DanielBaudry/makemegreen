@@ -19,9 +19,6 @@ def get_user_with_credentials(identifier, password):
     errors.maybeRaise()
 
     user = User.query.filter_by(email=identifier).first()
-    app.logger.info(identifier)
-    app.logger.info(user)
-    app.logger.info("toto")
 
     if not user:
         errors.addError('identifier', 'Identifiant incorrect')

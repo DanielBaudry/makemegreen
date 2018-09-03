@@ -44,6 +44,9 @@ class User(BaseObject, Model):
     def is_active(self):
         return True
 
+    def is_anonymous(self):
+        return False
+
     def setPassword(self, newpass):
         self.clearTextPassword = newpass
         self.password = bcrypt.hashpw(newpass.encode('utf-8'),
