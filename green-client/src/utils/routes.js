@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router'
 
 import FootPrintFormPage from '../components/pages/FootprintFormPage'
-import TotoPage from '../components/pages/TotoPage'
+import FootprintsPage from '../components/pages/FootprintsPage'
 
 const routes = [
     {
@@ -15,9 +15,9 @@ const routes = [
         title: "Bienvenue sur MakeMeGreen",
     },
     {
-        component: TotoPage,
-        path: '/toto',
-        title: "Toto",
+        component: FootprintsPage,
+        path: '/footprints',
+        title: "Footprints",
     },
 ]
 
