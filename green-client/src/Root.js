@@ -1,5 +1,6 @@
-import React from 'react'
 import has from 'lodash.has'
+import React from 'react'
+import { hot } from 'react-hot-loader'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import App from './App'
@@ -25,4 +26,4 @@ const Root = () => {
     )
 }
 
-export default Root
+export default hot(module)(Root)
