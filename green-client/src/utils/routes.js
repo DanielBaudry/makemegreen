@@ -1,25 +1,22 @@
 import React from 'react'
 import { Redirect } from 'react-router'
 
-import FootPrintForm from '../FootprintForm'
-import Toto from '../Toto'
+import FootPrintFormPage from '../components/pages/FootprintFormPage'
+import TotoPage from '../components/pages/TotoPage'
 
 const routes = [
     {
-        exact: true,
         path: '/',
         render: () => <Redirect to="/footprint" />,
     },
     {
-        exact: false,
+        component: FootPrintFormPage,
         path: '/footprint',
-        render: () => <FootPrintForm />,
         title: "Bienvenue sur MakeMeGreen",
     },
     {
-        exact: false,
+        component: TotoPage,
         path: '/toto',
-        render: () => <Toto />,
         title: "Toto",
     },
 ]

@@ -15,7 +15,7 @@ const renderTimer = timing => (
   </span>
 )
 
-class NoMatch extends React.PureComponent {
+class NoMatchPage extends React.PureComponent {
   constructor(props) {
     super(props)
     this.timer = null
@@ -52,8 +52,8 @@ class NoMatch extends React.PureComponent {
   }
 }
 
-NoMatch.propTypes = {
+NoMatchPage.propTypes = {
   location: PropTypes.object.isRequired,
 }
 
-export default NoMatch
+export default NoMatchPage

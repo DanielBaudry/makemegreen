@@ -3,8 +3,9 @@ import has from 'lodash.has'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import App from './App'
+import NoMatchPage from './components/pages/NoMatchPage'
 import routes from './utils/routes'
-import NotMatch from './utils/NotMatch'
+
 
 const Root = () => {
     return (
@@ -17,7 +18,7 @@ const Root = () => {
                         // first props, last overrides
                         return <Route {...route} key={route.path} exact={isexact} />
                     })}
-                    <Route component={NotMatch} />
+                    <Route component={NoMatchPage} />
                 </Switch>
             </App>
         </BrowserRouter>
