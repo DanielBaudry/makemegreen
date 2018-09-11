@@ -4,7 +4,7 @@ import React from 'react'
 const FootprintItem = ({
   footprint
 }) => {
-  const text = get(footprint, 'text')
+  const text = get(footprint, 'carbon_footprint')
   return (
     <div>
       {text}

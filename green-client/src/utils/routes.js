@@ -2,7 +2,8 @@ import React from 'react'
 import { Redirect } from 'react-router'
 
 import FootPrintFormPage from '../components/pages/FootprintFormPage'
-import FootprintsPage from '../components/pages/FootprintsPage'
+import FootPrintResultPage from '../components/pages/FootprintResultPage'
+import FootprintsPage from '../components/pages/FootprintsPage';
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
         component: FootprintsPage,
         path: '/footprints',
         title: "Footprints",
+    },
+    {
+        component: FootPrintResultPage,
+        path: '/result',
+        title: "Footprint Result",
     },
 ]
 
