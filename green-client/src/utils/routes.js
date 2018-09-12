@@ -4,6 +4,8 @@ import { Redirect } from 'react-router'
 import FootPrintFormPage from '../components/pages/FootprintFormPage'
 import FootPrintResultPage from '../components/pages/FootprintResultPage'
 import FootprintsPage from '../components/pages/FootprintsPage';
+import ConnexionPage from '../components/pages/ConnexionPage';
+import DashboardPage from "../components/pages/DashboardPage";
 
 const routes = [
     {
@@ -24,6 +26,16 @@ const routes = [
         component: FootPrintResultPage,
         path: '/result',
         title: "Footprint Result",
+    },
+    {
+        component: ConnexionPage,
+        path: '/connexion',
+        title: "Connexion",
+    },
+    {
+        component: DashboardPage,
+        path: '/home',
+        title: "Dashboard",
     },
 ]
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {requestData} from "../../reducers/data";
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import FootprintItem from '../items/FootprintItem'
 
@@ -11,21 +11,30 @@ class FootPrintResultPage extends Component {
         super(props)
     }
 
-    // componentDidMount () {
-    //     this.props.dispatch(this.state.data)
-    // }
-
     render () {
-        const { footprints } = this.props
+        // const { footprints } = this.props
+        const footprints = this.props.footprints[0]['footprints']
+
         return(
             <div className={`footprint-result`}>
-                <div>
-                    Test
-                    {
-                        footprints.map(footprint => (
-                            <FootprintItem key={footprint.id} footprint={footprint} />
-                        ))
-                    }
+                <div class="py-5 text-center">
+                    <h2>Ton empreinte écologique</h2>
+                    <p class="lead">Résultats</p>
+                </div>
+
+                <div class="container">
+                    <div class="row" id ="results">
+                        {
+                            footprints.map(footprint => (
+                                <FootprintItem key={footprint.id} footprint={footprint} />
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="my-5 pt-5 text-center">
+                        <NavLink to="/connexion" className="button btn-primary btn-lg active">
+                        {"Connexion"}
+                    </NavLink>
                 </div>
             </div>
         )
