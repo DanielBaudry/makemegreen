@@ -11,14 +11,27 @@ def compute():
     app.logger.info(data[0])
     app.logger.info(data[0].get('answer'))
     result = ComputeFootprint().execute(data)
-    #TODO: Charles
+    #TODO: envoyer les vrais results
 
-    #TO REMOVE: test data for front
-    # result = dict({'carbon_footprint': test,
-    #                 'waste_footprint': 560,
-    #                 'water_footprint': 1200,
-    #                 'test':723})
-    #result = "test"
+    result = dict({"footprints": [
+                   {
+                       "id": 1,
+                       "footprint_type": "carbon",
+                       "footprint_value": 80
+                   },
+                   {
+                       "id": 2,
+                       "footprint_type": "waste",
+                       "footprint_value": 560
+                   },
+                   {
+                       "id": 3,
+                       "footprint_type": "water",
+                       "footprint_value": 1280
+                   }
+                 ]
+                })
+
     return jsonify(result)
 
 
