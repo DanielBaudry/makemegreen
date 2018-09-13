@@ -12,8 +12,12 @@ class FootPrintResultPage extends Component {
     }
 
     render () {
-        // const { footprints } = this.props
-        const footprints = this.props.footprints[0]['footprints']
+        const { footprints } = this.props
+
+        let footprints_data = []
+        if ( footprints.length > 0 ){
+            footprints_data = this.props.footprints[0]['footprints']
+        }
 
         return(
             <div className={`footprint-result`}>
@@ -25,15 +29,18 @@ class FootPrintResultPage extends Component {
                 <div class="container">
                     <div class="row" id ="results">
                         {
-                            footprints.map(footprint => (
+                            footprints_data.map(footprint => (
                                 <FootprintItem key={footprint.id} footprint={footprint} />
                             ))
                         }
                     </div>
                 </div>
                 <div class="my-5 pt-5 text-center">
-                        <NavLink to="/connexion" className="button btn-primary btn-lg active">
+                    <NavLink to="/connexion" className="button btn-primary btn-lg active">
                         {"Connexion"}
+                    </NavLink>
+                    <NavLink to="/inscription" params={footprints} className="button btn-primary btn-lg active">
+                        {"Inscription"}
                     </NavLink>
                 </div>
             </div>

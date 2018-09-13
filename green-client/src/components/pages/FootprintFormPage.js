@@ -25,6 +25,11 @@ class FootPrintFormPage extends Component {
 
     render () {
 
+        if ( this.props.user ){
+            const { history } = this.props
+            history.push(`/home`)
+        }
+
         return(
             <div className={`footprint-form`}>
                 <div className="row">

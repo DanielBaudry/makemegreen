@@ -8,8 +8,7 @@ class ConnexionPage extends Component {
     constructor (props) {
         super(props)
         this.state = { email: null,
-                       password: null,
-                       footprints: null}
+                       password: null}
     }
 
     onSubmitedClick = () => {
@@ -28,11 +27,6 @@ class ConnexionPage extends Component {
     }
 
     render () {
-        let footprints = null
-        if ( this.props.footprints != null) {
-            footprints = this.props.footprints[0]['footprints']
-        }
-        console.log(footprints)
 
         return(
             <div class="text-center">
@@ -51,7 +45,6 @@ class ConnexionPage extends Component {
                     <input type="password" id="password" class="form-control" placeholder="Mot de passe" required
                            onChange={( e ) => this.setState({ password : e.target.value })}
                            value={this.state.password}/>
-                    <input type="hidden" value={footprints}/>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
                 </form>
                 <div class="my-5 pt-5 text-center">
@@ -64,6 +57,4 @@ class ConnexionPage extends Component {
     }
 }
 
-export default connect(
-    state => ({ footprints: state.data.footprints })
-)(ConnexionPage)
+export default connect()(ConnexionPage)
