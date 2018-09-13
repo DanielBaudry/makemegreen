@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 
+import '../../styles/signin.css'
+
 class ConnexionPage extends Component {
 
     constructor (props) {
