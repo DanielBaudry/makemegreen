@@ -21,6 +21,11 @@ class User(BaseObject, Model):
 
     clearTextPassword = None
 
+    def populateFromDict(self, dct):
+        super(User, self).populateFromDict(dct)
+        if dct.__contains__('password') and dct['password']:
+            self.setPassword(dct['password'])
+
     def checkPassword(self, passwordToCheck):
         return bcrypt.hashpw(passwordToCheck.encode('utf-8'), self.password) == self.password
 

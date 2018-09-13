@@ -20,6 +20,8 @@ from models.api_errors import ApiErrors
 from models.db import db
 from utils.human_ids import dehumanize, humanize
 
+from utils.logger import logger
+
 
 def serialize(value, **options):
     if isinstance(value, Enum):

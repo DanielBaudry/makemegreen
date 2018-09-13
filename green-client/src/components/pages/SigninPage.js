@@ -5,10 +5,11 @@ import {requestData} from "../../reducers/data";
 
 class ConnexionPage extends Component {
 
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
         this.state = { email: null,
-                        password: null}
+                       password: null,
+                       footprints: null}
     }
 
     onSubmitedClick = () => {
@@ -18,7 +19,6 @@ class ConnexionPage extends Component {
                 body: {"email" : this.state.email,
                        "password": this.state.password},
                 handleSuccess: (r) => {
-                    console.log(r)
                     // this.state.data.user = r
                     const { history } = this.props
                     history.push(`/home`)
@@ -28,8 +28,10 @@ class ConnexionPage extends Component {
     }
 
     render () {
-        // const { footprints } = this.props
-        const footprints = this.props.footprints[0]['footprints']
+        let footprints = null
+        if ( this.props.footprints ) {
+            footprints = this.props.footprints[0]['footprints']
+        }
 
         return(
             <div class="text-center">
