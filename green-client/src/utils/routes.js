@@ -4,8 +4,9 @@ import { Redirect } from 'react-router'
 import FootPrintFormPage from '../components/pages/FootprintFormPage'
 import FootPrintResultPage from '../components/pages/FootprintResultPage'
 import FootprintsPage from '../components/pages/FootprintsPage';
-import ConnexionPage from '../components/pages/ConnexionPage';
+import SigninPage from '../components/pages/SigninPage';
 import DashboardPage from "../components/pages/DashboardPage";
+import SignupPage from "../components/pages/SignupPage";
 
 const routes = [
     {
@@ -28,9 +29,14 @@ const routes = [
         title: "Footprint Result",
     },
     {
-        component: ConnexionPage,
+        component: SigninPage,
         path: '/connexion',
         title: "Connexion",
+    },
+    {
+        component: SignupPage,
+        path: '/inscription',
+        title: "Inscription",
     },
     {
         component: DashboardPage,
