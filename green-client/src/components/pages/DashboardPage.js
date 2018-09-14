@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import FootprintItem from "../items/FootprintItem";
-import { withLogin } from "../hocs/withLogin"
+import withLogin from "../hocs/withLogin"
 
 class DashboardPage extends Component {
 
@@ -89,13 +89,13 @@ DashboardPage.defaultProps = {
     leaderbord: null
 }
 
-// const mapStateToProps = state => ({ dashboard: state.data.dashboard})
-//
-// export default compose(
-//     withLogin({ failRedirect: '/connexion' }),
-//     connect(mapStateToProps)
-// )(DashboardPage)
+const mapStateToProps = state => ({ dashboard: state.data.dashboard})
 
-export default connect(
-    state => ({ dashboard: state.data.dashboard})
+export default compose(
+    withLogin({ failRedirect: '/connexion' }),
+    connect(mapStateToProps)
 )(DashboardPage)
+
+// export default connect(
+//     state => ({ dashboard: state.data.dashboard})
+// )(DashboardPage)

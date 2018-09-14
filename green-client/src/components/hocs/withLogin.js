@@ -1,87 +1,40 @@
-'use strict';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'redux'
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+import { requestData } from '../../reducers/data'
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+const withLogin = (config = {}) => WrappedComponent => {
+    const { failRedirect, successRedirect } = config
 
-var _react = require('react');
+    class _withLogin extends Component {
+        componentDidMount = (prevProps) => {
+            const { history, location, user, requestData } = this.props
 
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = require('react-redux');
-
-var _reactRouterDom = require('react-router-dom');
-
-var _redux = require('redux');
-
-var _data = require('../../reducers/data');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var withLogin = function withLogin() {
-    var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return function (WrappedComponent) {
-        var failRedirect = config.failRedirect,
-            successRedirect = config.successRedirect;
-
-        var _withLogin = function (_Component) {
-            _inherits(_withLogin, _Component);
-
-            function _withLogin() {
-                var _ref;
-
-                var _temp, _this, _ret;
-
-                _classCallCheck(this, _withLogin);
-
-                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-                    args[_key] = arguments[_key];
-                }
-
-                return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _withLogin.__proto__ || Object.getPrototypeOf(_withLogin)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function (prevProps) {
-                    var _this$props = _this.props,
-                        history = _this$props.history,
-                        location = _this$props.location,
-                        user = _this$props.user,
-                        requestData = _this$props.requestData;
-
-
-                    if (user === null) {
-                        requestData('GET', 'users/current', {
-                            handleSuccess: function handleSuccess() {
-                                if (successRedirect && successRedirect !== location.pathname) history.push(successRedirect);
-                            },
-                            handleFail: function handleFail() {
-                                if (failRedirect && failRedirect !== location.pathname) history.push(failRedirect);
-                            }
-                        });
-                        return;
-                    }
-                }, _temp), _possibleConstructorReturn(_this, _ret);
+            if (user === null) {
+                requestData('GET', `users/current`, {
+                    handleSuccess: () => {
+                        if (successRedirect && successRedirect !== location.pathname)
+                            history.push(successRedirect)
+                    },
+                    handleFail: () => {
+                        if (failRedirect && failRedirect !== location.pathname)
+                            history.push(failRedirect)
+                    },
+                })
+                return
             }
+        }
 
-            _createClass(_withLogin, [{
-                key: 'render',
-                value: function render() {
-                    return _react2.default.createElement(WrappedComponent, this.props);
-                }
-            }]);
+        render() {
+            return <WrappedComponent {...this.props} />
+        }
+    }
+    return compose(
+        withRouter,
+        connect(state => ({ user: state.user }), { requestData })
+    )(_withLogin)
+}
 
-            return _withLogin;
-        }(_react.Component);
-
-        return (0, _redux.compose)(_reactRouterDom.withRouter, (0, _reactRedux.connect)(function (state) {
-            return { user: state.user };
-        }, { requestData: _data.requestData }))(_withLogin);
-    };
-};
-
-exports.default = withLogin;
+export default withLogin
