@@ -89,6 +89,13 @@ DashboardPage.defaultProps = {
     leaderbord: null
 }
 
+// const mapStateToProps = state => ({ dashboard: state.data.dashboard})
+//
+// export default compose(
+//     withLogin({ failRedirect: '/connexion' }),
+//     connect(mapStateToProps)
+// )(DashboardPage)
+
 export default connect(
     state => ({ dashboard: state.data.dashboard})
 )(DashboardPage)
