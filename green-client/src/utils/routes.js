@@ -7,6 +7,7 @@ import FootprintsPage from '../components/pages/FootprintsPage';
 import SigninPage from '../components/pages/SigninPage';
 import DashboardPage from "../components/pages/DashboardPage";
 import SignupPage from "../components/pages/SignupPage";
+import RecommendationsPage from "../components/pages/RecommendationsPage";
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         component: DashboardPage,
         path: '/home',
         title: "Dashboard",
+    },
+    {
+        component: RecommendationsPage,
+        path: '/recommendations',
+        title: "Recommendations",
     },
 ]
 

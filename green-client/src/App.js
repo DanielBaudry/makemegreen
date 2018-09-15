@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import logo from './assets/logo.svg'
 import './styles/App.css'
+import './styles/signin.css'
 
 //TODO: put real stylesheet
 import './styles/bootstrap/css/bootstrap.css'

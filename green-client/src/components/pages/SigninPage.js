@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 
-import '../../styles/signin.css'
 
 class ConnexionPage extends Component {
 
@@ -20,6 +19,7 @@ class ConnexionPage extends Component {
                 body: {"email" : this.state.email,
                        "password": this.state.password},
                 handleSuccess: (r) => {
+                    // TODO: handle redirect to first requested page
                     // this.state.data.user = r
                     const { history } = this.props
                     history.push(`/home`)

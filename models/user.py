@@ -8,12 +8,13 @@ from models.base_object import BaseObject
 
 
 class User(BaseObject, Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.Binary(60), nullable=False)
-    username = db.Column(db.String(80), nullable=False)
+    id = Column(db.Integer, primary_key=True)
+    email = Column(db.String(80), unique=True, nullable=False)
+    password = Column(db.Binary(60), nullable=False)
+    username = Column(db.String(80), nullable=False)
 
     footprints = db.relationship('Footprint', backref='user', lazy=True)
+    activities = db.relationship('Activity', backref='user', lazy=True)
 
     dateCreated = Column(DateTime,
                          nullable=False,
