@@ -32,55 +32,48 @@
             <form class="needs-validation" onsubmit='return onSubmit(this)' id="footprint-form" novalidate>
 
                 <div class="mb-3">
-                    <label for="question-1">A quelle fréquence manges-tu de la viande ?</label>
+                    <label for="question-1">A quelle fréquence manges-tu de la viande rouge ?</label>
                     <select class="form-control" id="question-1">
                         <option>jamais</option>
-                        <option>1 à 2 fois par semaine</option>
-                        <option>3 à 5 fois par semaine</option>
+                        <option selected="True" value="0.25">1 à 2 fois par semaine</option>
+                        <option> 3 à 5 fois par semaine</option>
                         <option>5 à 7 fois par semaine</option>
                         <option>à chaque repas</option>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label for="question-2">Quelle proportion de nourriture manges-tu non transformée, non emballée ou cultivée localement ?</label>
-                    <select class="form-control" id="question-2">
-                        <option>0 %</option>
-                        <option>10 %</option>
-                        <option>20 %</option>
-                        <option>30 %</option>
-                        <option>40 %</option>
-                        <option>50 %</option>
-                        <option>60 %</option>
-                        <option>70 %</option>
-                        <option>80 %</option>
-                        <option>90 %</option>
-                        <option>100 %</option>
-                    </select>
-                </div>
 
                 <div class="mb-3">
-                    <label for="question-3">Quel type de logement décrit le mieux ta maison ?</label>
-                    <select class="form-control" id="question-3" required>
-                        <option>Autonome, sans eau courante</option>
-                        <option>autoportant, eau courante</option>
-                        <option>appartement à plusieurs étages</option>
-                        <option>duplex, maison en rangée ou immeuble de 2 à 4 logements</option>
-                        <option>condominium de luxe</option>
+                    <label for="question-2">A quelle fréquence manges-tu de la viande blanche  ?</label>
+                    <select class="form-control" id="question-2">
+                        <option>jamais</option>
+                        <option>1 à 2 fois par semaine</option>
+                        <option selected="True">3 à 5 fois par semaine</option>
+                        <option>5 à 7 fois par semaine</option>
+                        <option>à chaque repas</option>
                     </select>
                     <div class="invalid-feedback">
                         Choisissez parmis les réponses possibles.
                     </div>
                 </div>
-
                 <div class="mb-3">
-                    <label for="question-4">Combien de personnes vivent dans ton ménage ?</label>
-                    <select class="form-control" id="question-4">
-                        <option>1</option>
+                    <label for="question-3">Combien de poubelle verte prends-tu chaque semaine</label>
+                    <select class="form-control" id="question-3">
+                        <option>0</option>
+                        <option selected="True">1</option>
                         <option>2</option>
                         <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6+</option>
+                        <option>plus que 3</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="question-4">Combien de poubelle jaune prends-tu chaque semaine</label>
+                    <select class="form-control" id="question-4" required>
+                        <option>0</option>
+                        <option selected="True">1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>plus que 3</option>
                     </select>
                     <div class="invalid-feedback">
                         Choisissez parmis les réponses possibles.
@@ -88,45 +81,35 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-5">Quelle est la taille de ta maison ?</label>
+                    <label for="question-5">Prends-tu plutôt des bains ou des douches</label>
                     <select class="form-control" id="question-5">
-                        <option>moins de 10m²</option>
-                        <option>de 10 à 30m²</option>
-                        <option>de 30 à 50m²</option>
-                        <option>de 50 à 80m²</option>
-                        <option>de 80 à 120m²</option>
-                        <option>plus de 120m²</option>
+                        <option>Que des bains</option>
+                        <option>Plus de bains que de douche </option>
+                        <option selected="True">Plus de douche que de bains</option>
+                        <option>Que des douches</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Choisissez parmis les réponses possibles.
+                    </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-6">Quelle est l’efficacité énergétique de ta maison ?</label>
+                    <label for="question-6">Combien de douches/bains prenez-vous par semaine?</label>
                     <select class="form-control" id="question-6">
-                        <option>Un peu</option>
-                        <option>Beaucoup</option>
-                        <option>Passionément</option>
-                        <option>A la folie</option>
-                        <option>Pas du tout</option>
+                        <option>jamais</option>
+                        <option>1 à 2 fois par semaine</option>
+                        <option>3 à 5 fois par semaine</option>
+                        <option selected="True">5 à 7 fois par semaine</option>
                     </select>
-                    <div class="invalid-feedback">
-                        Choisissez parmis les réponses possibles.
-                    </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-7">Quel pourcentage de l'électricité de ta maison provient de sources renouvelables ?</label>
+                    <label for="question-7">Vos vêtements sont-ils en cotton ou en laine/polyster?</label>
                     <select class="form-control" id="question-7">
-                        <option>0 %</option>
-                        <option>10 %</option>
-                        <option>20 %</option>
-                        <option>30 %</option>
-                        <option>40 %</option>
-                        <option>50 %</option>
-                        <option>60 %</option>
-                        <option>70 %</option>
-                        <option>80 %</option>
-                        <option>90 %</option>
-                        <option>100 %</option>
+                        <option selected="True" value="0.25">Que du cotton</option>
+                        <option>Plus de cotton que de polyester</option>
+                        <option>Plus de polyester que de cotton</option>                        
+                        <option>Que de polyester</option>
                     </select>
                     <div class="invalid-feedback">
                         Choisissez parmis les réponses possibles.
@@ -134,15 +117,18 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-8">Quels poids de déchets généres-tu par mois ?</label>
+                    <label for="question-7">Quels distance as-tu parcouru en train la dernière année ?</label>
                     <select class="form-control" id="question-8">
-                        <option>0 à 1 kg</option>
-                        <option>1 à 5 kg</option>
-                        <option>6 à 10 kg</option>
-                        <option>11 à 15 kg</option>
-                        <option>16 à 20 kg</option>
-                        <option>21 à 25 kg</option>
-                        <option>+ de 25 kg</option>
+                        <option selected="True">0 à 100 km</option>
+                        <option>101 à 200 km</option>
+                        <option>201 à 300 km</option>
+                        <option>301 à 400 km</option>
+                        <option>401 à 500 km</option>
+                        <option>501 à 600 km</option>
+                        <option>601 à 700 km</option>
+                        <option>701 à 800 km</option>
+                        <option>801 à 900 km</option>
+                        <option>901 à 1000 km</option>
                     </select>
                     <div class="invalid-feedback">
                         Choisissez parmis les réponses possibles.
@@ -150,11 +136,11 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-9">Quels poids distance parcours-tu en véhicule à moteur (hors transports en commun) par semaine ?</label>
+                    <label for="question-8">Quels distance parcours-tu en véhicule à moteur (hors transports en commun) par semaine ?</label>
                     <select class="form-control" id="question-9">
                         <option>0 à 10 km</option>
                         <option>10 à 50 km</option>
-                        <option>51 à 100 km</option>
+                        <option selected="True" >51 à 100 km</option>
                         <option>101 à 150 km</option>
                         <option>151 à 200 km</option>
                         <option>201 à 250 km</option>
@@ -166,15 +152,16 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-10">Quelle est la consommation de carburant moyenne des véhicules que tu utilises le plus souvent ?</label>
+                    <label for="question-9">Quelle est la consommation de carburant moyenne des véhicules que tu utilises le plus souvent ?</label>
                     <select class="form-control" id="question-10">
                         <option>2 L/100km</option>
                         <option>4 L/100km</option>
                         <option>6 L/100km</option>
-                        <option>10 L/100km</option>
+                        <option selected="True">10 L/100km</option>
                         <option>14 L/100km</option>
                         <option>16 L/100km</option>
                         <option>+ de 20L/100km</option>
+                        <option>Je ne sais pas</option>
                     </select>
                     <div class="invalid-feedback">
                         Choisissez parmis les réponses possibles.
@@ -182,9 +169,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-11">Lorsque tu voyages en voiture, à quelle fréquence fais-tu du covoiturage ?</label>
+                    <label for="question-10">Lorsque tu voyages en voiture, à quelle fréquence fais-tu du covoiturage ?</label>
                     <select class="form-control" id="question-11">
-                        <option>0 %</option>
+                        <option selected="True">0 %</option>
                         <option>10 %</option>
                         <option>20 %</option>
                         <option>30 %</option>
@@ -202,18 +189,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-12">Quelle distance parcours-tu en transports en commun chaque semaine ?</label>
+                    <label for="question-11">Pendant combien d'heures prends-tu les transports en commun chaque semaine ?</label>
                     <select class="form-control" id="question-12">
-                        <option>0 à 100 km</option>
-                        <option>101 à 200 km</option>
-                        <option>201 à 300 km</option>
-                        <option>301 à 400 km</option>
-                        <option>401 à 500 km</option>
-                        <option>501 à 600 km</option>
-                        <option>601 à 700 km</option>
-                        <option>701 à 800 km</option>
-                        <option>801 à 900 km</option>
-                        <option>901 à 1000 km</option>
+                        <option selected="True">0 à 1 h</option>
+                        <option>1h à 2h</option>
+                        <option>2h à 3h</option>
+                        <option>3h à 5h</option>
+                        <option>5h à 10h</option>
+                        <option>10h à 20h</option>
+                        <option>plus de 20h</option>
                     </select>
                     <div class="invalid-feedback">
                         Choisissez parmis les réponses possibles.
@@ -221,18 +205,16 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="question-13">Pendant combien d'heures prends-tu l'avion chaque année ?</label>
+                    <label for="question-12">Pendant combien d'heures prends-tu l'avion chaque année ?</label>
                     <select class="form-control" id="question-13">
-                        <option>0 à 100 km</option>
-                        <option>101 à 200 km</option>
-                        <option>201 à 300 km</option>
-                        <option>301 à 400 km</option>
-                        <option>401 à 500 km</option>
-                        <option>501 à 600 km</option>
-                        <option>601 à 700 km</option>
-                        <option>701 à 800 km</option>
-                        <option>801 à 900 km</option>
-                        <option>901 à 1000 km</option>
+                        <option>0 à 5 h</option>
+                        <option>5 à 10h</option>
+                        <option>10 à 20h</option>
+                        <option>20 à 30 h</option>
+                        <option>30 à 40 h</option>
+                        <option>40 à 50 h</option>
+                        <option>50 à 100 h</option>
+                        <option>plus de 100 h</option>
                     </select>
                     <div class="invalid-feedback">
                         Choisissez parmis les réponses possibles.
@@ -270,14 +252,18 @@
 
         var data= new Array();
         $('.form-control').each(function(){
-            data.push($(this).attr('id') + " : " + $(this).val());
+            var question = new Object();
+            question.question_id = $(this).attr('id');
+            question.answer = $(this).val();
+            data.push(question);
+            //data.push($(this).attr('id') + " : " + $(this).val());
         })
         var data = JSON.stringify( data ); //  <-----------
         console.log( data );
         // SEND POST DATA
         $.ajax({
             type: "POST",
-            url: "http://localhost/footprint/compute",
+            url: "http://192.168.99.100/footprint/compute",
             data: data,
             success: function(result){
                 $(".container").replaceWith("<div class=\"py-5 text-center\">" +
