@@ -57,7 +57,6 @@
 <script>
 
     function onSubmit( form ){
-
         var data = new Object();
         data.email = $("#email").val();
         data.password = $("#password").val();
@@ -69,12 +68,15 @@
             url: "http://localhost/users/signin",
             data: data,
             success: function(result){
-                console.log(result)
+                console.log(result.toString())
+                alert(result);
                 window.location.href = 'file:///home/daniel/workspace/makemegreen/makemegreen/frontend/dashboard.html';
             },
             dataType: "json",
             contentType : "application/json"
         });
+
+        return false;
     }
 
 
