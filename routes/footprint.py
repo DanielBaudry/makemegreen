@@ -1,7 +1,7 @@
 """users routes"""
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
-from engine.footprint import GetFootprint
+from engine.footprint import GetFootprint, ComputeFootprint
 
 from models import *
 
@@ -9,8 +9,10 @@ from models import *
 @app.route("/footprint/compute", methods=["POST"])
 def compute():
     app.logger.info("Start footprint computation")
-    data = request.get_json()
-    app.logger.info(data)
+    data = request.json
+    app.logger.info(data[0].get('value'))
+    #test = ComputeFootprint().execute(data)
+    #app.logger.info(test)
     # TODO: Charles
 
     # TO REMOVE: test data for front
