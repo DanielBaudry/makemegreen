@@ -6,8 +6,6 @@ import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import RecommendationItem from "../items/RecommendationItem";
 
-//TODO: make 2 pages : one RecommendationsPage & one FormRecommendationsPage
-
 class RecommendationsPage extends Component {
 
 
@@ -18,22 +16,6 @@ class RecommendationsPage extends Component {
                        benefit: null,
                        type: null,
                        difficulty_level: null}
-    }
-
-    onSubmitedClick = () => {
-        this.props.dispatch(requestData('POST',
-            'recommendation',
-            {
-                body: { name: this.state.name,
-                        content: this.state.content,
-                        benefit: this.state.benefit,
-                        type: this.state.type,
-                        difficulty_level: this.state.difficulty_level
-                    },
-                handleSuccess: () => {
-                //    TODO: write something to stay it is ok
-                }
-            }))
     }
 
     componentDidMount () {
@@ -61,6 +43,8 @@ class RecommendationsPage extends Component {
                                     <th>Name</th>
                                     <th>Type</th>
                                     <th>Benefit</th>
+                                    <th>Content</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,70 +57,15 @@ class RecommendationsPage extends Component {
                         </table>
                     </div>
                 </div>
-                <div className="recommendations-form">
-                    <form className="needs-validation"
-                          onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
-
-                        <div className="mb-3">
-                            <label for="name">Titre de la recommendation</label>
-                            <input className="form-control"
-                                   type="text"
-                                   id="name"
-                                   onChange={( e ) => this.setState({ name : e.target.value })}
-                                   value={this.state.name} >
-                            </input>
-                        </div>
-
-                        <div className="mb-3">
-                            <label for="content">Contenu de la recommendation</label>
-                            <input className="form-control"
-                                   type="text"
-                                   id="content"
-                                   onChange={( e ) => this.setState({ content : e.target.value })}
-                                   value={this.state.content} >
-                            </input>
-                        </div>
-
-                        <div className="mb-3">
-                            <label for="type">Type de la recommendation</label>
-                            <select className="form-control"
-                                    id="type"
-                                    onChange={( e ) => this.setState({ type : e.target.value })}
-                                    value={this.state.type} >
-                                <option value="carbon">Carbone</option>
-                                <option value="water">Eau</option>
-                                <option value="waste">Déchet</option>
-                            </select>
-                        </div>
-
-                        <div className="mb-3">
-                            <label for="benefit">Contenu de la recommendation</label>
-                            <input className="form-control"
-                                   type="text"
-                                   id="benefit"
-                                   placeholder="Quantité économisée"
-                                   onChange={( e ) => this.setState({ benefit : e.target.value })}
-                                   value={this.state.benefit} >
-                            </input>
-                        </div>
-
-                        <div className="mb-3">
-                            <label for="difficulty_level">Difficulté de la recommendation</label>
-                            <select className="form-control"
-                                    id="difficulty_level"
-                                    onChange={( e ) => this.setState({ difficulty_level : e.target.value })}
-                                    value={this.state.difficulty_level} >
-                                <option value="level_1">Ultra simpple</option>
-                                <option value="level_2">Ca passe</option>
-                                <option value="level_3">Un peu chaud</option>
-                                <option value="level_4">Duuuuur</option>
-                                <option value="level_5">Faut s'accorcher</option>
-                            </select>
-                        </div>
-
-                        <button className="btn btn-primary btn-lg btn-block"
-                                type="submit">Ajouter ma recommendation</button>
-                    </form>
+                <div class="my-5 pt-5 text-center">
+                    <NavLink to="/recommendation" className="button btn-primary btn-lg active">
+                        {"Ajouter ma recommandation"}
+                    </NavLink>
+                </div>
+                <div class="my-5 pt-5 text-center">
+                    <NavLink to="/home" className="button btn-primary btn-lg active">
+                        {"Retour au tableau de bord"}
+                    </NavLink>
                 </div>
             </div>
         )
@@ -146,6 +75,6 @@ class RecommendationsPage extends Component {
 const mapStateToProps = state => ({ recommendations: state.data.recommendations})
 
 export default compose(
-    withLogin({ failRedirect: '/connexion' }),
+    withLogin({ failRedirect: '/welcome' }),
     connect(mapStateToProps)
 )(RecommendationsPage)

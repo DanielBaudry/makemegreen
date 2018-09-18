@@ -13,6 +13,7 @@ class RecommendationItem extends Component {
             reco_type: null,
             reco_name: null,
             reco_benefit: null,
+            reco_content: null,
             reco_difficulty_level: null}
     }
 
@@ -29,6 +30,7 @@ class RecommendationItem extends Component {
         const reco_type = get(recommendation, "type")
         const reco_name = get(recommendation, "name")
         const reco_benefit = get(recommendation, "benefit")
+        const reco_content = get(recommendation, "content")
         const reco_difficulty_level = get(recommendation, "difficulty_level")
 
         return (
@@ -37,6 +39,7 @@ class RecommendationItem extends Component {
                 <td> { reco_name } </td>
                 <td> { reco_type } </td>
                 <td> { reco_benefit } </td>
+                <td> { reco_content } </td>
                 <td> { reco_difficulty_level } </td>
                 <td> <button onClick={e => { e.preventDefault(); this.onSubmitedClick();} }> C'est parti !</button>
                 </td>

@@ -68,6 +68,12 @@ class DashboardPage extends Component {
                     <span><strong>{statistics.total_carbon_saved} de C0²</strong></span>
                 </div>
 
+                <div className="recommendation-section">
+                    <NavLink to="/recommendations" className="button btn-primary btn-lg active">
+                        {"Recommandations"}
+                    </NavLink>
+                </div>
+
                 <div>
                     <button
                         type="button"
@@ -92,6 +98,6 @@ DashboardPage.defaultProps = {
 const mapStateToProps = state => ({ dashboard: state.data.dashboard})
 
 export default compose(
-    withLogin({ failRedirect: '/connexion' }),
+    withLogin({ failRedirect: '/welcome' }),
     connect(mapStateToProps)
 )(DashboardPage)

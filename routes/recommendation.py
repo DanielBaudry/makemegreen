@@ -29,18 +29,24 @@ def list_recommendations():
                             "id":"1",
                             "name": "toto",
                             "type": "carbon",
+                            "content": "bah en fait faut faire comme ça",
+                            "difficulty_level": 2,
                             "benefit": 60
                         },
                         {
                             "id":"2",
                             "name": "toto",
                             "type": "water",
+                            "content": "bah en fait faut faire comme ça",
+                            "difficulty_level": 3,
                             "benefit": 80
                         },
                         {
                             "id":"2",
                             "name": "toto",
                             "type": "waste",
+                            "content": "bah en fait faut faire comme ça aussi",
+                            "difficulty_level": 1,
                             "benefit": 20
                         },
                    ]})
