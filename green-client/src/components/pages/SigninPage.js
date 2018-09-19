@@ -50,7 +50,7 @@ class ConnexionPage extends Component {
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
                 </form>
                 <div class="my-5 pt-5 text-center">
-                        <NavLink to="/inscription" className="button is-secondary">
+                        <NavLink to="/footprint" className="button is-secondary">
                         {"Inscription"}
                     </NavLink>
                 </div>

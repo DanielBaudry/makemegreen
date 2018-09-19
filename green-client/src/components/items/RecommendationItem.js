@@ -22,25 +22,34 @@ class RecommendationItem extends Component {
         this.props.dispatch(requestData('GET',`/activity/${this.state.reco_id}`))
     }
 
-    render(){
+    componentDidMount () {
         const { recommendation } = this.props
 
         const reco_id = get(recommendation, "id")
-        this.state.reco_id = reco_id
         const reco_type = get(recommendation, "type")
         const reco_name = get(recommendation, "name")
         const reco_benefit = get(recommendation, "benefit")
         const reco_content = get(recommendation, "content")
         const reco_difficulty_level = get(recommendation, "difficulty_level")
+        this.setState( { "reco_id": reco_id,
+                        "reco_type": reco_type,
+                        "reco_name": reco_name,
+                        "reco_benefit": reco_benefit,
+                        "reco_content": reco_content,
+                        "reco_difficulty_level": reco_difficulty_level
+                    } )
+    }
+
+    render(){
 
         return (
             <tr>
-                <th scope="row"> { reco_id } </th>
-                <td> { reco_name } </td>
-                <td> { reco_type } </td>
-                <td> { reco_benefit } </td>
-                <td> { reco_content } </td>
-                <td> { reco_difficulty_level } </td>
+                <th scope="row"> { this.state.reco_id } </th>
+                <td> { this.state.reco_name } </td>
+                <td> { this.state.reco_type } </td>
+                <td> { this.state.reco_benefit } </td>
+                <td> { this.state.reco_content } </td>
+                <td> { this.state.reco_difficulty_level } </td>
                 <td> <button onClick={e => { e.preventDefault(); this.onSubmitedClick();} }> C'est parti !</button>
                 </td>
             </tr>

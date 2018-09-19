@@ -40,10 +40,11 @@ class RecommendationsPage extends Component {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Titre</th>
                                     <th>Type</th>
-                                    <th>Benefit</th>
-                                    <th>Content</th>
+                                    <th>Avantage</th>
+                                    <th>Contenu</th>
+                                    <th>Difficulté</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
