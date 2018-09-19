@@ -2,6 +2,7 @@ bcrypt
 Flask
 flask_cors
 flask-login
+flask_script
 flask_sqlalchemy
 psycopg2-binary
 simplejson

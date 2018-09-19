@@ -10,7 +10,6 @@ from models.db import db
 from models.install import install_models
 
 
-
 @pytest.fixture(scope='session')
 def app():
     app = Flask(__name__, template_folder='../templates')
