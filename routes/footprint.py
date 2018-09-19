@@ -8,16 +8,17 @@ from engine.footprint import GetFootprint, ComputeFootprint
 def compute():
     app.logger.info("Start footprint computation")
     data = request.json
-    app.logger.info(data[0].get('value'))
-    #test = ComputeFootprint().execute(data)
-    #app.logger.info(test)
-    # TODO: Charles
+    app.logger.info(data[0])
+    app.logger.info(data[0].get('answer'))
+    result = ComputeFootprint().execute(data)
+    #TODO: Charles
 
-    # TO REMOVE: test data for front
-    result = dict({'carbon_footprint': 80,
-                    'waste_footprint': 560,
-                    'water_footprint': 1200})
-
+    #TO REMOVE: test data for front
+    # result = dict({'carbon_footprint': test,
+    #                 'waste_footprint': 560,
+    #                 'water_footprint': 1200,
+    #                 'test':723})
+    #result = "test"
     return jsonify(result)
 
 
