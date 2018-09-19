@@ -1,5 +1,5 @@
 """User model"""
-from sqlalchemy import Column, Integer, ForeignKey, DateTime, Text, Enum
+from sqlalchemy import Column, Integer, ForeignKey, DateTime, Text, Enum, String
 from datetime import datetime
 
 from models.db import Model, db
@@ -14,6 +14,7 @@ class Recommendation(BaseObject, Model):
     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     activities = db.relationship('Activity', backref='recommendation', lazy=True)
 
+    title = Column(String(60), nullable=False)
     content = Column(Text, nullable=True)
     estimated_success_time = Column(Integer, nullable=True)
     difficulty_level = Column(Integer, nullable=True)
