@@ -8,18 +8,24 @@ from models.base_object import BaseObject
 
 
 class User(BaseObject, Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.Binary(60), nullable=False)
-    username = db.Column(db.String(80), nullable=False)
+    id = Column(db.Integer, primary_key=True)
+    email = Column(db.String(80), unique=True, nullable=False)
+    password = Column(db.Binary(60), nullable=False)
+    username = Column(db.String(80), nullable=False)
 
     footprints = db.relationship('Footprint', backref='user', lazy=True)
+    activities = db.relationship('Activity', backref='user', lazy=True)
 
     dateCreated = Column(DateTime,
                          nullable=False,
                          default=datetime.utcnow)
 
     clearTextPassword = None
+
+    def populateFromDict(self, dct):
+        super(User, self).populateFromDict(dct)
+        if dct.__contains__('password') and dct['password']:
+            self.setPassword(dct['password'])
 
     def checkPassword(self, passwordToCheck):
         return bcrypt.hashpw(passwordToCheck.encode('utf-8'), self.password) == self.password

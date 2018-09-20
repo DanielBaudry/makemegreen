@@ -20,6 +20,12 @@ from models.api_errors import ApiErrors
 from models.db import db
 from utils.human_ids import dehumanize, humanize
 
+from utils.logger import logger
+
+DUPLICATE_KEY_ERROR_CODE = '23505'
+NOT_FOUND_KEY_ERROR_CODE = '23503'
+OBLIGATORY_FIELD_ERROR_CODE = '23502'
+
 
 def serialize(value, **options):
     if isinstance(value, Enum):

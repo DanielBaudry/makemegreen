@@ -36,6 +36,11 @@ def signup():
     new_user = User(from_dict=request.json)
     new_user.id = None
 
+    # TODO: test if request already contains footprints data
+    app.logger.info(request.json)
+    data = request.json
+    footprints = data.get('footprints')
+
     objects_to_save = [new_user]
     BaseObject.check_and_save(*objects_to_save)
 

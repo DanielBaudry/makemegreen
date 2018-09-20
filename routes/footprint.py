@@ -11,14 +11,27 @@ def compute():
     app.logger.info(data[0])
     app.logger.info(data[0].get('answer'))
     result = ComputeFootprint().execute(data)
-    #TODO: Charles
+    #TODO: envoyer les vrais results
 
-    #TO REMOVE: test data for front
-    # result = dict({'carbon_footprint': test,
-    #                 'waste_footprint': 560,
-    #                 'water_footprint': 1200,
-    #                 'test':723})
-    #result = "test"
+    result = dict({"footprints": [
+                   {
+                       "id": 1,
+                       "footprint_type": "carbon",
+                       "footprint_value": 80
+                   },
+                   {
+                       "id": 2,
+                       "footprint_type": "waste",
+                       "footprint_value": 560
+                   },
+                   {
+                       "id": 3,
+                       "footprint_type": "water",
+                       "footprint_value": 1280
+                   }
+                 ]
+                })
+
     return jsonify(result)
 
 
@@ -35,9 +48,86 @@ def save_footprint():
 def get_footprint():
     # For test purpose
     # current_user = User.query.filter_by(email='test@test.com').first()
+    #
+    # footprint = GetFootprint().execute(current_user)
 
-    footprint = GetFootprint().execute(current_user)
+    footprint = dict({"user_id": 1,
+                      "leaderbord":
+                          {
+                              "rank": 100,
+                              "user_id": 1,
+                              "total": 1000,
+                          },
+                      "statistics":
+                          {
+                              "total_carbon_saved": 15000,
+                              "percentage_earth_saved": 10,
+                          },
+                      "footprints": [
+                        {
+                            "id": 1,
+                            "footprint_type": "carbon",
+                            "footprint_value": 80
+                        },
+                        {
+                            "id": 2,
+                            "footprint_type": "waste",
+                            "footprint_value": 560
+                        },
+                        {
+                            "id": 3,
+                            "footprint_type": "water",
+                            "footprint_value": 1280
+                        }
+                    ]
+                    })
+
     return jsonify(footprint)
 
+
+@app.route("/dashboard", methods=["GET"])
+@login_required
+def get_info():
+    # For test purpose
+    # current_user = User.query.filter_by(email='test@test.com').first()
+    #
+    # footprint = GetFootprint().execute(current_user)
+    # For test purpose
+    # current_user = User.query.filter_by(email='test@test.com').first()
+    #
+    # footprint = GetFootprint().execute(current_user)
+
+    footprint = dict({"user_id": 1,
+                      "leaderbord":
+                          {
+                              "rank": 100,
+                              "user_id": 1,
+                              "total": 1000,
+                          },
+                      "statistics":
+                          {
+                              "total_carbon_saved": 15000,
+                              "percentage_earth_saved": 10,
+                          },
+                      "footprints": [
+                          {
+                              "id": 1,
+                              "footprint_type": "carbon",
+                              "footprint_value": 80
+                          },
+                          {
+                              "id": 2,
+                              "footprint_type": "waste",
+                              "footprint_value": 560
+                          },
+                          {
+                              "id": 3,
+                              "footprint_type": "water",
+                              "footprint_value": 1280
+                          }
+                      ]
+                      })
+
+    return jsonify(footprint)
 
 

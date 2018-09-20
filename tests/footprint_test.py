@@ -25,6 +25,7 @@ def test_get_footprint_for_user(app):
     # footprint.carbon_footprint = 45
     # footprint.waste_footprint = 500
     # footprint.water_footprint = 1000
+
     # objects_to_save = [user, footprint]
     # BaseObject.check_and_save(*objects_to_save)
 

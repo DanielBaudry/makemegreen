@@ -1,6 +1,16 @@
 version: '3.2'
 
 services:
+  mmg_webapp:
+    build: green-client
+    volumes:
+      - './green-client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+
   mmg_database:
     image: postgres:10.1
     env_file:
