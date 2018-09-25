@@ -8,29 +8,31 @@ from engine.footprint import GetFootprint, ComputeFootprint
 def compute():
     app.logger.info("Start footprint computation")
     data = request.json
-    app.logger.info(data[0])
-    app.logger.info(data[0].get('answer'))
+    app.logger.info(data)
     result = ComputeFootprint().execute(data)
     #TODO: envoyer les vrais results
+    app.logger.info(result)
 
-    result = dict({"footprints": [
-                   {
-                       "id": 1,
-                       "footprint_type": "carbon",
-                       "footprint_value": 80
-                   },
-                   {
-                       "id": 2,
-                       "footprint_type": "waste",
-                       "footprint_value": 560
-                   },
-                   {
-                       "id": 3,
-                       "footprint_type": "water",
-                       "footprint_value": 1280
-                   }
-                 ]
-                })
+    # result = dict({"footprints": [
+    #                {
+    #                    "id": 1,
+    #                    "footprint_type": "carbon",
+    #                    "footprint_value": 80
+    #                },
+    #                {
+    #                    "id": 2,
+    #                    "footprint_type": "waste",
+    #                    "footprint_value": 560
+    #                },
+    #                {
+    #                    "id": 3,
+    #                    "footprint_type": "water",
+    #                    "footprint_value": 1280
+    #                }
+    #              ]
+    #             })
+    #
+    # app.logger.info(result)
 
     return jsonify(result)
 

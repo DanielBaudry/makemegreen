@@ -2,6 +2,7 @@
 from models import BaseObject, Footprint, User
 from engine import dictionnary as info
 
+
 class BadUserException(Exception):
     pass
 
@@ -9,37 +10,56 @@ class BadUserException(Exception):
 class BadArgException(Exception):
     pass
 
+
 class ComputeFootprint:
     def __init__(self):
         pass
 
     def getCO2Footprint(self, data):
-        redmeatFootprint   = float(data[0].get('answer')) * info.dic['serving'] * info.dic['nb_meals'] * info.dic['red_meat']
-        whitemeatFootprint = float(data[1].get('answer')) * info.dic['serving'] * info.dic['nb_meals'] * info.dic['white_meat']        
-        clothesFootprint   = float(data[6].get('answer')) * info.dic['quantity_clothes'] * info.dic['cotton'] \
-                                    + (1 - float(data[6].get('answer'))) * info.dic['quantity_clothes'] * info.dic['polyester/wool']
-        trainFootprint     = float(data[7].get('answer')) * info.dic['train']
-        if float(data[9].get('answer')) == -1:
-            carFootprint       = float(data[8].get('answer')) * info.dic['car']
+
+        redmeatFootprint = float(data.get('red_meat_frequency')) * info.dic['serving'] * info.dic['nb_meals'] * info.dic['red_meat']
+        whitemeatFootprint = float(data.get('white_meat_frequency')) * info.dic['serving'] * info.dic['nb_meals'] * info.dic['white_meat']
+        clothesFootprint = float(data.get('clothes_composition')) * info.dic['quantity_clothes'] * info.dic['cotton'] \
+                                    + (1 - float(data.get('clothes_composition'))) * info.dic['quantity_clothes'] * info.dic['polyester/wool']
+        trainFootprint = float(data.get('train_frequency')) * info.dic['train']
+        if float(data.get('personal_vehicule_consumption')) == -1:
+            carFootprint = float(data.get('personal_vehicule_frequency')) * info.dic['car']
         else:
-            carFootprint       = float(data[8].get('answer')) * float(data[9].get('answer'))/100. * info.dic['car_liter']
-        carFootprint = carFootprint - carFootprint * float(data[10].get('answer')) * (info.dic['nb_passengers'] - 1.)/info.dic['nb_passengers']
+            carFootprint = float(data.get('personal_vehicule_frequency')) * float(data.get('personal_vehicule_consumption'))/100. * info.dic['car_liter']
+        carFootprint = carFootprint - carFootprint * float(data.get('carpooling_frequency')) * (info.dic['nb_passengers'] - 1.)/info.dic['nb_passengers']
         return redmeatFootprint + whitemeatFootprint + clothesFootprint + carFootprint
 
     def getTrashFootprint(self, data):
-        greentrashFootprint  = float(data[2].get('answer')) * info.dic['green_trash']
-        yellowtrashFootprint = float(data[3].get('answer')) * info.dic['yellow_trash']
+        greentrashFootprint = float(data.get('green_garbage')) * info.dic['green_trash']
+        yellowtrashFootprint = float(data.get('yellow_garbage')) * info.dic['yellow_trash']
         return greentrashFootprint + yellowtrashFootprint
 
     def getWaterFootprint(self, data):
-        bathFootprint   = float(data[5].get('answer')) * float(data[4].get('answer')) * info.dic['bath']
-        showerFootprint = float(data[5].get('answer')) * (1 - float(data[4].get('answer'))) * info.dic['shower'] * info.dic['time_shower']
+        bathFootprint = float(data.get('bath_shower_frequency')) * float(data.get('bath_or_shower')) * info.dic['bath']
+        showerFootprint = float(data.get('bath_shower_frequency')) * (1 - float(data.get('bath_or_shower'))) * info.dic['shower'] * info.dic['time_shower']
         return bathFootprint + showerFootprint
 
     def execute(self, data):
-        return dict({'carbon_footprint': self.getCO2Footprint(data),
-                    'waste_footprint'  : self.getTrashFootprint(data),
-                    'water_footprint'  : self.getWaterFootprint(data)})
+
+        return dict({"footprints": [
+                            {
+                                "id": 1,
+                                "footprint_type": "carbon",
+                                "footprint_value": self.getCO2Footprint(data)
+                            },
+                            {
+                                "id": 2,
+                                "footprint_type": "waste",
+                                "footprint_value": self.getTrashFootprint(data)
+                            },
+                            {
+                                "id": 3,
+                                "footprint_type": "water",
+                                "footprint_value": self.getWaterFootprint(data)
+                            }
+        ]
+        })
+
 
 class GetFootprint:
     def __init__(self):
