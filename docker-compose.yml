@@ -10,12 +10,15 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
+    networks:
+      - app_nw
 
   mmg_database:
     image: postgres:10.1
     env_file:
       - docker/env_file
     networks:
+      - app_nw
       - db_nw
     command: postgres -c logging_collector=on -c log_destination=stderr -c log_min_duration_statement=0 -c log_statement=all -c log_duration=on
 
@@ -37,4 +40,5 @@ services:
 networks:
   db_nw:
     driver: bridge
-
+  app_nw:
+    driver: bridge

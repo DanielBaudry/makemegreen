@@ -10,6 +10,7 @@ Installer les données de démo :
 
 Lancer l'application :
 
+docker-compsoe build
 docker-compose up
 
 La webapp est accessible à l'adresse suivante : [localhost:3000](http://localhost:3000)
