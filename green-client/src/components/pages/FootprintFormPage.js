@@ -58,10 +58,9 @@ class FootPrintFormPage extends Component {
 
         return(
             <div className={`footprint-form`}>
-                <div className="row">
-                    <div className="col-md-12 order-md-1">
+                <div class="text-center">
                         <h4 className="mb-3">Questions</h4>
-                        <form className="needs-validation"
+                        <form className="form-signin"
                               onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
 
                             <div className="mb-3">
@@ -278,11 +277,10 @@ class FootPrintFormPage extends Component {
                                 </div>
                             </div>
 
-                            <button className="btn btn-primary btn-lg btn-block"
+                            <button className="btn btn-primary"
                                     type="submit">Calculer mon empreinte écologique</button>
                         </form>
                     </div>
-                </div>
             </div>
         )
     }

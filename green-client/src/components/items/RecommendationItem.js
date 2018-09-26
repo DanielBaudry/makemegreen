@@ -43,16 +43,19 @@ class RecommendationItem extends Component {
     render(){
 
         return (
-            <tr>
-                <th scope="row"> { this.state.reco_id } </th>
-                <td> { this.state.reco_name } </td>
-                <td> { this.state.reco_type } </td>
-                <td> { this.state.reco_benefit } </td>
-                <td> { this.state.reco_content } </td>
-                <td> { this.state.reco_difficulty_level } </td>
-                <td> <button onClick={e => { e.preventDefault(); this.onSubmitedClick();} }> C'est parti !</button>
-                </td>
-            </tr>
+            <div className="col reco-card">
+                <h5> { this.state.reco_name } </h5>
+                <h6>
+                    { this.state.reco_type } -<strong>{ this.state.reco_benefit }</strong>
+                </h6>
+                <span> { this.state.reco_content } </span>
+                <div className="text-muted">Difficulté: { this.state.reco_difficulty_level } </div>
+                <button
+                    className="btn btn-secondary"
+                    onClick={e => { e.preventDefault(); this.onSubmitedClick();} }>
+                    C'est parti !
+                </button>
+            </div>
         )
     }
 

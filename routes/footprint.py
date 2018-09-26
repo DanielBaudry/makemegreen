@@ -10,29 +10,7 @@ def compute():
     data = request.json
     app.logger.info(data)
     result = ComputeFootprint().execute(data)
-    #TODO: envoyer les vrais results
     app.logger.info(result)
-
-    # result = dict({"footprints": [
-    #                {
-    #                    "id": 1,
-    #                    "footprint_type": "carbon",
-    #                    "footprint_value": 80
-    #                },
-    #                {
-    #                    "id": 2,
-    #                    "footprint_type": "waste",
-    #                    "footprint_value": 560
-    #                },
-    #                {
-    #                    "id": 3,
-    #                    "footprint_type": "water",
-    #                    "footprint_value": 1280
-    #                }
-    #              ]
-    #             })
-    #
-    # app.logger.info(result)
 
     return jsonify(result)
 
@@ -45,55 +23,9 @@ def save_footprint():
     return jsonify(result)
 
 
-@app.route("/footprint/me", methods=["GET"])
-@login_required
-def get_footprint():
-    # For test purpose
-    # current_user = User.query.filter_by(email='test@test.com').first()
-    #
-    # footprint = GetFootprint().execute(current_user)
-
-    footprint = dict({"user_id": 1,
-                      "leaderbord":
-                          {
-                              "rank": 100,
-                              "user_id": 1,
-                              "total": 1000,
-                          },
-                      "statistics":
-                          {
-                              "total_carbon_saved": 15000,
-                              "percentage_earth_saved": 10,
-                          },
-                      "footprints": [
-                        {
-                            "id": 1,
-                            "footprint_type": "carbon",
-                            "footprint_value": 80
-                        },
-                        {
-                            "id": 2,
-                            "footprint_type": "waste",
-                            "footprint_value": 560
-                        },
-                        {
-                            "id": 3,
-                            "footprint_type": "water",
-                            "footprint_value": 1280
-                        }
-                    ]
-                    })
-
-    return jsonify(footprint)
-
-
 @app.route("/dashboard", methods=["GET"])
 @login_required
 def get_info():
-    # For test purpose
-    # current_user = User.query.filter_by(email='test@test.com').first()
-    #
-    # footprint = GetFootprint().execute(current_user)
     # For test purpose
     # current_user = User.query.filter_by(email='test@test.com').first()
     #

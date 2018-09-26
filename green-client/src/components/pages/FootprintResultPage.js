@@ -27,7 +27,7 @@ class FootPrintResultPage extends Component {
                 </div>
 
                 <div class="container">
-                    <div class="row" id ="results">
+                    <div class="row">
                         {
                             footprints_data.map(footprint => (
                                 <FootprintItem key={footprint.id} footprint={footprint} />
@@ -36,10 +36,10 @@ class FootPrintResultPage extends Component {
                     </div>
                 </div>
                 <div class="my-5 pt-5 text-center">
-                    <NavLink to="/connexion" className="button btn-primary btn-lg active">
+                    <NavLink to="/connexion" className="btn btn-primary btn-lg">
                         {"Connexion"}
                     </NavLink>
-                    <NavLink to="/inscription" params={footprints} className="button btn-primary btn-lg active">
+                    <NavLink to="/inscription" params={footprints} className="btn btn-primary btn-lg">
                         {"Inscription"}
                     </NavLink>
                 </div>

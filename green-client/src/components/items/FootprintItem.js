@@ -9,23 +9,35 @@ const FootprintItem = ({
   footprint
 }) => {
     const footprint_type = get(footprint, "footprint_type")
+    let footprint_category = null
+    switch (footprint_type) {
+        case 'carbon':
+            footprint_category = "Sur la route"
+            break;
+        case 'water':
+            footprint_category = "Dans mon assiette"
+            break;
+        case 'waste':
+            footprint_category = "Chez moi"
+            break;
+    }
     const footprint_value = get(footprint, "footprint_value")
 
     return (
-      <div class="col" id="carbon-footprint">
-          <div class="card">
-              <div class="card-img">
-                  <img class="card-img-top" src={carbon} height="150px" alt="Card image cap"/>
-              </div>
-              <div class="card-body">
-                  <h5 class="card-title">Empreinte {footprint_type}</h5>
-                  <p class="card-text">
+        <div className="col">
+          <div className="card footprint-card">
+              {/*<img class="card-img-top" src={carbon} alt="Card image cap"/>*/}
+              <div className="card-body">
+                  <span className="card-title">{footprint_category}</span>
+                  <p className="card-text">
                       <strong>  {footprint_value}  </strong>
                   </p>
-                  <a href="" class="btn btn-secondary">Details</a>
+                  <div class="card-details">
+                    <a href="/home" className="btn btn-secondary">Details</a>
+                  </div>
               </div>
           </div>
-      </div>
+        </div>
     )
 }
 

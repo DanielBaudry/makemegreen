@@ -43,46 +43,46 @@ class DashboardPage extends Component {
 
 
         return(
-            <div class="text-center">
-                Dashboard
-                <div className="footprints-section">
-                    ICI LE RESUME DES FOOTPRINTS
-                    <div class="container">
-                        <div class="row" id ="results">
-                        {
-                            footprints.map(footprint => (
-                                <FootprintItem key={footprint.id} footprint={footprint} />
-                            ))
-                        }
-                        </div>
+            <div className="container dashboard-section">
+                <div className="row footprints-section">
+                {
+                    footprints.map(footprint => (
+                        <FootprintItem key={footprint.id} footprint={footprint} />
+                    ))
+                }
+                </div>
+
+                <div className="row leaderbord-section">
+                    <div className="col">
+                        <p>ICI LE CLASSEMENT</p>
+                        Rang : {leaderbord.rank}
                     </div>
                 </div>
-                <div className="leaderbord-section">
-                    <p>ICI LE CLASSEMENT</p>
-                    Rang : {leaderbord.rank}
+
+                <div className="row statistics-section">
+                    <div className="col">
+                        <p>ICI LES STATISTIQUES</p>
+                        <p>Quantité total de CO2 economisée par les utilisateurs de MakeMeGreen :</p>
+                        <span><strong>{statistics.total_carbon_saved} de C0²</strong></span>
+                    </div>
                 </div>
 
-                <div className="statistics-section">
-                    <p>ICI LES STATISTIQUES</p>
-                    <p>Quantité total de CO2 economisée par les utilisateurs de MakeMeGreen :</p>
-                    <span><strong>{statistics.total_carbon_saved} de C0²</strong></span>
+                <div className="row recommendation-section">
+                    <div className="col">
+                        <NavLink to="/recommendations" className="btn btn-primary">
+                            {"Recommandations"}
+                        </NavLink>
+                    </div>
                 </div>
 
-                <div className="recommendation-section">
-                    <NavLink to="/recommendations" className="button btn-primary btn-lg active">
-                        {"Recommandations"}
-                    </NavLink>
-                </div>
-
-                <div>
-                    <button
-                        type="button"
-                        className="navlink flex-columns"
-                        onClick={this.onSignOutClick}>
-                        <span>
-                        Déconnexion
-                        </span>
-                    </button>
+                <div className="row deconnexion-section">
+                    <div className="col">
+                        <button
+                            className="btn btn-secondary btn-lg"
+                            onClick={this.onSignOutClick}>
+                            Déconnexion
+                        </button>
+                    </div>
                 </div>
             </div>
         )

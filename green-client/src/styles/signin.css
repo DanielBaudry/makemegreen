@@ -27,3 +27,47 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.dashboard-section{
+    margin-top: 5px;
+}
+
+.leaderbord-section{
+    margin-top: 5px;
+}
+
+.footprint-card{
+    min-height: 200px;
+}
+
+.footprint-card .card-details{
+    /*TODO*/
+}
+
+.btn-primary{
+    background-color: #388E3C;
+    border-color: #388E3C;
+}
+
+.btn-primary:hover{
+    background-color: #4CAF50;
+    border-color: #388E3C;
+}
+
+.btn-secondary{
+    background-color: #8BC34A;
+    border-color: #388E3C;
+}
+
+.btn-secondary:hover{
+    background-color: #4CAF50;
+    border-color: #388E3C;
+}
+
+.reco-card{
+    min-height: 200px;
+    padding: 6px;
+    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,.2);
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+

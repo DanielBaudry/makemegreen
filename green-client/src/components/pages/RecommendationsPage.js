@@ -35,36 +35,23 @@ class RecommendationsPage extends Component {
             <div class="text-center">
                 Recommendations
                 <div className="recommendations-section">
-                    <div class="container">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Titre</th>
-                                    <th>Type</th>
-                                    <th>Avantage</th>
-                                    <th>Contenu</th>
-                                    <th>Difficulté</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <div className="container">
+                        <div className="row">
                                 {
                                     reco.map(recommendation => (
                                         <RecommendationItem key={recommendation.id} recommendation={recommendation} />
                                     ))
                                 }
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
                 </div>
                 <div class="my-5 pt-5 text-center">
-                    <NavLink to="/recommendation" className="button btn-primary btn-lg active">
+                    <NavLink to="/recommendation" className="btn btn-primary">
                         {"Ajouter ma recommandation"}
                     </NavLink>
                 </div>
                 <div class="my-5 pt-5 text-center">
-                    <NavLink to="/home" className="button btn-primary btn-lg active">
+                    <NavLink to="/home" className="btn btn-primary">
                         {"Retour au tableau de bord"}
                     </NavLink>
                 </div>

@@ -47,7 +47,7 @@ class RecommendationFormPage extends Component {
             <div class="text-center">
                 Recommendations
                 <div className="recommendations-form">
-                    <form className="needs-validation"
+                    <form className="form-signin"
                           onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
 
                         <div className="mb-3">
@@ -107,12 +107,12 @@ class RecommendationFormPage extends Component {
                             </select>
                         </div>
 
-                        <button className="btn btn-primary btn-lg btn-block"
+                        <button className="btn btn-primary"
                                 type="submit">Ajouter ma recommendation</button>
                     </form>
                 </div>
                 <div class="my-5 pt-5 text-center">
-                    <NavLink to="/recommendations" className="button btn-primary btn-lg active">
+                    <NavLink to="/recommendations" className="btn btn-primary">
                         {"Retour à la liste des recommandations"}
                     </NavLink>
                 </div>

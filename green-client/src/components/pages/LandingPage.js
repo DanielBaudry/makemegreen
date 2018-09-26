@@ -10,10 +10,10 @@ class LandingPage extends Component {
                 <h1>Landing Page</h1>
                 <span>Ici on présente Make Me Green</span>
                 <div class="my-5 pt-5 text-center">
-                    <NavLink to="/connexion" className="button btn-primary btn-lg active">
+                    <NavLink to="/connexion" className="btn btn-primary">
                         {"Connexion"}
                     </NavLink>
-                    <NavLink to="/footprint" className="button btn-primary btn-lg active">
+                    <NavLink to="/footprint" className="btn btn-primary">
                         {"Inscription"}
                     </NavLink>
                 </div>
