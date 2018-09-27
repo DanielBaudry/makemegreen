@@ -10,6 +10,7 @@ import SignupPage from "../components/pages/SignupPage";
 import RecommendationsPage from "../components/pages/RecommendationsPage";
 import RecommendationFormPage from "../components/pages/RecommendationFormPage";
 import LandingPage from "../components/pages/LandingPage";
+import ActivitiesPage from "../components/pages/ActivitiesPage";
 
 const routes = [
     {
@@ -60,6 +61,11 @@ const routes = [
         component: RecommendationFormPage,
         path: '/recommendation',
         title: "Recommendation",
+    },
+    {
+        component: ActivitiesPage,
+        path: '/activities',
+        title: "Mes challenges",
     },
 ]
 

@@ -1,9 +1,14 @@
-import enum
+from enum import Enum
+from collections import OrderedDict
 
 
-class FootprintType(enum.Enum):
-    total = "global"
-    carbon = "carbon"
-    water = "water"
-    waste = "waste"
+class FootprintType(Enum):
+    total = {'label': "global"}
+    carbon = {'label': "carbon"}
+    water = {'label': "water"}
+    waste = {'label': "waste"}
 
+    def _asdict(self):
+        result = OrderedDict()
+        result['label'] = self.name
+        return result

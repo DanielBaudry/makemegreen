@@ -25,8 +25,8 @@ class RecommendationItem extends Component {
     componentDidMount () {
         const { recommendation } = this.props
 
-        const reco_id = get(recommendation, "id")
-        const reco_type = get(recommendation, "type")
+        const reco_id = get(recommendation, "dehumanizedId")
+        const reco_type = get(get(recommendation, "type"),"label")
         const reco_name = get(recommendation, "name")
         const reco_benefit = get(recommendation, "benefit")
         const reco_content = get(recommendation, "content")
@@ -60,8 +60,6 @@ class RecommendationItem extends Component {
     }
 
 }
-
-// export default RecommendationItem
 
 export default connect(
 )(RecommendationItem)

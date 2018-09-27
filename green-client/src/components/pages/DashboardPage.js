@@ -67,10 +67,18 @@ class DashboardPage extends Component {
                     </div>
                 </div>
 
-                <div className="row recommendation-section">
+                <div className="row recommendations-section">
                     <div className="col">
                         <NavLink to="/recommendations" className="btn btn-primary">
                             {"Recommandations"}
+                        </NavLink>
+                    </div>
+                </div>
+
+                <div className="row actitivities-section">
+                    <div className="col">
+                        <NavLink to="/activities" className="btn btn-primary">
+                            {"Mon activité"}
                         </NavLink>
                     </div>
                 </div>

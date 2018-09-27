@@ -1,5 +1,5 @@
 """ Activity """
-from models import BaseObject, Recommendation, User, Activity
+from models import BaseObject, Recommendation, User, Activity, ActivityStatus
 
 
 class BadUserException(Exception):
@@ -27,10 +27,6 @@ class StartActivity:
         pass
 
     def execute(self, recommendation_id, user_id) -> Activity:
-        print("TOTO: ")
-        print(recommendation_id)
-        print(user_id)
-        print("============")
 
         if recommendation_id is None:
             raise BadArgException()
@@ -42,3 +38,21 @@ class StartActivity:
         BaseObject.check_and_save(activity)
 
         return activity
+
+
+class EndActivity:
+    def __init__(self):
+        pass
+
+    def execute(self, activity_id, user_id) -> Activity:
+
+        if activity_id is None or user_id is None:
+            raise BadArgException()
+
+        activity = Activity.query.filter_by(id=activity_id).first()
+        activity.set_status(ActivityStatus.fail)
+
+        BaseObject.check_and_save(activity)
+
+        return activity
+

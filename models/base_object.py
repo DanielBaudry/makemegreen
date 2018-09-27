@@ -59,10 +59,10 @@ class BaseObject():
     def _asdict(self, **options):
         result = OrderedDict()
         for key in self.__mapper__.c.keys():
-            if options\
-               and 'include' in options\
-               and options.get('include')\
-               and "-"+key in options['include']:
+            if options \
+                    and 'include' in options \
+                    and options.get('include') \
+                    and "-" + key in options['include']:
                 continue
             value = getattr(self, key)
             if options and options.get('cut'):
@@ -80,12 +80,12 @@ class BaseObject():
                 result[key] = serialize(value, **options)
         # add the model name
         result['modelName'] = self.__class__.__name__
-        if options\
-           and 'include' in options\
-           and options['include']:
+        if options \
+                and 'include' in options \
+                and options['include']:
             for join in options['include']:
-                if isinstance(join, str) and\
-                   join.startswith('-'):
+                if isinstance(join, str) and \
+                        join.startswith('-'):
                     continue
                 elif isinstance(join, dict):
                     key = join['key']
@@ -104,13 +104,14 @@ class BaseObject():
                 if callable(value):
                     value = value()
                 if value is not None:
-                    if isinstance(value, InstrumentedList)\
-                       or value.__class__.__name__ == 'AppenderBaseQuery'\
-                       or isinstance(value, list):
+                    if isinstance(value, InstrumentedList) \
+                            or value.__class__.__name__ == 'AppenderBaseQuery' \
+                            or isinstance(value, list):
                         if refine is None:
                             final_value = value
                         else:
                             final_value = refine(value, options.get('filters', {}))
+                        final_value = filter(lambda x: not x.is_soft_deleted(), final_value)
                         result[key] = list(
                             map(
                                 lambda attr: attr._asdict(
@@ -133,9 +134,9 @@ class BaseObject():
                     else:
                         result[key] = serialize(value)
 
-        if options and\
-           'resolve' in options and\
-           options['resolve']:
+        if options and \
+                'resolve' in options and \
+                options['resolve']:
             return options['resolve'](result, options.get('filters', {}))
         else:
             return result
