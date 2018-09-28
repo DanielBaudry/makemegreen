@@ -31,13 +31,11 @@ class DashboardPage extends Component {
 
     render () {
         let footprints = []
-        let leaderbord = []
         let statistics = []
 
         const { dashboard } = this.props
         if( dashboard.length > 0){
             footprints = dashboard[0]['footprints']
-            leaderbord = dashboard[0]['leaderbord']
             statistics = dashboard[0]['statistics']
         }
 
@@ -52,16 +50,8 @@ class DashboardPage extends Component {
                 }
                 </div>
 
-                <div className="row leaderbord-section">
-                    <div className="col">
-                        <p>ICI LE CLASSEMENT</p>
-                        Rang : {leaderbord.rank}
-                    </div>
-                </div>
-
                 <div className="row statistics-section">
                     <div className="col">
-                        <p>ICI LES STATISTIQUES</p>
                         <p>Quantité total de CO2 economisée par les utilisateurs de MakeMeGreen :</p>
                         <span><strong>{statistics.total_carbon_saved} de C0²</strong></span>
                     </div>

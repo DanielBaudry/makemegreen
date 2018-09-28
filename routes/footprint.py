@@ -1,7 +1,9 @@
 """users routes"""
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
-from engine.footprint import GetFootprint, ComputeFootprint
+from engine.footprint import GetFootprints, ComputeFootprint
+from models import Activity, ActivityStatus
+from sqlalchemy.sql import func
 
 
 @app.route("/footprint/compute", methods=["POST"])
@@ -23,45 +25,47 @@ def save_footprint():
     return jsonify(result)
 
 
+@app.route("/benefit", methods=["GET"])
+def get_benefit():
+    activities = Activity.query.filter_by(status=ActivityStatus.success).all()
+    total_saved = 0
+    for activity in activities:
+        total_saved += activity.get_benefit()
+
+    return jsonify(dict({"total_saved": total_saved}))
+
+
 @app.route("/dashboard", methods=["GET"])
 @login_required
 def get_info():
-    # For test purpose
-    # current_user = User.query.filter_by(email='test@test.com').first()
-    #
-    # footprint = GetFootprint().execute(current_user)
 
-    footprint = dict({"user_id": 1,
-                      "leaderbord":
-                          {
-                              "rank": 100,
-                              "user_id": 1,
-                              "total": 1000,
-                          },
+    footprints = GetFootprints().execute(current_user)
+
+    total_saved = get_benefit().json.get("total_saved")
+
+    # TODO: FOR leaderbord need to join recommendation and activities table in sqlalchemy
+
+    result = dict({# "leaderbord":
+                      #     {
+                      #         "rank": 100,
+                      #         "user_id": 1,
+                      #         "total": 1000,
+                      #     },
                       "statistics":
                           {
-                              "total_carbon_saved": 15000,
-                              "percentage_earth_saved": 10,
+                              "total_carbon_saved": total_saved,
                           },
-                      "footprints": [
-                          {
-                              "id": 1,
-                              "footprint_type": "carbon",
-                              "footprint_value": 80
-                          },
-                          {
-                              "id": 2,
-                              "footprint_type": "waste",
-                              "footprint_value": 560
-                          },
-                          {
-                              "id": 3,
-                              "footprint_type": "water",
-                              "footprint_value": 1280
-                          }
-                      ]
                       })
 
-    return jsonify(footprint)
+    result['footprints'] = _serialize_footprints(footprints)
+
+    return jsonify(result)
 
 
+def _serialize_footprints(footprints):
+    return list(map(_serialize_footprint, footprints))
+
+
+def _serialize_footprint(footprint):
+    dict_footprint = footprint._asdict()
+    return dict_footprint

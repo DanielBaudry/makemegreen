@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 
 class FootprintType(Enum):
-    total = {'label': "global"}
+    total = {'label': "total"}
     carbon = {'label': "carbon"}
     water = {'label': "water"}
     waste = {'label': "waste"}

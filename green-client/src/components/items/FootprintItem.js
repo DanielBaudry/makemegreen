@@ -8,7 +8,7 @@ import water from '../../assets/water.png'
 const FootprintItem = ({
   footprint
 }) => {
-    const footprint_type = get(footprint, "footprint_type")
+    const footprint_type = get(get(footprint, "type"), "label")
     let footprint_category = null
     switch (footprint_type) {
         case 'carbon':
@@ -21,7 +21,7 @@ const FootprintItem = ({
             footprint_category = "Chez moi"
             break;
     }
-    const footprint_value = get(footprint, "footprint_value")
+    const footprint_value = get(footprint, "value")
 
     return (
         <div className="col">

@@ -28,6 +28,9 @@ class Recommendation(BaseObject, Model):
     def get_id(self):
         return str(self.id)
 
+    def get_benefit(self):
+        return self.benefit
+
     def errors(self):
         errors = super(Recommendation, self).errors()
         return errors

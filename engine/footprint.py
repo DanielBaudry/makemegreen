@@ -1,7 +1,7 @@
 """ Footprint """
-from models import BaseObject, Footprint, User
+from models import BaseObject, Footprint, User, FootprintType
 from engine import dictionnary as info
-
+from flask import current_app as app
 
 class BadUserException(Exception):
     pass
@@ -44,33 +44,50 @@ class ComputeFootprint:
         return dict({"footprints": [
                             {
                                 "id": 1,
-                                "footprint_type": "carbon",
-                                "footprint_value": self.getCO2Footprint(data)
+                                "type": {
+                                    "label": "carbon"
+                                },
+                                "value": self.getCO2Footprint(data)
                             },
                             {
                                 "id": 2,
-                                "footprint_type": "waste",
-                                "footprint_value": self.getTrashFootprint(data)
+                                "type": {
+                                    "label": "waste"
+                                },
+                                "value": self.getTrashFootprint(data)
                             },
                             {
                                 "id": 3,
-                                "footprint_type": "water",
-                                "footprint_value": self.getWaterFootprint(data)
+                                "type": {
+                                    "label": "water"
+                                },
+                                "value": self.getWaterFootprint(data)
                             }
         ]
         })
 
 
-class GetFootprint:
+class GetFootprints:
     def __init__(self):
         pass
 
     def execute(self, user: User) -> Footprint:
         if user is None:
             raise BadUserException()
-        footprint = Footprint.query.filter_by(user=user).first()
 
-        return footprint
+        footprints = []
+        for type in FootprintType:
+            footprint_type = type.value.get('label')
+            if footprint_type != "total":
+                footprint = Footprint.query. \
+                    filter_by(user_id=user.get_id()). \
+                    filter_by(type=footprint_type). \
+                    order_by(Footprint.date_created.desc()). \
+                    first()
+
+                footprints.append(footprint)
+
+        return footprints
 
 
 class SaveFootprint:

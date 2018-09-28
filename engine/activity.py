@@ -2,11 +2,14 @@
 from models import BaseObject, Footprint, User, Activity, ActivityStatus
 from flask import current_app as app
 
+
 class BadUserException(Exception):
     pass
 
+
 class AlreadyStartedException(Exception):
     pass
+
 
 class BadArgException(Exception):
     pass
