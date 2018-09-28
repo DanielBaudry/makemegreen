@@ -14,8 +14,6 @@ def add_recommendation():
     data = request.get_json()
     app.logger.info(data)
 
-    # TODO:
-
     result = dict({"success": "yes"})
 
     return jsonify(result)

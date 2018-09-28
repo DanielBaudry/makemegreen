@@ -45,11 +45,11 @@ class RecommendationsPage extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="my-5 pt-5 text-center">
-                    <NavLink to="/recommendation" className="btn btn-primary">
-                        {"Ajouter ma recommandation"}
-                    </NavLink>
-                </div>
+                {/*<div class="my-5 pt-5 text-center">*/}
+                    {/*<NavLink to="/recommendation" className="btn btn-primary">*/}
+                        {/*{"Ajouter ma recommandation"}*/}
+                    {/*</NavLink>*/}
+                {/*</div>*/}
                 <div class="my-5 pt-5 text-center">
                     <NavLink to="/home" className="btn btn-primary">
                         {"Retour au tableau de bord"}

@@ -99,11 +99,11 @@ class RecommendationFormPage extends Component {
                                     id="difficulty_level"
                                     onChange={( e ) => this.setState({ difficulty_level : e.target.value })}
                                     value={this.state.difficulty_level} >
-                                <option value="level_1">Ultra simpple</option>
-                                <option value="level_2">Ca passe</option>
-                                <option value="level_3">Un peu chaud</option>
-                                <option value="level_4">Duuuuur</option>
-                                <option value="level_5">Faut s'accorcher</option>
+                                <option value="1">Ultra simple</option>
+                                <option value="2">Ca passe</option>
+                                <option value="3">Un peu chaud</option>
+                                <option value="4">Duuuuur</option>
+                                <option value="5">Faut s'accorcher</option>
                             </select>
                         </div>
 
