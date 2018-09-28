@@ -44,6 +44,9 @@ class Activity(BaseObject, Model):
     def set_status(self, status):
         self.status = status
 
+    def set_date_end(self):
+        self.date_end = datetime.utcnow()
+
     def errors(self):
         errors = super(Activity, self).errors()
         return errors

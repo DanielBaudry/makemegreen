@@ -13,7 +13,7 @@ class Footprint(BaseObject, Model):
 
     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
 
-    date_created = Column(DateTime, nullable=False,  default=datetime.utcnow)
+    date_created = Column(DateTime, nullable=False, default=datetime.utcnow)
 
     type = Column(Enum(FootprintType))
     # TODO: add constraint to restrict list of possible values
@@ -34,6 +34,15 @@ class Footprint(BaseObject, Model):
 
     def get_waste_footprint(self):
         return str(self.waste_footprint)
+
+    def set_value(self, value):
+        self.value = value
+
+    def set_date_created(self):
+        self.date_created = datetime.utcnow()
+
+    def get_value(self):
+        return self.value
 
     def errors(self):
         errors = super(Footprint, self).errors()

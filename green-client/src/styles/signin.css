@@ -67,7 +67,17 @@
 .reco-card{
     min-height: 200px;
     padding: 6px;
+    margin: 6px;
     -webkit-box-shadow: 0 2px 6px rgba(0,0,0,.2);
     box-shadow: 0 2px 6px rgba(0,0,0,.2);
 }
 
+.fail{
+    background-color: #86989B;
+    color: #5a6268;
+}
+
+.success{
+    background-color: lightgreen;
+    color: #5a6268;
+}

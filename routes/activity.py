@@ -2,17 +2,25 @@
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
 from models import Activity, ActivityStatus
-from engine.activity import StartActivity, EndActivity
+from engine.activity import StartActivity, EndActivity, ValidateActivity, AlreadyStartedException
 from collections import OrderedDict
 
 from utils.includes import ACTIVITY_INCLUDES
+
+
+@app.route("/activity/validate/<activity_id>", methods=["GET"])
+@login_required
+def validate_activity(activity_id):
+    activity = ValidateActivity().execute(activity_id=int(activity_id), user_id=int(current_user.get_id()))
+    result = dict({"success": "yes"})
+
+    return jsonify(result)
 
 
 @app.route("/activity/remove/<activity_id>", methods=["GET"])
 @login_required
 def end_activity(activity_id):
     activity = EndActivity().execute(activity_id=int(activity_id), user_id=int(current_user.get_id()))
-    app.logger.info(activity)
     result = dict({"success": "yes"})
 
     return jsonify(result)
@@ -23,10 +31,13 @@ def end_activity(activity_id):
 @app.route("/activity/<reco_id>", methods=["GET"])
 @login_required
 def start_activity(reco_id):
-    app.logger.info("Start new activity based on specific recommendation")
-    activity = StartActivity().execute(int(reco_id), int(current_user.get_id()))
-    app.logger.info(activity)
-    result = dict({"success": "yes"})
+    try:
+        StartActivity().execute(int(reco_id), int(current_user.get_id()))
+    except AlreadyStartedException:
+        return jsonify(dict({"status": "fail",
+                       "message": "Cette recommendation est déjà en cours dans ton activité"})), 401
+    result = dict({"status": "success",
+                   "message": "Cette recommendation a bien été ajouté à ton activité"})
 
     return jsonify(result)
 
@@ -34,7 +45,7 @@ def start_activity(reco_id):
 @app.route("/activities", methods=["GET"])
 @login_required
 def list_my_activity():
-    query = Activity.query.filter_by(user_id=current_user.get_id()).filter_by(status=ActivityStatus.pending)
+    query = Activity.query.filter_by(user_id=current_user.get_id())
     activities = query.all()
     result = OrderedDict()
     result['activities'] = _serialize_activities(activities)
