@@ -4,8 +4,6 @@ from flask_login import current_user, login_required
 from models import Recommendation
 from collections import OrderedDict
 
-# TODO: login_required or not for GET and list methods?
-
 
 @app.route("/recommendation", methods=["POST"])
 @login_required
