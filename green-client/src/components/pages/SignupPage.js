@@ -13,8 +13,11 @@ class SignupPage extends Component {
                        footprints: this.props.footprints }
     }
 
-    onSubmitedClick = (footprints_data) => {
-        this.setState({ footprints : footprints_data })
+    componentDidMount () {
+        this.setState({ footprints: this.props.footprints })
+    }
+
+    onSubmitedClick = () => {
         this.props.dispatch(requestData('POST',
             '/users/signup',
             {
@@ -34,17 +37,10 @@ class SignupPage extends Component {
     render () {
         const { footprints } = this.props
 
-        let footprints_data = []
-        if ( footprints.length > 0 ){
-            footprints_data = this.props.footprints[0]['footprints']
-        }
-        console.log(footprints_data)
-
-
         return(
             <div class="text-center">
                 <form class="form-signin"
-                      onSubmit={e => { e.preventDefault(); this.onSubmitedClick({footprints_data});} }>
+                      onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
                     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
                     <label for="username" class="sr-only">Nom d'utilisateur</label>
                     <input type="username"
@@ -66,7 +62,7 @@ class SignupPage extends Component {
                     <input type="password" id="password" class="form-control" placeholder="Mot de passe" required
                            onChange={( e ) => this.setState({ password : e.target.value })}
                            value={this.state.password}/>
-                    <input type="hidden" value={footprints_data}/>
+                    <input type="hidden" value={footprints}/>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
                 </form>
                 <div class="my-5 pt-5 text-center">

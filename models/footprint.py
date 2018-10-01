@@ -23,6 +23,14 @@ class Footprint(BaseObject, Model):
     water_footprint = Column(Integer, nullable=True)
     waste_footprint = Column(Integer, nullable=True)
 
+    # TODO: it is not ouf
+    def populateFromDict(self, dct):
+        super(Footprint, self).populateFromDict(dct)
+        if dct.__contains__('value') and dct['value']:
+            self.set_value(int(dct['value']))
+        if dct.__contains__('type') and dct['type']:
+            self.set_type(dct['type']['label'])
+
     def get_id(self):
         return str(self.id)
 
@@ -37,6 +45,9 @@ class Footprint(BaseObject, Model):
 
     def set_value(self, value):
         self.value = value
+
+    def set_type(self, type):
+        self.type = type
 
     def set_date_created(self):
         self.date_created = datetime.utcnow()
