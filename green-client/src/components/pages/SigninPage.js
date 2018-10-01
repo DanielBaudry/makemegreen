@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { compose } from 'redux'
 import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 
@@ -59,4 +60,4 @@ class ConnexionPage extends Component {
     }
 }
 
-export default connect()(ConnexionPage)
+export default compose(connect())(ConnexionPage)

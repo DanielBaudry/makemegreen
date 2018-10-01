@@ -39,7 +39,6 @@ def signup():
     new_user.id = None
 
     footprints = data.get('footprints')[0]
-
     BaseObject.check_and_save(new_user)
 
     objects_to_save = []

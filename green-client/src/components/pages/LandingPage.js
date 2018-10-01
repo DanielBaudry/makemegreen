@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux";
 import { NavLink } from 'react-router-dom'
 
 class LandingPage extends Component {
@@ -22,4 +21,4 @@ class LandingPage extends Component {
     }
 }
 
-export default connect()(LandingPage)
+export default LandingPage
