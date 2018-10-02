@@ -14,6 +14,16 @@ def get_profile():
     return jsonify(user)
 
 
+@app.route('/users/current', methods=['PATCH'])
+@login_required
+def patch_profile():
+    data = request.json.keys()
+    current_user.populateFromDict(request.json)
+    BaseObject.check_and_save(current_user)
+    user = current_user._asdict(include=USER_INCLUDES)
+    return jsonify(user), 200
+
+
 @app.route("/users/signin", methods=["POST"])
 def signin():
     data = request.json
