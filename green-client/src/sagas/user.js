@@ -1,4 +1,3 @@
-import moment from 'moment'
 import get from 'lodash.get'
 import { put, select, takeEvery } from 'redux-saga/effects'
 
@@ -18,19 +17,6 @@ function* fromWatchSuccessGetSignoutActions() {
     yield put(setUser(null))
 }
 
-function* fromWatchSuccessPatchUsers(action) {
-    const loggedUserId = yield select(state => get(state, 'user.id'))
-
-    if (!loggedUserId) {
-        console.warn('You should have a loggedUserId here')
-        return
-    }
-
-    if (loggedUserId === get(action, 'data.id')) {
-        yield put(setUser(action.data))
-    }
-}
-
 function* fromWatchSuccessSignActions() {
     console.log("3")
     const user = yield select(state => get(state, 'data.users[0]'))
@@ -45,33 +31,52 @@ function* fromWatchSuccessSignActions() {
     }
 }
 
+function* fromWatchSuccessPatchUsers(action) {
+    const loggedUserId = yield select(state => get(state, 'user.id'))
+
+    if (!loggedUserId) {
+        console.warn('You should have a loggedUserId here')
+        return
+    }
+
+    if (loggedUserId === get(action, 'data.id')) {
+        yield put(setUser(action.data))
+    }
+}
+
 export function* watchUserActions() {
     yield takeEvery(
         ({ type }) =>
-            /REQUEST_DATA_POST_USERS\/SIGN(.*)/.test(type) ||
-            /REQUEST_DATA_GET_USERS\/CURRENT(.*)/.test(type),
+            /REQUEST_DATA_POST_\/?USERS\/SIGN(.*)/.test(type) ||
+            /REQUEST_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type),
         fromWatchRequestSignActions
     )
     yield takeEvery(
         ({ type }) =>
-            /FAIL_DATA_POST_USERS\/SIGN(.*)/.test(type) ||
-            /FAIL_DATA_GET_USERS\/CURRENT(.*)/.test(type),
+            /FAIL_DATA_POST_\/?\/?USERS\/SIGN(.*)/.test(type) ||
+            /FAIL_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type),
         fromWatchFailSignActions
     )
     yield takeEvery(
-        ({ type }) =>
-            /SUCCESS_DATA_POST_USERS\/SIGN(.*)/.test(type) ||
-            /SUCCESS_DATA_GET_USERS\/CURRENT(.*)/.test(type),
+        ({ type }) => {
+            console.log("In takeEvery")
+            console.log(type)
+            const is_sucess = /SUCCESS_DATA_POST_\/?\/?\/?USERS\/SIGN(.*)/.test(type) ||
+            /SUCCESS_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type)
+            console.log(is_sucess)
+            console.log("End takeEvery")
+            return is_sucess
+
+        },
         fromWatchSuccessSignActions
     )
     yield takeEvery(
         ({ type }) =>
-            /SUCCESS_DATA_PATCH_USERS/.test(type),
+            /SUCCESS_DATA_PATCH_\/?USERS/.test(type),
         fromWatchSuccessPatchUsers
     )
-
     yield takeEvery(
-        ({ type }) => /SUCCESS_DATA_GET_USERS\/SIGNOUT(.*)/.test(type),
+        ({ type }) => /SUCCESS_DATA_GET_\/?USERS\/SIGNOUT(.*)/.test(type),
         fromWatchSuccessGetSignoutActions
     )
 }

@@ -20,7 +20,7 @@ class SignupPage extends Component {
 
     onSubmitedClick = () => {
         this.props.dispatch(requestData('POST',
-            '/users/signup',
+            'users/signup',
             {
                 body: {"email" : this.state.email,
                         "password": this.state.password,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { NavLink } from 'react-router-dom'
@@ -24,7 +25,8 @@ class ConnexionPage extends Component {
                     // this.state.data.user = r
                     const { history } = this.props
                     console.log("1", state, action)
-                    setTimeout(() => { history.push(`/home`) }, 4000)
+                    // setTimeout(() => { history.push(`/home`) }, 4000)
+                    history.push(`/home`)
                     console.log("2")
                 },
                 key: "user"
@@ -38,6 +40,7 @@ class ConnexionPage extends Component {
                 <form class="form-signin"
                       onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
                     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+
                     <label for="email" class="sr-only">Adresse email</label>
                     <input type="email"
                            id="email"
@@ -45,7 +48,7 @@ class ConnexionPage extends Component {
                            placeholder="Email"
                            onChange={( e ) => this.setState({ email : e.target.value })}
                            value={this.state.email}
-                           required autofocus/>
+                           required autoFocus/>
                     <label for="password" class="sr-only">Mot de passe</label>
                     <input type="password" id="password" class="form-control" placeholder="Mot de passe" required
                            onChange={( e ) => this.setState({ password : e.target.value })}
