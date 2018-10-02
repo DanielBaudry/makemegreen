@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
 
 import FootprintItem from '../items/FootprintItem'
 import { requestData } from '../../reducers/data'
@@ -25,6 +26,6 @@ class FootprintsPage extends Component {
   }
 }
 
-export default connect(
+export default compose(connect(
   state => ({ footprints: state.data.footprints })
-)(FootprintsPage)
+))(FootprintsPage)

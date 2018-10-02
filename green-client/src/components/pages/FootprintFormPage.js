@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {requestData} from "../../reducers/data";
-import { connect } from 'react-redux'
+import { requestData } from "../../reducers/data";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 
 class FootPrintFormPage extends Component {
@@ -286,4 +287,4 @@ class FootPrintFormPage extends Component {
     }
 }
 
-export default connect()(FootPrintFormPage)
+export default compose(connect())(FootPrintFormPage)

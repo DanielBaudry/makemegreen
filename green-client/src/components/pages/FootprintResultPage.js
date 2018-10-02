@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { compose } from 'redux'
 import { NavLink } from 'react-router-dom'
 
 import FootprintItem from '../items/FootprintItem'
@@ -48,6 +49,6 @@ class FootPrintResultPage extends Component {
     }
 }
 
-export default connect(
+export default compose(connect(
     state => ({ footprints: state.data.footprints })
-)(FootPrintResultPage)
+))(FootPrintResultPage)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { compose } from 'redux'
 import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 
@@ -75,6 +76,6 @@ class SignupPage extends Component {
     }
 }
 
-export default connect(
+export default compose(connect(
     state => ({ footprints: state.data.footprints })
-)(SignupPage)
+))(SignupPage)
