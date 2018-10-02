@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { NavLink } from 'react-router-dom'
-import {requestData} from "../../reducers/data";
+import { requestData } from "../../reducers/data";
 
 
 class ConnexionPage extends Component {
@@ -19,11 +19,13 @@ class ConnexionPage extends Component {
             {
                 body: {"email" : this.state.email,
                        "password": this.state.password},
-                handleSuccess: (r) => {
+                handleSuccess: (state, action) => {
                     // TODO: handle redirect to first requested page
                     // this.state.data.user = r
                     const { history } = this.props
-                    history.push(`/home`)
+                    console.log("1", state, action)
+                    setTimeout(() => { history.push(`/home`) }, 4000)
+                    console.log("2")
                 },
                 key: "user"
             }))

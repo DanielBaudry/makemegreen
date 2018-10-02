@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router-dom'
 
 import FootPrintFormPage from '../components/pages/FootprintFormPage'
 import FootPrintResultPage from '../components/pages/FootprintResultPage'

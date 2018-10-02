@@ -1,4 +1,5 @@
 import moment from 'moment'
+import get from 'lodash.get'
 import { put, select, takeEvery } from 'redux-saga/effects'
 
 import { resetData } from '../reducers/data'
@@ -17,16 +18,29 @@ function* fromWatchSuccessGetSignoutActions() {
     yield put(setUser(null))
 }
 
+function* fromWatchSuccessPatchUsers(action) {
+    const loggedUserId = yield select(state => get(state, 'user.id'))
+
+    if (!loggedUserId) {
+        console.warn('You should have a loggedUserId here')
+        return
+    }
+
+    if (loggedUserId === get(action, 'data.id')) {
+        yield put(setUser(action.data))
+    }
+}
+
 function* fromWatchSuccessSignActions() {
-    const user = yield select(state => state.data.users && state.data.users[0])
+    console.log("3")
+    const user = yield select(state => get(state, 'data.users[0]'))
     const currentUser = yield select(state => state.user)
-    const isDeprecatedCurrentUser =
-        currentUser &&
-        (user.id !== currentUser.id ||
-            moment(user.dateCreated) > moment(currentUser.dateCreated))
-    if (user && (!currentUser || isDeprecatedCurrentUser)) {
+    console.log("4: " , currentUser, user)
+    if (user && !currentUser) {
+        console.log("5")
         yield put(setUser(user))
     } else if (!user) {
+        console.log("5 bis")
         yield put(setUser(false))
     }
 }
@@ -50,6 +64,12 @@ export function* watchUserActions() {
             /SUCCESS_DATA_GET_USERS\/CURRENT(.*)/.test(type),
         fromWatchSuccessSignActions
     )
+    yield takeEvery(
+        ({ type }) =>
+            /SUCCESS_DATA_PATCH_USERS/.test(type),
+        fromWatchSuccessPatchUsers
+    )
+
     yield takeEvery(
         ({ type }) => /SUCCESS_DATA_GET_USERS\/SIGNOUT(.*)/.test(type),
         fromWatchSuccessGetSignoutActions
