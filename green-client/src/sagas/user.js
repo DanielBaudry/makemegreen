@@ -53,17 +53,17 @@ export function* watchUserActions() {
     )
     yield takeEvery(
         ({ type }) =>
-            /FAIL_DATA_POST_\/?\/?USERS\/SIGN(.*)/.test(type) ||
+            /FAIL_DATA_POST_\/?USERS\/SIGN(.*)/.test(type) ||
             /FAIL_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type),
         fromWatchFailSignActions
     )
     yield takeEvery(
         ({ type }) => {
             console.log("In takeEvery")
-            console.log(type)
-            const is_sucess = /SUCCESS_DATA_POST_\/?\/?\/?USERS\/SIGN(.*)/.test(type) ||
+            console.log("type: ", type)
+            const is_sucess = /SUCCESS_DATA_POST_\/?USERS\/SIGN(.*)/.test(type) ||
             /SUCCESS_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type)
-            console.log(is_sucess)
+            console.log("is_success: ", is_sucess)
             console.log("End takeEvery")
             return is_sucess
 

@@ -1,7 +1,7 @@
 import pytest
 
 from models import BaseObject
-from models.user import User
+from models.users import Users
 from models.footprint import Footprint
 from tests.conftest import clean_database
 from utils.test_utils import API_URL, req, req_with_auth, create_user

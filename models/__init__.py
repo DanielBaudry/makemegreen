@@ -1,6 +1,6 @@
 from models.api_errors import ApiErrors
 from models.base_object import BaseObject
-from models.user import User
+from models.users import Users
 from models.footprint import Footprint
 from models.footprint import FootprintType
 from models.activity import Activity, ActivityStatus
@@ -10,7 +10,7 @@ from models.progress import Progress
 __all__ = (
     'ApiErrors',
     'BaseObject',
-    'User',
+    'Users',
     'Footprint',
     'FootprintType',
     'Recommendation',

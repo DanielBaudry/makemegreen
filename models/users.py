@@ -7,7 +7,7 @@ from models.db import Model, db
 from models.base_object import BaseObject
 
 
-class User(BaseObject, Model):
+class Users(BaseObject, Model):
     id = Column(db.Integer, primary_key=True)
     email = Column(db.String(80), unique=True, nullable=False)
     password = Column(db.Binary(60), nullable=False)
@@ -23,7 +23,7 @@ class User(BaseObject, Model):
     clearTextPassword = None
 
     def populateFromDict(self, dct):
-        super(User, self).populateFromDict(dct)
+        super(Users, self).populateFromDict(dct)
         if dct.__contains__('password') and dct['password']:
             self.setPassword(dct['password'])
 
@@ -31,9 +31,9 @@ class User(BaseObject, Model):
         return bcrypt.hashpw(passwordToCheck.encode('utf-8'), self.password) == self.password
 
     def errors(self):
-        errors = super(User, self).errors()
+        errors = super(Users, self).errors()
         if self.id is None\
-           and User.query.filter_by(email=self.email).count()>0:
+           and Users.query.filter_by(email=self.email).count()>0:
             errors.addError('email', 'Un compte lie a cet email existe deja')
         if self.email:
             errors.checkEmail('email', self.email)

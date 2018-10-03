@@ -2,7 +2,7 @@
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required, logout_user, login_user
 
-from models import BaseObject, User, Footprint
+from models import BaseObject, Users, Footprint
 from utils.includes import USER_INCLUDES
 from utils.credentials import get_user_with_credentials
 
@@ -45,7 +45,7 @@ def signout():
 def signup():
     data = request.json
 
-    new_user = User(from_dict=request.json)
+    new_user = Users(from_dict=request.json)
     new_user.id = None
 
     footprints = data.get('footprints')[0]

@@ -87,7 +87,9 @@ export const successData = (method, path, data, config = {}) => ({
 
 
 const data = createData({
-  footprints: []
+  footprints: [],
+  recommendations: [],
+  statistics: [],
 })
 
 export default data

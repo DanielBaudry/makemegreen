@@ -29,7 +29,7 @@ class ConnexionPage extends Component {
                     history.push(`/home`)
                     console.log("2")
                 },
-                key: "user"
+                key: "users"
             }))
     }
 

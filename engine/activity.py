@@ -1,5 +1,5 @@
 """ Activity """
-from models import BaseObject, Footprint, User, Activity, ActivityStatus
+from models import BaseObject, Footprint, Users, Activity, ActivityStatus
 from flask import current_app as app
 
 
@@ -19,7 +19,7 @@ class GetActivities:
     def __init__(self):
         pass
 
-    def execute(self, user: User) -> Activity:
+    def execute(self, user: Users) -> Activity:
         if user is None:
             raise BadUserException()
         activity = Activity.query.filter_by(user=user).all()
