@@ -13,8 +13,8 @@ class Users(BaseObject, Model):
     password = Column(db.Binary(60), nullable=False)
     username = Column(db.String(80), nullable=False)
 
-    footprints = db.relationship('Footprint', backref='user', lazy=True)
-    activities = db.relationship('Activity', backref='user', lazy=True)
+    footprints = db.relationship('Footprint', backref='users', lazy=True)
+    activities = db.relationship('Activity', backref='users', lazy=True)
 
     dateCreated = Column(DateTime,
                          nullable=False,
