@@ -8,12 +8,8 @@ from utils.credentials import get_user_with_credentials
 
 
 @app.route("/users/current", methods=["GET"])
-# @login_required
+@login_required
 def get_profile():
-    if not current_user.is_authenticated:
-        app.logger.info("Nope")
-        app.logger.info(current_user._asdict(include=USER_INCLUDES))
-        return 0
     user = current_user._asdict(include=USER_INCLUDES)
     return jsonify(user)
 
