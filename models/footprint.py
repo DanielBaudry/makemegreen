@@ -11,7 +11,7 @@ class Footprint(BaseObject, Model):
 
     id = Column(Integer, primary_key=True)
 
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
 
     date_created = Column(DateTime, nullable=False, default=datetime.utcnow)
 

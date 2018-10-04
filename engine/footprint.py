@@ -1,5 +1,5 @@
 """ Footprint """
-from models import BaseObject, Footprint, Users, FootprintType
+from models import BaseObject, Footprint, User, FootprintType
 from engine import dictionnary as info
 from flask import current_app as app
 
@@ -71,7 +71,7 @@ class GetFootprints:
     def __init__(self):
         pass
 
-    def execute(self, user: Users) -> Footprint:
+    def execute(self, user: User) -> Footprint:
         if user is None:
             raise BadUserException()
 

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import requests as req
 
-from models.users import Users
+from models.user import User
 from models.footprint import Footprint
 from utils.token import random_token
 
@@ -34,7 +34,7 @@ def req_with_auth(email=None, password=None):
 
 def create_user(email='john.doe@test.com', 
                 password='totallysafepsswd'):
-    user = Users()
+    user = User()
     user.email = email
     user.setPassword(password)
     return user

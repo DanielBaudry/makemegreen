@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
@@ -8,23 +8,25 @@ import { requestData } from '../../reducers/data'
 const withLogin = (config = {}) => WrappedComponent => {
     const { failRedirect, successRedirect } = config
 
-    class _withLogin extends Component {
-        componentDidMount = (prevProps) => {
-            const { history, location, user, requestData } = this.props
+    class _withLogin extends PureComponent {
 
-            if (user === null) {
-                requestData('GET', `users/current`, {
-                    handleSuccess: () => {
-                        if (successRedirect && successRedirect !== location.pathname)
-                            history.push(successRedirect)
-                    },
-                    handleFail: () => {
-                        if (failRedirect && failRedirect !== location.pathname)
-                            history.push(failRedirect)
-                    },
-                })
-                return
-            }
+        componentDidMount = prevProps => {
+            const { dispatch, history, location, user } = this.props
+
+            if (user !== null) return
+
+            dispatch(requestData('GET', `/users/current`, {
+                handleSuccess: () => {
+                    console.log("handleSuccess withLogin")
+                    if (successRedirect && successRedirect !== location.pathname)
+                        history.push(successRedirect)
+                },
+                handleFail: () => {
+                    console.log("handleFail withLogin")
+                    if (failRedirect && failRedirect !== location.pathname)
+                        history.push(failRedirect)
+                },
+            }))
         }
 
         render() {
@@ -33,7 +35,7 @@ const withLogin = (config = {}) => WrappedComponent => {
     }
     return compose(
         withRouter,
-        connect(state => ({ user: state.user }), { requestData })
+        connect(state => ({ user: state.user }))
     )(_withLogin)
 }
 

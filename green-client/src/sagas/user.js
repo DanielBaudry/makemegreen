@@ -5,14 +5,17 @@ import { resetData } from '../reducers/data'
 import { setUser } from '../reducers/user'
 
 function* fromWatchRequestSignActions(action) {
+    console.log("fromWatchRequestSignActions")
     yield put(setUser(false)) // false while querying
 }
 
 function* fromWatchFailSignActions(action) {
+    console.log("fromWatchFailSignActions")
     yield put(setUser(null)) // null otherwise
 }
 
 function* fromWatchSuccessGetSignoutActions() {
+    console.log("fromWatchSuccessGetSignoutActions")
     yield put(resetData())
     yield put(setUser(null))
 }

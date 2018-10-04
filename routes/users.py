@@ -2,14 +2,18 @@
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required, logout_user, login_user
 
-from models import BaseObject, Users, Footprint
+from models import BaseObject, User, Footprint
 from utils.includes import USER_INCLUDES
 from utils.credentials import get_user_with_credentials
 
 
 @app.route("/users/current", methods=["GET"])
-@login_required
+# @login_required
 def get_profile():
+    if not current_user.is_authenticated:
+        app.logger.info("Nope")
+        app.logger.info(current_user)
+        return 0
     user = current_user._asdict(include=USER_INCLUDES)
     return jsonify(user)
 
@@ -45,7 +49,7 @@ def signout():
 def signup():
     data = request.json
 
-    new_user = Users(from_dict=request.json)
+    new_user = User(from_dict=request.json)
     new_user.id = None
 
     footprints = data.get('footprints')[0]

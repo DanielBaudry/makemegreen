@@ -40,7 +40,7 @@ class ConnexionPage extends Component {
                 <form class="form-signin"
                       onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
                     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-
+                    <span>v1.0.0</span>
                     <label for="email" class="sr-only">Adresse email</label>
                     <input type="email"
                            id="email"

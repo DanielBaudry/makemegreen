@@ -9,7 +9,7 @@ from models.base_object import BaseObject
 class Progress(BaseObject, Model):
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     score = Column(Integer, ForeignKey('recommendation.id'), nullable=False)
     dateCreated = Column(DateTime,
                           nullable=False,

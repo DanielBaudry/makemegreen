@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 
 from models import BaseObject
-from models.users import Users
+from models.user import User
 from tests.conftest import clean_database
 from utils.test_utils import API_URL, req, req_with_auth, create_user
 

@@ -10,9 +10,9 @@ def do_sandbox():
     users = []
     test_user_id = 0
     for user_data in sandbox_data.users_data:
-        query = Users.query.filter_by(username=user_data['username'])
+        query = User.query.filter_by(username=user_data['username'])
         if query.count() == 0:
-            user = Users(from_dict=user_data)
+            user = User(from_dict=user_data)
             BaseObject.check_and_save(user)
             print("Object: user CREATED")
             users.append(user)

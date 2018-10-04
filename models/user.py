@@ -7,14 +7,14 @@ from models.db import Model, db
 from models.base_object import BaseObject
 
 
-class Users(BaseObject, Model):
+class User(BaseObject, Model):
     id = Column(db.Integer, primary_key=True)
     email = Column(db.String(80), unique=True, nullable=False)
     password = Column(db.Binary(60), nullable=False)
     username = Column(db.String(80), nullable=False)
 
-    footprints = db.relationship('Footprint', backref='users', lazy=True)
-    activities = db.relationship('Activity', backref='users', lazy=True)
+    footprints = db.relationship('Footprint', backref='user', lazy=True)
+    activities = db.relationship('Activity', backref='user', lazy=True)
 
     dateCreated = Column(DateTime,
                          nullable=False,
@@ -23,7 +23,7 @@ class Users(BaseObject, Model):
     clearTextPassword = None
 
     def populateFromDict(self, dct):
-        super(Users, self).populateFromDict(dct)
+        super(User, self).populateFromDict(dct)
         if dct.__contains__('password') and dct['password']:
             self.setPassword(dct['password'])
 
@@ -31,9 +31,9 @@ class Users(BaseObject, Model):
         return bcrypt.hashpw(passwordToCheck.encode('utf-8'), self.password) == self.password
 
     def errors(self):
-        errors = super(Users, self).errors()
+        errors = super(User, self).errors()
         if self.id is None\
-           and Users.query.filter_by(email=self.email).count()>0:
+           and User.query.filter_by(email=self.email).count()>0:
             errors.addError('email', 'Un compte lie a cet email existe deja')
         if self.email:
             errors.checkEmail('email', self.email)
