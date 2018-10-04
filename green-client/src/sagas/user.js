@@ -42,6 +42,7 @@ function* fromWatchSuccessPatchUsers(action) {
         return
     }
 
+    console.log("CA ne passe pas ici")
     if (loggedUserId === get(action, 'data.id')) {
         yield put(setUser(action.data))
     }
@@ -55,19 +56,21 @@ export function* watchUserActions() {
         fromWatchRequestSignActions
     )
     yield takeEvery(
-        ({ type }) =>
-            /FAIL_DATA_POST_\/?USERS\/SIGN(.*)/.test(type) ||
-            /FAIL_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type),
+        ({ type }) => {
+            console.log("type: ", type)
+            const is_fail = / FAIL_DATA_POST_\/?USERS\/SIGN(.*)/.test(type) ||
+            /FAIL_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type)
+            console.log("is_fail ", is_fail)
+            return is_fail
+        },
         fromWatchFailSignActions
     )
     yield takeEvery(
         ({ type }) => {
-            console.log("In takeEvery")
             console.log("type: ", type)
             const is_sucess = /SUCCESS_DATA_POST_\/?USERS\/SIGN(.*)/.test(type) ||
             /SUCCESS_DATA_GET_\/?USERS\/CURRENT(.*)/.test(type)
             console.log("is_success: ", is_sucess)
-            console.log("End takeEvery")
             return is_sucess
 
         },
