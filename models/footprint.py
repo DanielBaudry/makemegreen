@@ -16,12 +16,7 @@ class Footprint(BaseObject, Model):
     date_created = Column(DateTime, nullable=False, default=datetime.utcnow)
 
     type = Column(Enum(FootprintType))
-    # TODO: add constraint to restrict list of possible values
     value = Column(Integer, nullable=False)
-
-    carbon_footprint = Column(Integer, nullable=True)
-    water_footprint = Column(Integer, nullable=True)
-    waste_footprint = Column(Integer, nullable=True)
 
     # TODO: it is not ouf
     def populateFromDict(self, dct):
