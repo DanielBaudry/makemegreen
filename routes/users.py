@@ -30,7 +30,6 @@ def signin():
     email = data.get('email')
     password = data.get('password')
     user = get_user_with_credentials(email, password)
-    app.logger.info(user._asdict(include=USER_INCLUDES))
     return jsonify(user._asdict(include=USER_INCLUDES)), 200
 
 

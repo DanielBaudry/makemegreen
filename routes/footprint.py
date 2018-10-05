@@ -10,9 +10,7 @@ from sqlalchemy.sql import func
 def compute():
     app.logger.info("Start footprint computation")
     data = request.json
-    app.logger.info(data)
     result = ComputeFootprint().execute(data)
-    app.logger.info(result)
 
     return jsonify(result)
 
@@ -51,7 +49,6 @@ def get_footprints_history():
 def get_info():
 
     footprints = GetFootprints().execute(current_user)
-    app.logger.info(footprints)
 
     total_saved = get_benefit().json.get("total_saved")
 
@@ -75,7 +72,6 @@ def _serialize_footprints(footprints):
 
 
 def _serialize_footprint(footprint):
-    app.logger.info(footprint)
     dict_footprint = footprint._asdict()
     return dict_footprint
 
@@ -85,7 +81,6 @@ def _serialize_footprints_array(footprints):
 
 
 def _serialize_footprint_array(footprint):
-    app.logger.info(footprint)
     result = []
     for fp in footprint:
         result.append(fp._asdict())

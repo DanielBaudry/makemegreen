@@ -1,7 +1,7 @@
 """users routes"""
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
-from models import Recommendation
+from models import Recommendation, Activity
 from collections import OrderedDict
 
 # TODO: login_required or not for GET and list methods?
@@ -22,7 +22,12 @@ def add_recommendation():
 @app.route("/recommendations", methods=["GET"])
 @login_required
 def list_recommendations():
-    query = Recommendation.query.filter_by(user_id=current_user.get_id())
+    reco_already_attach_to_user = Activity.query.\
+        with_entities(Activity.recommendation_id).\
+        filter_by(user_id=current_user.get_id()).all()
+    query = Recommendation.query.\
+        filter_by(user_id=current_user.get_id()).\
+        filter(Recommendation.id.notin_(reco_already_attach_to_user))
     recommendations = query.all()
     result = OrderedDict()
     result['recommendations'] = _serialize_recommendations(recommendations)
