@@ -12,7 +12,6 @@ export function user(state = initialState, action) {
 }
 
 export function setUser(user) {
-    console.log("setUser function: ", user)
     return {
         type: SET_USER,
         user,

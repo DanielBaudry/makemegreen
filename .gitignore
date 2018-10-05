@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# REACTJS
+node_modules/
+
 # IDE files
 .idea/
 *.iml

@@ -1,3 +1,4 @@
+import get from 'lodash.get'
 import React, { Component } from 'react';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
@@ -8,11 +9,11 @@ import withLogin from "../hocs/withLogin"
 
 class DashboardPage extends Component {
 
-    constructor () {
-        super()
-        this.state = { footprints: null,
-            leaderbord: null,
-            statistics: null
+    constructor (props) {
+        super(props)
+        this.state = { isLoading: true,
+            footprints: [],
+            statistics: []
         }
     }
 
@@ -25,36 +26,46 @@ class DashboardPage extends Component {
         }))
     }
 
-    componentDidMount () {
-        this.props.dispatch(requestData('GET', '/dashboard'))
+    componentWillMount () {
+        this.props.dispatch(requestData('GET', '/dashboard', {
+            handleSuccess: (state, action) => {
+                const footprints = get(action, 'data.footprints')
+                const statistics = get(action, 'data.statistics')
+                console.log(statistics)
+                this.setState({
+                    "isLoading": false,
+                    "footprints" : footprints,
+                    "statistics" : statistics
+                })
+            },
+        }))
     }
 
     render () {
-        let footprints = []
-        let statistics = []
 
-        const { dashboard } = this.props
-        if( dashboard.length > 0){
-            footprints = dashboard[0]['footprints']
-            statistics = dashboard[0]['statistics']
-        }
-
+        const { isLoading } = this.state
 
         return(
             <div className="container dashboard-section">
                 <div className="row footprints-section">
-                {
-                    footprints.map(footprint => (
+                {!isLoading ? (
+                    this.state.footprints.map(footprint => (
                         <FootprintItem key={footprint.id} footprint={footprint} />
                     ))
-                }
+                ):(
+                    <div className="text-center">Chargement en cours...</div>
+                )}
                 </div>
 
                 <div className="row statistics-section">
+                    {!isLoading ? (
                     <div className="col">
                         <p>Quantité total de CO2 economisée par les utilisateurs de MakeMeGreen :</p>
-                        <span><strong>{statistics.total_carbon_saved} de C0²</strong></span>
+                        <span><strong>{this.state.statistics.total_carbon_saved} de C0²</strong></span>
                     </div>
+                    ):(
+                    <div className="text-center">Chargement en cours...</div>
+                    )}
                 </div>
 
                 <div className="row recommendations-section">
@@ -87,15 +98,7 @@ class DashboardPage extends Component {
     }
 }
 
-DashboardPage.defaultProps = {
-    dashboard: [],
-    footprints: null,
-    leaderbord: null
-}
-
-const mapStateToProps = state => ({ dashboard: state.data.dashboard})
-
 export default compose(
     withLogin({ failRedirect: '/welcome' }),
-    connect(mapStateToProps)
+    connect()
 )(DashboardPage)

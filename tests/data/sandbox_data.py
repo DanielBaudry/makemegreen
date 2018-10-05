@@ -12,19 +12,27 @@ users_data = [
 # FOOTPRINTS
 footprints_data = [
     {
-        "type": "total",
+        "type": {
+            "label": "total"
+        },
         "value": 2340,
     },
     {
-        "type": "carbon",
+        "type": {
+            "label": "carbon"
+        },
         "value": 540,
     },
     {
-        "type": "water",
+        "type": {
+            "label": "water"
+        },
         "value": 1200,
     },
     {
-        "type": "waste",
+        "type": {
+            "label": "waste"
+        },
         "value": 600,
     }
 ]

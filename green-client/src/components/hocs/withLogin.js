@@ -17,12 +17,10 @@ const withLogin = (config = {}) => WrappedComponent => {
 
             dispatch(requestData('GET', `/users/current`, {
                 handleSuccess: () => {
-                    console.log("handleSuccess withLogin")
                     if (successRedirect && successRedirect !== location.pathname)
                         history.push(successRedirect)
                 },
                 handleFail: () => {
-                    console.log("handleFail withLogin")
                     if (failRedirect && failRedirect !== location.pathname)
                         history.push(failRedirect)
                 },

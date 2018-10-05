@@ -18,7 +18,6 @@ class RecommendationItem extends Component {
     }
 
     onSubmitedClick = () => {
-        console.log("TOTO")
         this.props.dispatch(requestData('GET',`/activity/${this.state.reco_id}`))
     }
 

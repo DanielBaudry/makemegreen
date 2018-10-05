@@ -22,6 +22,7 @@ const FootprintItem = ({
             break;
     }
     const footprint_value = get(footprint, "value")
+    console.log("FootprintItem")
 
     return (
         <div className="col">

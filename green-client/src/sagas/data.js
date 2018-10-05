@@ -89,9 +89,7 @@ function* fromWatchSuccessDataActions(action) {
 export function* watchDataActions(config = {}) {
     yield takeEvery(
         ({ type }) => {
-            console.log("type REQ: ", type)
             const is_request = /REQUEST_DATA_(.*)/.test(type)
-            console.log("is_request", is_request)
             return is_request
 
         },
@@ -99,9 +97,7 @@ export function* watchDataActions(config = {}) {
     )
     yield takeEvery(
         ({ type }) => {
-            console.log("type FAIL: ", type)
             const is_fail = /FAIL_DATA_(.*)/.test(type)
-            console.log("is_fail: ", is_fail)
             return is_fail
 
         },
