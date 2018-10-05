@@ -1,7 +1,7 @@
 """users routes"""
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
-from engine.footprint import GetFootprints, ComputeFootprint
+from engine.footprint import GetFootprints, ComputeFootprint, GetFootprintHistory
 from models import Activity, ActivityStatus
 from sqlalchemy.sql import func
 
@@ -35,11 +35,23 @@ def get_benefit():
     return jsonify(dict({"total_saved": total_saved}))
 
 
+@app.route("/footprints", methods=["GET"])
+@login_required
+def get_footprints_history():
+
+    footprints = GetFootprintHistory().execute(current_user)
+    result = dict()
+    result['footprints'] = _serialize_footprints_array(footprints)
+
+    return jsonify(result)
+
+
 @app.route("/dashboard", methods=["GET"])
 @login_required
 def get_info():
 
     footprints = GetFootprints().execute(current_user)
+    app.logger.info(footprints)
 
     total_saved = get_benefit().json.get("total_saved")
 
@@ -63,5 +75,18 @@ def _serialize_footprints(footprints):
 
 
 def _serialize_footprint(footprint):
+    app.logger.info(footprint)
     dict_footprint = footprint._asdict()
     return dict_footprint
+
+
+def _serialize_footprints_array(footprints):
+    return list(map(_serialize_footprint_array, footprints))
+
+
+def _serialize_footprint_array(footprint):
+    app.logger.info(footprint)
+    result = []
+    for fp in footprint:
+        result.append(fp._asdict())
+    return result

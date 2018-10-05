@@ -24,7 +24,7 @@ class Footprint(BaseObject, Model):
         if dct.__contains__('value') and dct['value']:
             self.set_value(int(dct['value']))
         if dct.__contains__('type') and dct['type']:
-            self.set_type(dct['type'])
+            self.set_type(FootprintType(dct['type']))
 
     def get_id(self):
         return str(self.id)

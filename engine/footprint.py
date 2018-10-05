@@ -67,6 +67,29 @@ class ComputeFootprint:
         })
 
 
+class GetFootprintHistory:
+    def __init__(self):
+        pass
+
+    def execute(self, user: User) -> Footprint:
+        if user is None:
+            raise BadUserException()
+
+        footprints = []
+        for type in FootprintType:
+            footprint_type = type.value.get('label')
+            if footprint_type != "total":
+                footprint = Footprint.query. \
+                    filter_by(user_id=user.get_id()). \
+                    filter_by(type=footprint_type). \
+                    order_by(Footprint.date_created.asc()). \
+                    all()
+
+                footprints.append(footprint)
+
+        return footprints
+
+
 class GetFootprints:
     def __init__(self):
         pass

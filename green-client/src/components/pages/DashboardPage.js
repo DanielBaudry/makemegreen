@@ -84,6 +84,14 @@ class DashboardPage extends Component {
                     </div>
                 </div>
 
+                <div className="row progress-section">
+                    <div className="col">
+                        <NavLink to="/progress" className="btn btn-primary">
+                            {"Mes progrès"}
+                        </NavLink>
+                    </div>
+                </div>
+
                 <div className="row deconnexion-section">
                     <div className="col">
                         <button
