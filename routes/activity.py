@@ -1,9 +1,10 @@
 """users routes"""
-from flask import current_app as app, jsonify, request
+from flask import current_app as app, jsonify
 from flask_login import current_user, login_required
-from models import Activity, ActivityStatus
+from models import Activity
 from engine.activity import StartActivity, EndActivity, ValidateActivity, AlreadyStartedException
 from collections import OrderedDict
+from utils.human_ids import dehumanize
 
 from utils.includes import ACTIVITY_INCLUDES
 
@@ -11,7 +12,8 @@ from utils.includes import ACTIVITY_INCLUDES
 @app.route("/activity/validate/<activity_id>", methods=["GET"])
 @login_required
 def validate_activity(activity_id):
-    activity = ValidateActivity().execute(activity_id=int(activity_id), user_id=int(current_user.get_id()))
+    activity_id = dehumanize(activity_id)
+    ValidateActivity().execute(activity_id=activity_id, user_id=int(current_user.get_id()))
     result = dict({"success": "yes"})
 
     return jsonify(result)
@@ -20,7 +22,8 @@ def validate_activity(activity_id):
 @app.route("/activity/remove/<activity_id>", methods=["GET"])
 @login_required
 def end_activity(activity_id):
-    activity = EndActivity().execute(activity_id=int(activity_id), user_id=int(current_user.get_id()))
+    activity_id = dehumanize(activity_id)
+    EndActivity().execute(activity_id=activity_id, user_id=int(current_user.get_id()))
     result = dict({"success": "yes"})
 
     return jsonify(result)
@@ -32,7 +35,8 @@ def end_activity(activity_id):
 @login_required
 def start_activity(reco_id):
     try:
-        StartActivity().execute(int(reco_id), int(current_user.get_id()))
+        recommendation_id = dehumanize(reco_id)
+        StartActivity().execute(recommendation_id, int(current_user.get_id()))
     except AlreadyStartedException:
         return jsonify(dict({"status": "fail",
                        "message": "Cette recommendation est déjà en cours dans ton activité"})), 401

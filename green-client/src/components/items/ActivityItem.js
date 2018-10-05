@@ -24,13 +24,14 @@ class ActivityItem extends Component {
     // TODO: maybe PATCH request
 
     onSuccessClick = () => {
-        this.props.dispatch(requestData('GET',`/activity/validate/${this.state.activity_id}`,
-            {
-                handleSuccess: () => {
-                    this.setState( {
-                        "status": "success",
+        this.props.dispatch(requestData('GET',`/activity/validate/${this.state.activity_id}`, {
+                handleSuccess: (state, action) => {
+                    const status = "success"
+                    this.setState({
+                        "status": status,
                         "date_end": moment().format('DD MMMM YYYY à HH:mm')
                     })
+                    console.log(this.state.status)
                 },
             }))
     }
@@ -52,12 +53,12 @@ class ActivityItem extends Component {
 
         const reco_id = get(activity, "recommendation_id")
         const user_id = get(activity, "user_id")
-        const activity_id = get(activity, "dehumanizedId")
+        const activity_id = get(activity, "id")
         const is_success = get(activity, "is_success")
         const date_start = moment(get(activity, "date_start")).format('DD MMMM YYYY à HH:mm')
         const date_end = moment(get(activity, "date_end")).format('DD MMMM YYYY à HH:mm')
         const status = get(get(activity, "status"),"label")
-
+        console.log("Status: ", status)
         const reco_title = get(get(activity, "recommendation"),"title")
         const reco_benefit = get(get(activity, "recommendation"),"benefit")
 
@@ -77,7 +78,7 @@ class ActivityItem extends Component {
     render(){
 
         return (
-            <div className={"col reco-card " + this.state.status}>
+            <div className={"col-md-3 reco-card " + this.state.status}>
                 <h5> { this.state.reco_title } </h5>
                 <h6 className="text-muted"> { this.state.status } </h6>
                     { this.state.status == "pending" ? (
@@ -108,8 +109,8 @@ class ActivityItem extends Component {
                         </div>
                     </div>
                     )}
-                <div class="card-footer">
-                    <small class="text-muted">Débuter le : { this.state.date_start }</small>
+                <div className="card-footer">
+                    <small className="text-muted">Débuter le : { this.state.date_start }</small>
                 </div>
             </div>
         )
@@ -117,5 +118,4 @@ class ActivityItem extends Component {
 
 }
 
-export default connect(
-)(ActivityItem)
+export default connect()(ActivityItem)

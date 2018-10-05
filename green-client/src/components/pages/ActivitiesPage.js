@@ -33,11 +33,11 @@ class ActivitiesPage extends Component {
 
 
         return(
-            <div class="text-center">
+            <div className="text-center">
                 My activities
                 <div className="activities-section">
                     <div className="container">
-                        <div className="row">
+                        <div className="row justify-content-md-center">
                                 {
                                     activities_list.map(activity => (
                                         <ActivityItem key={activity.id} activity={activity} />
@@ -46,7 +46,7 @@ class ActivitiesPage extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="my-5 pt-5 text-center">
+                <div className="my-5 pt-5 text-center">
                     <NavLink to="/home" className="btn btn-primary">
                         {"Retour au tableau de bord"}
                     </NavLink>

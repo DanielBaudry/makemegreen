@@ -34,25 +34,25 @@ class ConnexionPage extends Component {
     render () {
 
         return(
-            <div class="text-center">
-                <form class="form-signin"
+            <div className="text-center">
+                <form className="form-signin"
                       onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
-                    <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-                    <label for="email" class="sr-only">Adresse email</label>
+                    <h1 className="h3 mb-3 font-weight-normal">Connexion</h1>
+                    <label for="email" className="sr-only">Adresse email</label>
                     <input type="email"
                            id="email"
-                           class="form-control"
+                           className="form-control"
                            placeholder="Email"
                            onChange={( e ) => this.setState({ email : e.target.value })}
                            value={this.state.email}
                            required autoFocus/>
-                    <label for="password" class="sr-only">Mot de passe</label>
-                    <input type="password" id="password" class="form-control" placeholder="Mot de passe" required
+                    <label for="password" className="sr-only">Mot de passe</label>
+                    <input type="password" id="password" className="form-control" placeholder="Mot de passe" required
                            onChange={( e ) => this.setState({ password : e.target.value })}
                            value={this.state.password}/>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
                 </form>
-                <div class="my-5 pt-5 text-center">
+                <div className="my-5 pt-5 text-center">
                         <NavLink to="/footprint" className="button is-secondary">
                         {"Inscription"}
                     </NavLink>

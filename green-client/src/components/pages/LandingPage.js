@@ -5,10 +5,10 @@ class LandingPage extends Component {
 
     render () {
        return(
-            <div class="text-center">
+            <div className="text-center">
                 <h1>Landing Page</h1>
                 <span>Ici on présente Make Me Green</span>
-                <div class="my-5 pt-5 text-center">
+                <div className="my-5 pt-5 text-center">
                     <NavLink to="/connexion" className="btn btn-primary">
                         {"Connexion"}
                     </NavLink>

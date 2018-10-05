@@ -59,7 +59,7 @@ class FootPrintFormPage extends Component {
 
         return(
             <div className={`footprint-form`}>
-                <div class="text-center">
+                <div className="text-center">
                         <h4 className="mb-3">Questions</h4>
                         <form className="form-signin"
                               onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
@@ -120,7 +120,7 @@ class FootPrintFormPage extends Component {
                                 </select>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_bath_or_shower">Prends-tu plutôt des bains ou des douches ?</label>
                                 <select className="form-control"
                                         id="q_bath_or_shower"
@@ -131,12 +131,12 @@ class FootPrintFormPage extends Component {
                                     <option selected="True" value="0.25">Plus de douche que de bains</option>
                                     <option value="0">Que des douches</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_bath_shower_frequency">Combien de douches/bains prenez-vous par semaine ?</label>
                                 <select className="form-control"
                                         id="q_bath_shower_frequency"
@@ -149,7 +149,7 @@ class FootPrintFormPage extends Component {
                                 </select>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_clothes_composition">Vos vêtements sont-ils en cotton ou en laine/polyster ?</label>
                                 <select className="form-control"
                                         id="q_clothes_composition"
@@ -160,12 +160,12 @@ class FootPrintFormPage extends Component {
                                     <option value="0.25">Plus de polyester que de cotton</option>
                                     <option value="0">Que de polyester</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_train_frequency">Quels distance parcours-tu en train chaque semaine ?</label>
                                 <select className="form-control"
                                         id="q_train_frequency"
@@ -180,12 +180,12 @@ class FootPrintFormPage extends Component {
                                     <option value="900">801 à 1000 km</option>
                                     <option value="1500">plus de 1000 km</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_personal_vehicule_frequency">Quels distance parcours-tu en véhicule à moteur (hors transports en commun) par semaine ?</label>
                                 <select className="form-control"
                                         id="q_personal_vehicule_frequency"
@@ -199,12 +199,12 @@ class FootPrintFormPage extends Component {
                                     <option value="250">201 à 300 km</option>
                                     <option value="400">+ de 300 km</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_personal_vehicule_consumption">Quelle est la consommation de carburant moyenne des véhicules que tu utilises le plus souvent ?</label>
                                 <select className="form-control"
                                         id="q_personal_vehicule_consumption"
@@ -217,12 +217,12 @@ class FootPrintFormPage extends Component {
                                     <option value="25">+ de 20L/100km</option>
                                     <option value="-1">Je ne sais pas</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_carpooling_frequency">Lorsque tu voyages en voiture, à quelle fréquence fais-tu du covoiturage ?</label>
                                 <select className="form-control"
                                         id="q_carpooling_frequency"
@@ -234,12 +234,12 @@ class FootPrintFormPage extends Component {
                                     <option value="0.75">75 %</option>
                                     <option value="1">100 %</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_public_transportation_frequency">Pendant combien d'heures prends-tu les transports en commun chaque semaine ?</label>
                                 <select className="form-control"
                                         id="q_public_transportation_frequency"
@@ -253,12 +253,12 @@ class FootPrintFormPage extends Component {
                                     <option value="15">10h à 20h</option>
                                     <option value="30">plus de 20h</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <label for="q_plain_frequency ">Pendant combien d'heures prends-tu l'avion chaque année ?</label>
                                 <select className="form-control"
                                         id="q_plain_frequency"
@@ -273,7 +273,7 @@ class FootPrintFormPage extends Component {
                                     <option value="100">50 à 100 h</option>
                                     <option value="150">plus de 100 h</option>
                                 </select>
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Choisissez parmis les réponses possibles.
                                 </div>
                             </div>

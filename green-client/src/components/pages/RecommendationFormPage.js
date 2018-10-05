@@ -44,7 +44,7 @@ class RecommendationFormPage extends Component {
 
 
         return(
-            <div class="text-center">
+            <div className="text-center">
                 Recommendations
                 <div className="recommendations-form">
                     <form className="form-signin"
@@ -111,7 +111,7 @@ class RecommendationFormPage extends Component {
                                 type="submit">Ajouter ma recommendation</button>
                     </form>
                 </div>
-                <div class="my-5 pt-5 text-center">
+                <div className="my-5 pt-5 text-center">
                     <NavLink to="/recommendations" className="btn btn-primary">
                         {"Retour à la liste des recommandations"}
                     </NavLink>

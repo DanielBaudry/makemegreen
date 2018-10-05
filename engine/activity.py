@@ -89,8 +89,6 @@ class ValidateActivity:
             order_by(Footprint.date_created.desc()). \
             first()
 
-        app.logger.info(footprint.get_id())
-
         previous_value = footprint.get_value()
         new_footprint = Footprint(from_dict=footprint._asdict())
         new_footprint.set_value(previous_value - activity.recommendation.benefit)

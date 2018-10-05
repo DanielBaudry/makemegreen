@@ -5,52 +5,56 @@ import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import RecommendationItem from "../items/RecommendationItem";
+import get from "lodash.get";
 
 class RecommendationsPage extends Component {
 
 
-    constructor () {
-        super()
-        this.state = { name: null,
-                       content: null,
-                       benefit: null,
-                       type: null,
-                       difficulty_level: null}
+    constructor (props) {
+        super(props)
+        this.state = { isLoading: true,
+                       recommendations: []
+        }
     }
 
-    componentDidMount () {
-        this.props.dispatch(requestData('GET', 'recommendations'))
+    componentWillMount () {
+        this.props.dispatch(requestData('GET', '/recommendations', {
+            handleSuccess: (state, action) => {
+                const recommendations = get(action, 'data.recommendations')
+                this.setState({
+                    "isLoading": false,
+                    "recommendations": recommendations,
+                })
+            },
+        }))
     }
 
     render () {
-        let reco = []
-
-        const { recommendations } = this.props
-        if( recommendations && recommendations.length > 0){
-            reco = recommendations[0]['recommendations']
-        }
-
+        const { isLoading } = this.state
 
         return(
-            <div class="text-center">
+            <div className="text-center">
                 Recommendations
                 <div className="recommendations-section">
                     <div className="container">
-                        <div className="row">
-                                {
-                                    reco.map(recommendation => (
+                        <div className="row justify-content-md-center">
+                            {!isLoading ? (
+                                    this.state.recommendations.map(recommendation => (
                                         <RecommendationItem key={recommendation.id} recommendation={recommendation} />
-                                    ))
+                            ))
+                            ):(
+                                <div>Chargement en cours...</div>
+                            )
                                 }
                         </div>
                     </div>
                 </div>
-                {/*<div class="my-5 pt-5 text-center">*/}
+                {/*<div className="my-5 pt-5 text-center">*/}
                     {/*<NavLink to="/recommendation" className="btn btn-primary">*/}
                         {/*{"Ajouter ma recommandation"}*/}
                     {/*</NavLink>*/}
                 {/*</div>*/}
-                <div class="my-5 pt-5 text-center">
+                <div className="my-5 pt-5 text-center">
                     <NavLink to="/home" className="btn btn-primary">
                         {"Retour au tableau de bord"}
                     </NavLink>
@@ -60,9 +64,8 @@ class RecommendationsPage extends Component {
     }
 }
 
-const mapStateToProps = state => ({ recommendations: state.data.recommendations})
 
 export default compose(
     withLogin({ failRedirect: '/welcome' }),
-    connect(mapStateToProps)
+    connect()
 )(RecommendationsPage)

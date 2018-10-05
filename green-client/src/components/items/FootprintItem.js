@@ -27,13 +27,13 @@ const FootprintItem = ({
     return (
         <div className="col">
           <div className="card footprint-card">
-              {/*<img class="card-img-top" src={carbon} alt="Card image cap"/>*/}
+              {/*<img className="card-img-top" src={carbon} alt="Card image cap"/>*/}
               <div className="card-body">
                   <span className="card-title">{footprint_category}</span>
                   <p className="card-text">
                       <strong>  {footprint_value}  </strong>
                   </p>
-                  <div class="card-details">
+                  <div className="card-details">
                     <a href="/home" className="btn btn-secondary">Details</a>
                   </div>
               </div>

@@ -50,15 +50,10 @@ def get_info():
     #                   #         "user_id": 1,
     #                   #         "total": 1000,
     #                   #     },
-    #                   "statistics":
-    #                       {
-    #                           "total_carbon_saved": total_saved,
-    #                       },
-    #                   })
+
     result = dict()
     result['statistics'] = {"total_carbon_saved": total_saved}
     result['footprints'] = _serialize_footprints(footprints)
-    app.logger.info(result)
 
     return jsonify(result)
 

@@ -24,7 +24,7 @@ class RecommendationItem extends Component {
     componentDidMount () {
         const { recommendation } = this.props
 
-        const reco_id = get(recommendation, "dehumanizedId")
+        const reco_id = get(recommendation, "id")
         const reco_type = get(get(recommendation, "type"),"label")
         const reco_name = get(recommendation, "name")
         const reco_benefit = get(recommendation, "benefit")
@@ -42,7 +42,7 @@ class RecommendationItem extends Component {
     render(){
 
         return (
-            <div className="col reco-card">
+            <div className="col-md-3 reco-card">
                 <h5> { this.state.reco_name } </h5>
                 <h6>
                     { this.state.reco_type } -<strong>{ this.state.reco_benefit }</strong>
@@ -60,5 +60,4 @@ class RecommendationItem extends Component {
 
 }
 
-export default connect(
-)(RecommendationItem)
+export default connect()(RecommendationItem)

@@ -39,34 +39,34 @@ class SignupPage extends Component {
         const { footprints } = this.props
 
         return(
-            <div class="text-center">
-                <form class="form-signin"
+            <div className="text-center">
+                <form className="form-signin"
                       onSubmit={e => { e.preventDefault(); this.onSubmitedClick();} }>
-                    <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-                    <label for="username" class="sr-only">Nom d'utilisateur</label>
+                    <h1 className="h3 mb-3 font-weight-normal">Connexion</h1>
+                    <label for="username" className="sr-only">Nom d'utilisateur</label>
                     <input type="username"
                            id="username"
-                           class="form-control"
+                           className="form-control"
                            placeholder="Username"
                            onChange={( e ) => this.setState({ username : e.target.value })}
                            value={this.state.username}
                            required autofocus/>
-                    <label for="email" class="sr-only">Adresse email</label>
+                    <label for="email" className="sr-only">Adresse email</label>
                     <input type="email"
                            id="email"
-                           class="form-control"
+                           className="form-control"
                            placeholder="Email"
                            onChange={( e ) => this.setState({ email : e.target.value })}
                            value={this.state.email}
                            required autofocus/>
-                    <label for="password" class="sr-only">Mot de passe</label>
-                    <input type="password" id="password" class="form-control" placeholder="Mot de passe" required
+                    <label for="password" className="sr-only">Mot de passe</label>
+                    <input type="password" id="password" className="form-control" placeholder="Mot de passe" required
                            onChange={( e ) => this.setState({ password : e.target.value })}
                            value={this.state.password}/>
                     <input type="hidden" value={footprints}/>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
                 </form>
-                <div class="my-5 pt-5 text-center">
+                <div className="my-5 pt-5 text-center">
                         <NavLink to="/connexion" className="button is-secondary">
                         {"Connexion"}
                     </NavLink>
