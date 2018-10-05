@@ -25,10 +25,11 @@ def list_recommendations():
     reco_already_attach_to_user = Activity.query.\
         with_entities(Activity.recommendation_id).\
         filter_by(user_id=current_user.get_id()).all()
+    app.logger.info(reco_already_attach_to_user)
     query = Recommendation.query.\
-        filter_by(user_id=current_user.get_id()).\
         filter(Recommendation.id.notin_(reco_already_attach_to_user))
     recommendations = query.all()
+    app.logger.info(recommendations)
     result = OrderedDict()
     result['recommendations'] = _serialize_recommendations(recommendations)
 
