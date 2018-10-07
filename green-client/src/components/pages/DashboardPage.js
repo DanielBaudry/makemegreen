@@ -65,12 +65,42 @@ class DashboardPage extends Component {
                             <span>
                             {user && user.username}
                             </span>
-                            <button
-                                className="btn btn-primary btn-small"
-                                onClick={this.onSignOutClick}>
-                                Déconnexion
-                            </button>
                         </a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item">
+                                    <NavLink to="/home" className="nav-link">
+                                        {"Home"}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/recommendations" className="nav-link">
+                                        {"Recommandations"}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/activities" className="nav-link">
+                                        {"Mon activité"}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/progress" className="nav-link">
+                                        {"Mes progrès"}
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <a
+                                        className="nav-link"
+                                        onClick={this.onSignOutClick}>
+                                        Déconnexion
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </nav>
                 </div>
 
@@ -135,24 +165,6 @@ class DashboardPage extends Component {
                         )}
                     </div>
                 </div>
-                </div>
-
-                <div className="container" role="group">
-                    <NavLink to="/recommendations" className="btn btn-primary">
-                        {"Recommandations"}
-                    </NavLink>
-                    <NavLink to="/activities" className="btn btn-primary">
-                        {"Mon activité"}
-                    </NavLink>
-                    <NavLink to="/progress" className="btn btn-primary">
-                        {"Mes progrès"}
-                    </NavLink>
-                </div>
-
-                <div className="deconnexion-section">
-                    <div className="col">
-
-                    </div>
                 </div>
             </div>
         )
