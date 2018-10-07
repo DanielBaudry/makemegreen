@@ -1,6 +1,5 @@
 """ Activity """
 from models import BaseObject, Footprint, User, Activity, ActivityStatus
-from flask import current_app as app
 
 
 class BadUserException(Exception):
@@ -13,6 +12,18 @@ class AlreadyStartedException(Exception):
 
 class BadArgException(Exception):
     pass
+
+
+class GetActivityCount:
+    def __init__(self):
+        pass
+
+    def execute(self, user: User) -> Activity:
+        if user is None:
+            raise BadUserException()
+        activity_count = Activity.query.filter_by(user=user).count()
+
+        return activity_count
 
 
 class GetActivities:

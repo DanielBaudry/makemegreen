@@ -2,6 +2,7 @@
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
 from engine.footprint import GetFootprints, ComputeFootprint, GetFootprintHistory
+from engine.activity import GetActivityCount
 from models import Activity, ActivityStatus
 from sqlalchemy.sql import func
 
@@ -52,6 +53,8 @@ def get_info():
 
     total_saved = get_benefit().json.get("total_saved")
 
+    activity_count = GetActivityCount().execute(current_user)
+
     # TODO: FOR leaderbord need to join recommendation and activities table in sqlalchemy
     # result = dict({# "leaderbord":
     #                   #     {
@@ -62,6 +65,7 @@ def get_info():
 
     result = dict()
     result['statistics'] = {"total_carbon_saved": total_saved}
+    result['activities'] = {"activity_count": activity_count}
     result['footprints'] = _serialize_footprints(footprints)
 
     return jsonify(result)
