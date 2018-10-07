@@ -22,3 +22,11 @@ insert into footprint VALUES (3, 1,'2018-09-29 16:06:42.434928', 'waste', 120, n
 insert into recommendation VALUES (1, 4, 'Vive le vélo','Un vélo ça polue vraiment moins quand même !',20,2,60,'carbon','2018-09-29 16:06:42.434928');
 insert into recommendation VALUES (2, 4, 'Prends une douche','Arrêtes les bains et prends des douches !',3,1,120,'water','2018-09-29 16:06:42.434928');
 insert into recommendation VALUES (3, 4, 'Achète du verre non teinté','Le seul verre recyclable !',7,2,30,'waste','2018-09-29 16:06:42.434928');
+
+
+## Pour déployer le front:
+
+export API_URL=https://api.makemegreen.fr
+export THUMBS_URL=https://api.makemegreen.fr/storage/assets/
+
+yarn build && ./build-webapp.sh && netlify deploy
