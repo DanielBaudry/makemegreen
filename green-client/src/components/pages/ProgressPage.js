@@ -7,7 +7,7 @@ import withLogin from "../hocs/withLogin"
 import Highcharts from "highcharts"
 import moment from 'moment'
 import get from "lodash.get";
-
+import avatar from '../../assets/avatar.svg'
 
 class ProgressPage extends Component {
 
@@ -117,8 +117,27 @@ class ProgressPage extends Component {
 
     render () {
 
+        const { user } = this.props
+
         return(
             <div className="text-center">
+                <div className="header-menu">
+                    <nav className="navbar navbar-dark">
+                        <a className="navbar-brand" href="#">
+                            <span>
+                                <img alt="" src={avatar} className="navbar-avatar" />
+                            </span>
+                            <span>
+                            {user && user.username}
+                            </span>
+                            <button
+                                className="btn btn-primary btn-small"
+                                onClick={this.onSignOutClick}>
+                                Déconnexion
+                            </button>
+                        </a>
+                    </nav>
+                </div>
                 My progresses
                 <div className="progress-section">
                     <div id="container"></div>

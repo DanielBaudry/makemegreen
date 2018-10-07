@@ -6,6 +6,7 @@ import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import RecommendationItem from "../items/RecommendationItem";
 import get from "lodash.get";
+import avatar from '../../assets/avatar.svg'
 
 class RecommendationsPage extends Component {
 
@@ -31,9 +32,27 @@ class RecommendationsPage extends Component {
 
     render () {
         const { isLoading } = this.state
+        const { user } = this.props
 
         return(
             <div className="text-center">
+                <div className="header-menu">
+                    <nav className="navbar navbar-dark">
+                        <a className="navbar-brand" href="#">
+                            <span>
+                                <img alt="" src={avatar} className="navbar-avatar" />
+                            </span>
+                            <span>
+                            {user && user.username}
+                            </span>
+                            <button
+                                className="btn btn-primary btn-small"
+                                onClick={this.onSignOutClick}>
+                                Déconnexion
+                            </button>
+                        </a>
+                    </nav>
+                </div>
                 Recommendations
                 <div className="recommendations-section">
                     <div className="container">

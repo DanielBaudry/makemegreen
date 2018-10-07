@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import ActivityItem from "../items/ActivityItem";
-
+import avatar from '../../assets/avatar.svg'
 
 class ActivitiesPage extends Component {
 
@@ -26,7 +26,7 @@ class ActivitiesPage extends Component {
     render () {
         let activities_list = []
 
-        const { activities } = this.props
+        const { activities, user } = this.props
         if( activities && activities.length > 0){
             activities_list = activities[0]['activities']
         }
@@ -34,6 +34,23 @@ class ActivitiesPage extends Component {
 
         return(
             <div className="text-center">
+                <div className="header-menu">
+                    <nav className="navbar navbar-dark">
+                        <a className="navbar-brand" href="#">
+                            <span>
+                                <img alt="" src={avatar} className="navbar-avatar" />
+                            </span>
+                            <span>
+                            {user && user.username}
+                            </span>
+                            <button
+                                className="btn btn-primary btn-small"
+                                onClick={this.onSignOutClick}>
+                                Déconnexion
+                            </button>
+                        </a>
+                    </nav>
+                </div>
                 My activities
                 <div className="activities-section">
                     <div className="container">
