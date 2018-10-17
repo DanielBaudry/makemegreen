@@ -108,7 +108,12 @@ class DashboardPage extends Component {
                     Un ami vient de t'envoyer un nouveau challenge
                 </div>
 
+                <div className="footprints-section-title">
+                    Cette semaine
+                </div>
+
                 <div className="container footprints-section">
+
                 {!isLoading ? (
                     this.state.footprints.map(footprint => (
                         <FootprintItem key={footprint.id} footprint={footprint} />

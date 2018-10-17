@@ -29,7 +29,7 @@
 }
 
 .footprints-section{
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 
@@ -91,7 +91,10 @@
 
 .challenge-section{
     background-color: #ABE188;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
+}
+
+.footprints-section-title{
 }
 
 .activity-section a{

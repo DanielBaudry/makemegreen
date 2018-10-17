@@ -38,6 +38,7 @@ const FootprintItem = ({
                 <strong>
                     { footprint_value }
                 </strong>
+                <span className="text-muted"> kg/CO2</span>
             </div>
             <div className="col card-trend">
                 <img src={ footprint_trend } alt="Card image cap"/>
