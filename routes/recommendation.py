@@ -1,18 +1,27 @@
 """users routes"""
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
+
+from engine.recommendation import AddRecommendation
 from models import Recommendation, Activity
 from collections import OrderedDict
 
 # TODO: login_required or not for GET and list methods?
+from utils.token import _check_token
 
 
-@app.route("/recommendation", methods=["POST"])
-@login_required
+@app.route("/recommendations", methods=["POST"])
 def add_recommendation():
-    app.logger.info("Start add recommendation")
-    data = request.get_json()
+    token = request.args.get('token')
+    _check_token(token)
+    app.logger.info("Start add recommendations")
+    data = request.json
     app.logger.info(data)
+    index = 0
+    while index < len(data):
+        print("adding first reco")
+        AddRecommendation().execute(current_user, data[index])
+        index += 1
 
     result = dict({"success": "yes"})
 

@@ -10,9 +10,11 @@ IS_DEV = ENV == 'development'
 IS_PROD = ENV == 'production'
 LOG_LEVEL = LOG_LEVEL_DEBUG
 
+EXPORT_TOKEN = os.environ.get('EXPORT_TOKEN')
+
 if IS_DEV:
     API_URL = 'localhost'
 elif IS_PROD:
-    API_URL = 'https://makemegreen.fr'
+    API_URL = 'https://api.makemegreen.fr'
 
 

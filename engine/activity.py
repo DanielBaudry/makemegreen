@@ -1,5 +1,7 @@
 """ Activity """
-from models import BaseObject, Footprint, User, Activity, ActivityStatus
+from sqlalchemy.orm import session
+
+from models import BaseObject, Footprint, User, Activity, ActivityStatus, Recommendation
 
 
 class BadUserException(Exception):
@@ -108,3 +110,34 @@ class ValidateActivity:
         BaseObject.check_and_save(activity, new_footprint)
 
         return activity
+
+
+class GetWeeklyProgress:
+    def __init__(self):
+        pass
+
+    def execute(self, user: User) -> dict:
+        if user is None:
+            raise BadUserException()
+
+        result = dict()
+
+
+        # activities = Activity.query.\
+        #     filter_by(user=user). \
+        #     filter((Activity.status == ActivityStatus.success) | (Activity.status == ActivityStatus.fail)).\
+        #     group_by(Recommendation.type).\
+        #     all()
+
+
+        activities = Activity.query.join(Recommendation). \
+                filter(Activity.user == user). \
+                filter((Activity.status == ActivityStatus.success) | (Activity.status == ActivityStatus.fail)).\
+                group_by(Recommendation.type, Activity.id).\
+                all()
+
+        for activity in activities:
+            print(activity)
+
+        return result
+

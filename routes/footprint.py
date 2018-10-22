@@ -2,9 +2,8 @@
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
 from engine.footprint import GetFootprints, ComputeFootprint, GetFootprintHistory
-from engine.activity import GetActivityCount
+from engine.activity import GetActivityCount, GetWeeklyProgress
 from models import Activity, ActivityStatus
-from sqlalchemy.sql import func
 
 
 @app.route("/footprint/compute", methods=["POST"])
@@ -50,6 +49,9 @@ def get_footprints_history():
 def get_info():
 
     footprints = GetFootprints().execute(current_user)
+
+    weekly_progress = GetWeeklyProgress().execute(current_user)
+    app.logger.info(weekly_progress)
 
     total_saved = get_benefit().json.get("total_saved")
 
