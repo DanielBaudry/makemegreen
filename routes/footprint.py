@@ -1,9 +1,12 @@
 """users routes"""
+import operator
+from collections import OrderedDict
+
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
 from engine.footprint import GetFootprints, ComputeFootprint, GetFootprintHistory
 from engine.activity import GetActivityCount, GetWeeklyProgress
-from models import Activity, ActivityStatus
+from models import Activity, ActivityStatus, User
 
 
 @app.route("/footprint/compute", methods=["POST"])
@@ -12,14 +15,6 @@ def compute():
     data = request.json
     result = ComputeFootprint().execute(data)
 
-    return jsonify(result)
-
-
-@app.route("/footprint/save", methods=["POST"])
-@login_required
-def save_footprint():
-    # TODO
-    result = "save done"
     return jsonify(result)
 
 
@@ -57,7 +52,27 @@ def get_info():
 
     activity_count = GetActivityCount().execute(current_user)
 
-    # TODO: FOR leaderbord need to join recommendation and activities table in sqlalchemy
+    # TODO: it will be very costly
+    # TODO: Need to remove this before service opening
+    total_saved_by_user = OrderedDict()
+    users = User.query.all()
+    users_count = 0
+
+    for user in users:
+        activities = Activity.query.\
+            filter_by(status=ActivityStatus.success).\
+            filter_by(user=user).\
+            all()
+        total_saved = 0
+        for activity in activities:
+            total_saved += activity.get_benefit()
+        total_saved_by_user[user.id] = total_saved
+        users_count += 1
+
+    leaderbord = OrderedDict(sorted(total_saved_by_user.items(), key=operator.itemgetter(1)))
+    user_rank = list(leaderbord.keys()).index(current_user.id)
+    app.logger.info(str(user_rank) + "/" + str(users_count))
+
     # result = dict({# "leaderbord":
     #                   #     {
     #                   #         "rank": 100,
@@ -68,6 +83,7 @@ def get_info():
     result = dict()
     result['statistics'] = {"total_carbon_saved": total_saved}
     result['activities'] = {"activity_count": activity_count}
+    result['leaderbord'] = {"rank": str(user_rank) + "/" + str(users_count)}
     result['footprints'] = _serialize_footprints(footprints)
 
     return jsonify(result)
