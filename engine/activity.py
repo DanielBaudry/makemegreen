@@ -50,7 +50,9 @@ class StartActivity:
             raise BadArgException()
 
         # TEST IF RECOMMENDATION ALREADY IN ACTIVITY FOR THE USER
-        existing_activity = Activity.query.filter_by(user_id=user_id).filter_by(recommendation_id=recommendation_id).first()
+        existing_activity = Activity.query.\
+            filter_by(user_id=user_id).\
+            filter_by(recommendation_id=recommendation_id).first()
         if existing_activity:
             raise AlreadyStartedException
 
@@ -122,19 +124,11 @@ class GetWeeklyProgress:
 
         result = dict()
 
-
-        # activities = Activity.query.\
-        #     filter_by(user=user). \
-        #     filter((Activity.status == ActivityStatus.success) | (Activity.status == ActivityStatus.fail)).\
-        #     group_by(Recommendation.type).\
-        #     all()
-
-
         activities = Activity.query.join(Recommendation). \
-                filter(Activity.user == user). \
-                filter((Activity.status == ActivityStatus.success) | (Activity.status == ActivityStatus.fail)).\
-                group_by(Recommendation.type, Activity.id).\
-                all()
+            filter(Activity.user == user). \
+            filter((Activity.status == ActivityStatus.success) | (Activity.status == ActivityStatus.fail)).\
+            group_by(Recommendation.type, Activity.id).\
+            all()
 
         for activity in activities:
             print(activity)

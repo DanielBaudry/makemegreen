@@ -2,24 +2,23 @@
 from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required
 
-from engine.recommendation import AddRecommendation
-from models import Recommendation, Activity
+from engine.recommendation import AddRecommendation, DiscoverNewRecommendations
+from models import Recommendation, Activity, ActivityStatus
 from collections import OrderedDict
 
 # TODO: login_required or not for GET and list methods?
-from utils.token import _check_token
+from utils.token import check_token
 
 
 @app.route("/recommendations", methods=["POST"])
-def add_recommendation():
+def add_recommendations():
     token = request.args.get('token')
-    _check_token(token)
+    check_token(token)
     app.logger.info("Start add recommendations")
     data = request.json
     app.logger.info(data)
     index = 0
     while index < len(data):
-        print("adding first reco")
         AddRecommendation().execute(current_user, data[index])
         index += 1
 
@@ -52,6 +51,25 @@ def get_recommendation(reco_id):
     query = Recommendation.query.filter_by(id=reco_id)
     recommendation = query.first_or_404()
     return jsonify(recommendation), 200
+
+
+@app.route("/discover", methods=["GET"])
+@login_required
+def discover_recommendations():
+    reco_already_attach_to_user = Activity.query. \
+        with_entities(Activity.recommendation_id). \
+        filter((Activity.status == ActivityStatus.success) |
+               (Activity.status == ActivityStatus.fail) |
+               (Activity.status == ActivityStatus.pending)). \
+        filter_by(user_id=current_user.get_id()).\
+        all()
+
+    recommendations = DiscoverNewRecommendations().execute(current_user, reco_already_attach_to_user)
+
+    result = OrderedDict()
+    result['recommendations'] = _serialize_recommendations(recommendations)
+
+    return jsonify(result), 200
 
 
 def _serialize_recommendations(recommendations):

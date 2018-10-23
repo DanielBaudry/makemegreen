@@ -38,3 +38,22 @@ class AddRecommendation:
 
         return recommendation
 
+
+class DiscoverNewRecommendations:
+    def __init__(self):
+        pass
+
+    def execute(self, user: User, reco_already_attach_to_user: [Recommendation]) -> [Recommendation]:
+        if user is None:
+            raise BadUserException()
+
+        query = Recommendation.query. \
+            filter(Recommendation.id.notin_(reco_already_attach_to_user))
+        possible_recommendations = query.all()
+
+        #  TODO: here we call the discover engine
+
+        return possible_recommendations
+
+
+

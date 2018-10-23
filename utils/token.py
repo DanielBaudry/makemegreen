@@ -21,7 +21,7 @@ def get_all_tokens(length = 3):
     )
 
 
-def _check_token(token):
+def check_token(token):
     if EXPORT_TOKEN is None or EXPORT_TOKEN == '':
         raise ValueError("Missing environment variable EXPORT_TOKEN")
     api_errors = ApiErrors()
