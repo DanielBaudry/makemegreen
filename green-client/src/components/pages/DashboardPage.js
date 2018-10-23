@@ -6,6 +6,8 @@ import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import FootprintItem from "../items/FootprintItem";
 import withLogin from "../hocs/withLogin"
+import avatar from '../../assets/avatar.svg'
+import {THUMBS_URL} from "../../utils/config";
 
 class DashboardPage extends Component {
 
@@ -13,7 +15,8 @@ class DashboardPage extends Component {
         super(props)
         this.state = { isLoading: true,
             footprints: [],
-            statistics: []
+            statistics: [],
+            activity_count: 0
         }
     }
 
@@ -31,8 +34,10 @@ class DashboardPage extends Component {
             handleSuccess: (state, action) => {
                 const footprints = get(action, 'data.footprints')
                 const statistics = get(action, 'data.statistics')
+                const activity_count = get(get(action, 'data.activities'),'activity_count')
                 console.log(statistics)
                 this.setState({
+                    "activity_count": activity_count,
                     "isLoading": false,
                     "footprints" : footprints,
                     "statistics" : statistics
@@ -43,11 +48,72 @@ class DashboardPage extends Component {
 
     render () {
 
-        const { isLoading } = this.state
+        const { isLoading, activity_count } = this.state
+        const { user } = this.props
+
+        console.log("User", user)
 
         return(
-            <div className="container dashboard-section">
-                <div className="row footprints-section">
+            <div className="main">
+
+                <div className="header-menu">
+                    <nav className="navbar navbar-dark">
+                        <a className="navbar-brand" href="#">
+                            <span>
+                                <img alt="" src={avatar} className="navbar-avatar" />
+                            </span>
+                            <span>
+                            {user && user.username}
+                            </span>
+                        </a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item">
+                                    <NavLink to="/home" className="nav-link">
+                                        {"Home"}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/recommendations" className="nav-link">
+                                        {"Recommandations"}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/activities" className="nav-link">
+                                        {"Mon activité"}
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/progress" className="nav-link">
+                                        {"Mes progrès"}
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <a
+                                        className="nav-link"
+                                        onClick={this.onSignOutClick}>
+                                        Déconnexion
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <div className="challenge-section">
+                    Un ami vient de t'envoyer un nouveau challenge
+                </div>
+
+                <div className="footprints-section-title">
+                    Cette semaine
+                </div>
+
+                <div className="container footprints-section">
+
                 {!isLoading ? (
                     this.state.footprints.map(footprint => (
                         <FootprintItem key={footprint.id} footprint={footprint} />
@@ -57,49 +123,53 @@ class DashboardPage extends Component {
                 )}
                 </div>
 
-                <div className="row statistics-section">
+                <div className="activity-section">
                     {!isLoading ? (
-                    <div className="col">
-                        <p>Quantité total de CO2 economisée par les utilisateurs de MakeMeGreen :</p>
-                        <span><strong>{this.state.statistics.total_carbon_saved} de C0²</strong></span>
-                    </div>
+                        <a href="/activities" className="text-center">
+                        {activity_count >0 ? (
+                            <div>
+                                <span>Vous avez { this.state.activity_count } activités en cours !</span>
+                            </div>
+                        ):(
+                            <span>Vous n'avez aucune activité en cours. Besoin d'une recommendations ?</span>
+                        )}
+                        </a>
                     ):(
-                    <div className="text-center">Chargement en cours...</div>
+                        <span className="text-center">Chargement en cours...</span>
                     )}
                 </div>
 
-                <div className="row recommendations-section">
-                    <div className="col">
-                        <NavLink to="/recommendations" className="btn btn-primary">
-                            {"Recommandations"}
-                        </NavLink>
+                <div className="container">
+                <div className="row">
+                    <div className="col-6 leaderbord-section">
+                        {!isLoading ? (
+                            <div>
+                                <div>
+                                    <img alt="" src={THUMBS_URL + "up"} className="leaderbord-avatar" />
+                                </div>
+                                <br />
+                                <span>Score: 2000 CO2</span><br />
+                                <span>Placement: <strong>2500/4000</strong></span>
+                            </div>
+                        ):(
+                            <span className="text-center">Chargement en cours...</span>
+                        )}
+                    </div>
+
+                    <div className="col-6 engine-section">
+                        {!isLoading ? (
+                            <div>
+                                <div>
+                                    <img alt="" src={THUMBS_URL + "food_color"} className="leaderbord-avatar" />
+                                </div>
+                                <br />
+                                <span>Envie de recommendations plus adaptées ? Aide-nous à améliorer notre algorithme !</span>
+                            </div>
+                        ):(
+                            <span className="text-center">Chargement en cours...</span>
+                        )}
                     </div>
                 </div>
-
-                <div className="row actitivities-section">
-                    <div className="col">
-                        <NavLink to="/activities" className="btn btn-primary">
-                            {"Mon activité"}
-                        </NavLink>
-                    </div>
-                </div>
-
-                <div className="row progress-section">
-                    <div className="col">
-                        <NavLink to="/progress" className="btn btn-primary">
-                            {"Mes progrès"}
-                        </NavLink>
-                    </div>
-                </div>
-
-                <div className="row deconnexion-section">
-                    <div className="col">
-                        <button
-                            className="btn btn-secondary btn-lg"
-                            onClick={this.onSignOutClick}>
-                            Déconnexion
-                        </button>
-                    </div>
                 </div>
             </div>
         )

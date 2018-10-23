@@ -70,6 +70,7 @@ function getClientEnvironment(publicUrl) {
       },
       {
         API_URL: process.env.API_URL,
+        THUMBS_URL: process.env.THUMBS_URL,
         // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
         NODE_ENV: process.env.NODE_ENV || 'development',

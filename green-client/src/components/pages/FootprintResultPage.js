@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { NavLink } from 'react-router-dom'
+import FootprintResultItem from "../items/FootprintResultItem";
 
-import FootprintItem from '../items/FootprintItem'
 
 
 class FootPrintResultPage extends Component {
@@ -31,7 +31,7 @@ class FootPrintResultPage extends Component {
                     <div className="row">
                         {
                             footprints_data.map(footprint => (
-                                <FootprintItem key={footprint.id} footprint={footprint} />
+                                <FootprintResultItem key={footprint.id} footprint={footprint} />
                             ))
                         }
                     </div>

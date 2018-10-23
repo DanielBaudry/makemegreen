@@ -28,25 +28,23 @@
     border-top-right-radius: 0;
 }
 
-.dashboard-section{
-    margin-top: 5px;
+.footprints-section{
+    margin-top: 30px;
 }
 
-.leaderbord-section{
-    margin-top: 5px;
-}
 
 .footprint-card{
-    min-height: 200px;
+    margin-bottom: 20px;
 }
 
-.footprint-card .card-details{
-    /*TODO*/
+.card-img{
+    height: 40px;
+    width: 40px;
 }
 
 .btn-primary{
-    background-color: #388E3C;
-    border-color: #388E3C;
+    background-color: #519872;
+    border-color: #519872;
 }
 
 .btn-primary:hover{
@@ -80,4 +78,55 @@
 .success{
     background-color: lightgreen;
     color: #5a6268;
+}
+
+.navbar{
+    background-color: #519872;
+}
+
+.navbar-avatar{
+    margin-right: 6px;
+    height: 50px;
+}
+
+.challenge-section{
+    background-color: #ABE188;
+    margin-bottom: 8px;
+}
+
+.footprints-section-title{
+}
+
+.activity-section a{
+    color: white;
+}
+
+.activity-section{
+    background-color: #508991;
+    margin-top: 10px;
+    height: 40px;
+    padding-top: 8px;
+}
+
+
+.leaderbord-avatar{
+    margin-right: 6px;
+    height: 50px;
+}
+
+.leaderbord-section{
+    /*margin: 2px;*/
+    padding: 8px;
+    /*border: 1px solid #0c5460;*/
+    /*background-color: #519872;*/
+    /*background-color: #D7EEF8;*/
+}
+
+.engine-section{
+    /*margin: 2px;*/
+    padding: 8px;
+    /*border: 1px solid #0c5460;*/
+    /*background-color: #ABE188;*/
+    /*background-color: #D7EEF8;*/
+    color: black;
 }

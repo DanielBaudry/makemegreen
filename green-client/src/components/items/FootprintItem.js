@@ -1,43 +1,48 @@
 import get from 'lodash.get'
 import React from 'react'
 
-import carbon from '../../assets/carbon.jpg'
-import waste from '../../assets/waste.png'
-import water from '../../assets/water.png'
+import {THUMBS_URL} from "../../utils/config";
 
 const FootprintItem = ({
   footprint
 }) => {
     const footprint_type = get(get(footprint, "type"), "label")
     let footprint_category = null
+    let footprint_img = null
+    let footprint_trend = null
     switch (footprint_type) {
         case 'carbon':
             footprint_category = "Sur la route"
+            footprint_img = THUMBS_URL + "car_color"
+            footprint_trend = THUMBS_URL + "down"
             break;
         case 'water':
             footprint_category = "Dans mon assiette"
+            footprint_img = THUMBS_URL + "food_color"
+            footprint_trend = THUMBS_URL + "up"
             break;
         case 'waste':
             footprint_category = "Chez moi"
+            footprint_img = THUMBS_URL + "home_color"
+            footprint_trend = THUMBS_URL + "down"
             break;
     }
     const footprint_value = get(footprint, "value")
-    console.log("FootprintItem")
 
     return (
-        <div className="col">
-          <div className="card footprint-card">
-              {/*<img className="card-img-top" src={carbon} alt="Card image cap"/>*/}
-              <div className="card-body">
-                  <span className="card-title">{footprint_category}</span>
-                  <p className="card-text">
-                      <strong>  {footprint_value}  </strong>
-                  </p>
-                  <div className="card-details">
-                    <a href="/home" className="btn btn-secondary">Details</a>
-                  </div>
-              </div>
-          </div>
+        <div className="row footprint-card">
+            <div className="col">
+                <img className="card-img" src={ footprint_img } alt="Card image cap"/>
+            </div>
+            <div className="col card-value">
+                <strong>
+                    { footprint_value }
+                </strong>
+                <span className="text-muted"> kg/CO2</span>
+            </div>
+            <div className="col card-trend">
+                <img src={ footprint_trend } alt="Card image cap"/>
+            </div>
         </div>
     )
 }
