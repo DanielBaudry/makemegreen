@@ -7,6 +7,7 @@ import {requestData} from "../../reducers/data";
 import FootprintItem from "../items/FootprintItem";
 import withLogin from "../hocs/withLogin"
 import avatar from '../../assets/avatar.svg'
+import m_button from '../../assets/m_button.png'
 import {THUMBS_URL} from "../../utils/config";
 
 class DashboardPage extends Component {
@@ -169,7 +170,8 @@ class DashboardPage extends Component {
                                     <img alt="" src={THUMBS_URL + "food_color"} className="leaderbord-avatar" />
                                 </div>
                                 <br />
-                                <span>Envie de recommendations plus adaptées ? Aide-nous à améliorer notre algorithme !</span>
+                                {/*<span>Envie de recommendations plus adaptées ? Aide-nous à améliorer notre algorithme !</span>*/}
+                                <span>Découvre notre algorithme !</span>
                             </div>
                         ):(
                             <span className="text-center">Chargement en cours...</span>
@@ -180,7 +182,13 @@ class DashboardPage extends Component {
 
                 <div className="fixed-bottom discover-section">
                     <div className="discover-button">
-                        <a href="/discover"><strong>M</strong></a>
+                        <a href="/recommendations">
+                            <img alt="make-me-green button"
+                                 src={m_button}
+                                 width="70px"
+                                 height="70px"
+                            />
+                        </a>
                     </div>
                 </div>
 
