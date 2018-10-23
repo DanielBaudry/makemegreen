@@ -46,6 +46,7 @@ def get_info():
     footprints = GetFootprints().execute(current_user)
 
     weekly_progress = GetWeeklyProgress().execute(current_user)
+    app.logger.info("Weekly Progress")
     app.logger.info(weekly_progress)
 
     total_saved = get_benefit().json.get("total_saved")
@@ -57,34 +58,32 @@ def get_info():
     total_saved_by_user = OrderedDict()
     users = User.query.all()
     users_count = 0
+    current_user_total_saved = 0
 
     for user in users:
         activities = Activity.query.\
             filter_by(status=ActivityStatus.success).\
             filter_by(user=user).\
             all()
-        total_saved = 0
+        user_total_saved = 0
         for activity in activities:
-            total_saved += activity.get_benefit()
-        total_saved_by_user[user.id] = total_saved
+            user_total_saved += activity.get_benefit()
+        total_saved_by_user[user.id] = user_total_saved
+        if user == current_user:
+            current_user_total_saved = user_total_saved
         users_count += 1
 
-    leaderbord = OrderedDict(sorted(total_saved_by_user.items(), key=operator.itemgetter(1)))
-    user_rank = list(leaderbord.keys()).index(current_user.id)
-    app.logger.info(str(user_rank) + "/" + str(users_count))
-
-    # result = dict({# "leaderbord":
-    #                   #     {
-    #                   #         "rank": 100,
-    #                   #         "user_id": 1,
-    #                   #         "total": 1000,
-    #                   #     },
+    leaderbord = OrderedDict(sorted(total_saved_by_user.items(), key=operator.itemgetter(1), reverse=True))
+    # We don't want to have number 0 to be the first
+    user_rank = list(leaderbord.keys()).index(current_user.id) + 1
 
     result = dict()
-    result['statistics'] = {"total_carbon_saved": total_saved}
+    result['statistics'] = {"total_carbon_saved": total_saved,
+                            "user_total_saved": current_user_total_saved}
     result['activities'] = {"activity_count": activity_count}
     result['leaderbord'] = {"rank": str(user_rank) + "/" + str(users_count)}
     result['footprints'] = _serialize_footprints(footprints)
+    result['weekly_progress'] = weekly_progress
 
     return jsonify(result)
 

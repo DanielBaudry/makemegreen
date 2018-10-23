@@ -1,7 +1,12 @@
 """ Activity """
-from sqlalchemy.orm import session
+from flask import current_app as app
+from datetime import datetime, timedelta
 
-from models import BaseObject, Footprint, User, Activity, ActivityStatus, Recommendation
+from sqlalchemy import func
+from sqlalchemy.sql import label
+
+from models import BaseObject, Footprint, User, Activity, ActivityStatus, Recommendation, FootprintType
+from models.db import db
 
 
 class BadUserException(Exception):
@@ -24,6 +29,8 @@ class GetActivityCount:
         if user is None:
             raise BadUserException()
         activity_count = Activity.query.filter_by(user=user).count()
+        # TODO: do we filter on the current week only ?
+        # filter(Activity.date_end > beginning_of_the_week_date)
 
         return activity_count
 
@@ -122,16 +129,41 @@ class GetWeeklyProgress:
         if user is None:
             raise BadUserException()
 
-        result = dict()
+        today = datetime.now().date()
+        beginning_of_the_week_date = today - timedelta(days=today.weekday())
 
-        activities = Activity.query.join(Recommendation). \
+        activities = db.session.query(Recommendation.type,
+                                      func.sum(Recommendation.benefit).label("value")). \
+            join(Activity, Recommendation.id == Activity.recommendation_id). \
             filter(Activity.user == user). \
-            filter((Activity.status == ActivityStatus.success) | (Activity.status == ActivityStatus.fail)).\
-            group_by(Recommendation.type, Activity.id).\
+            filter(Activity.date_end > beginning_of_the_week_date). \
+            filter((Activity.status == ActivityStatus.success)
+                   | (Activity.status == ActivityStatus.fail)).\
+            group_by(Recommendation.type).\
             all()
 
+        result = list()
+        # We need to do that because .label does not seems to work
         for activity in activities:
-            print(activity)
+            tmp_obj = dict()
+            tmp_obj['type'] = activity[0]
+            tmp_obj['value'] = activity[1]
+            result.append(tmp_obj)
+
+        # Not really beautiful ...
+        for type in FootprintType:
+            footprint_type = type.value.get('label')
+            if footprint_type != "total":
+                label_is_present = False
+                for obj in result:
+                    if obj['type'] == type:
+                        label_is_present = True
+                        break
+                if not label_is_present:
+                    tmp_obj = dict()
+                    tmp_obj['type'] = type
+                    tmp_obj['value'] = 0
+                    result.append(tmp_obj)
 
         return result
 

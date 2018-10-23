@@ -16,7 +16,9 @@ class DashboardPage extends Component {
         this.state = { isLoading: true,
             footprints: [],
             statistics: [],
-            activity_count: 0
+            activity_count: 0,
+            user_total_saved: 0,
+            user_rank: "0/0"
         }
     }
 
@@ -32,15 +34,19 @@ class DashboardPage extends Component {
     componentWillMount () {
         this.props.dispatch(requestData('GET', '/dashboard', {
             handleSuccess: (state, action) => {
-                const footprints = get(action, 'data.footprints')
+                const footprints = get(action, 'data.weekly_progress')
                 const statistics = get(action, 'data.statistics')
                 const activity_count = get(get(action, 'data.activities'),'activity_count')
+                const user_rank = get(get(action, 'data.leaderbord'),'rank')
+                const user_total_saved = get(get(action, 'data.statistics'),'user_total_saved')
                 console.log(statistics)
                 this.setState({
                     "activity_count": activity_count,
                     "isLoading": false,
                     "footprints" : footprints,
-                    "statistics" : statistics
+                    "statistics" : statistics,
+                    "user_rank" : user_rank,
+                    "user_total_saved" : user_total_saved,
                 })
             },
         }))
@@ -104,9 +110,9 @@ class DashboardPage extends Component {
                     </nav>
                 </div>
 
-                <div className="challenge-section">
-                    Un ami vient de t'envoyer un nouveau challenge
-                </div>
+                {/*<div className="challenge-section">*/}
+                    {/*Un ami vient de t'envoyer un nouveau challenge*/}
+                {/*</div>*/}
 
                 <div className="footprints-section-title">
                     Cette semaine
@@ -148,8 +154,8 @@ class DashboardPage extends Component {
                                     <img alt="" src={THUMBS_URL + "up"} className="leaderbord-avatar" />
                                 </div>
                                 <br />
-                                <span>Score: 2000 CO2</span><br />
-                                <span>Placement: <strong>2500/4000</strong></span>
+                                <span>Score: {this.state.user_total_saved} CO2</span><br />
+                                <span>Placement: <strong>{ this.state.user_rank }</strong></span>
                             </div>
                         ):(
                             <span className="text-center">Chargement en cours...</span>
@@ -171,6 +177,13 @@ class DashboardPage extends Component {
                     </div>
                 </div>
                 </div>
+
+                <div className="fixed-bottom discover-section">
+                    <div className="discover-button">
+                        <a href="/discover"><strong>M</strong></a>
+                    </div>
+                </div>
+
             </div>
         )
     }
