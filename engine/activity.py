@@ -165,5 +165,7 @@ class GetWeeklyProgress:
                     tmp_obj['value'] = 0
                     result.append(tmp_obj)
 
+        result = sorted(result, key=lambda k: k['type'].value.get('label'))
+
         return result
 
