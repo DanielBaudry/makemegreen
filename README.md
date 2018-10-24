@@ -30,3 +30,9 @@ export API_URL=https://api.makemegreen.fr
 export THUMBS_URL=https://api.makemegreen.fr/storage/assets/
 
 yarn build && ./build-webapp.sh && netlify deploy
+
+
+## Pour se connecter à l'API:
+
+curl -O https://cli-dl.scalingo.io/install && bash install
+scalingo -a [app_name] pgsql-console
