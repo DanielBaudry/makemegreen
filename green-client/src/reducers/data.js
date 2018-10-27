@@ -89,6 +89,7 @@ export const successData = (method, path, data, config = {}) => ({
 const data = createData({
   footprints: [],
   recommendations: [],
+  propositions: [],
   statistics: [],
 })
 

@@ -12,6 +12,7 @@ import RecommendationFormPage from "../components/pages/RecommendationFormPage";
 import LandingPage from "../components/pages/LandingPage";
 import ActivitiesPage from "../components/pages/ActivitiesPage";
 import ProgressPage from "../components/pages/ProgressPage";
+import PropositionsPage from "../components/pages/PropositionsPage";
 
 const routes = [
     {
@@ -72,6 +73,11 @@ const routes = [
         component: ProgressPage,
         path: '/progress',
         title: "Mes progrès",
+    },
+    {
+        component: PropositionsPage,
+        path: '/propositions',
+        title: "Propositions",
     },
 ]
 

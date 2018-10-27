@@ -182,7 +182,7 @@ class DashboardPage extends Component {
 
                 <div className="fixed-bottom discover-section">
                     <div className="discover-button">
-                        <a href="/recommendations">
+                        <a href="/propositions">
                             <img alt="make-me-green button"
                                  src={m_button}
                                  width="70px"

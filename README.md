@@ -22,6 +22,9 @@ insert into footprint VALUES (3, 1,'2018-09-29 16:06:42.434928', 'waste', 120, n
 insert into recommendation VALUES (1, 4, 'Vive le vélo','Un vélo ça polue vraiment moins quand même !',20,2,60,'carbon','2018-09-29 16:06:42.434928');
 insert into recommendation VALUES (2, 4, 'Prends une douche','Arrêtes les bains et prends des douches !',3,1,120,'water','2018-09-29 16:06:42.434928');
 insert into recommendation VALUES (3, 4, 'Achète du verre non teinté','Le seul verre recyclable !',7,2,30,'waste','2018-09-29 16:06:42.434928');
+insert into recommendation VALUES (4, 4, 'Eponge durable','Acheter une éponge durable c''est cool !',2,1,40,'waste','2018-10-27 18:37:42.434928');
+insert into recommendation VALUES (5, 4, 'Brosse a dent durable','Acheter une brosse a dent durable c''est cool !',2,2,60,'waste','2018-10-27 18:37:42.434928');
+insert into recommendation VALUES (6, 4, 'Dentifrice solide','Acheter du dentifrice solide c''est cool !',6,2,45,'waste','2018-10-27 18:37:42.434928');
 
 
 ## Pour déployer le front:
