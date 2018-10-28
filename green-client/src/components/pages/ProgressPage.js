@@ -123,14 +123,14 @@ class ProgressPage extends Component {
             <div className="text-center">
                 <div className="header-menu">
                     <nav className="navbar navbar-dark">
-                        <a className="navbar-brand" href="#">
+                        <NavLink className="navbar-brand" to="/home">
                             <span>
                                 <img alt="" src={avatar} className="navbar-avatar" />
                             </span>
                             <span>
                             {user && user.username}
                             </span>
-                        </a>
+                        </NavLink>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

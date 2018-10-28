@@ -164,6 +164,16 @@
     color: black !important;
 }
 
-.rightControl > i{
+.rightControl > i {
     color: black !important;
+}
+
+.carousel-control.right:hover,
+.carousel-control-next:hover {
+    background-image: none !important;
+}
+
+.carousel-control.left:hover,
+.carousel-control-prev:hover{
+    background-image: none !important;
 }

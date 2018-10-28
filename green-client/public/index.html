@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no"">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#fff">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob: data: https: http: gap://ready 'unsafe-inline'; connect-src 'self' https: http: ws://localhost:3000">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="MakeMeGreen">
+    <!--<link rel="apple-touch-startup-image" href="/mmg_loader.png">-->
+    <!--<link href="/icon/green_tree_120.png" sizes="120x120" rel="apple-touch-startup-image" />-->
+    <!--<link href="/icon/green_tree_120.png" sizes="2048x2732" rel="apple-touch-startup-image" />-->
+    <!--<link href="/icon/green_tree_120.png" sizes="1668x2224" rel="apple-touch-startup-image" />-->
+    <!--<link href="/icon/green_tree_120.png" sizes="1536x2048" rel="apple-touch-startup-image" />-->
+    <!--<link href="/icon/green_tree_120.png" sizes="1125x2436" rel="apple-touch-startup-image" />-->
+    <!--<link href="/icon/green_tree_120.png" sizes="1242x2208" rel="apple-touch-startup-image" />-->
+    <link href="/mmg_loader.png" sizes="750x1334" rel="apple-touch-startup-image" />
+    <!--<link href="/icon/green_tree_120.png" sizes="640x1136" rel="apple-touch-startup-image" />-->
+
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/green_tree.ico">
+    <link rel="manifest" href="/icon/manifest.json">
+    <link rel="shortcut icon" href="/icon/green_tree_120.png">
+    <link rel="apple-touch-icon" href="/icon/green_tree_120.png">
     <!-- TODO: is it diry ? -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -24,12 +40,13 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Make Me Green</title>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <div id="android-statusbar-overlay"></div>
     <div id="root"></div>
     <!--
       This HTML file is a template.

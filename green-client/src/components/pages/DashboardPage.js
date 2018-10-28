@@ -65,14 +65,14 @@ class DashboardPage extends Component {
 
                 <div className="header-menu">
                     <nav className="navbar navbar-dark">
-                        <a className="navbar-brand" href="#">
+                        <NavLink className="navbar-brand" to="/home">
                             <span>
                                 <img alt="" src={avatar} className="navbar-avatar" />
                             </span>
                             <span>
                             {user && user.username}
                             </span>
-                        </a>
+                        </NavLink>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -100,11 +100,12 @@ class DashboardPage extends Component {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <a
+                                    <NavLink
+                                        to="#"
                                         className="nav-link"
                                         onClick={this.onSignOutClick}>
                                         Déconnexion
-                                    </a>
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>
@@ -132,7 +133,7 @@ class DashboardPage extends Component {
 
                 <div className="activity-section">
                     {!isLoading ? (
-                        <a href="/activities" className="text-center">
+                        <NavLink to="/activities" className="text-center">
                         {activity_count >0 ? (
                             <div>
                                 <span>Vous avez { this.state.activity_count } activités en cours !</span>
@@ -140,7 +141,7 @@ class DashboardPage extends Component {
                         ):(
                             <span>Vous n'avez aucune activité en cours. Besoin d'une recommendations ?</span>
                         )}
-                        </a>
+                        </NavLink>
                     ):(
                         <span className="text-center">Chargement en cours...</span>
                     )}
@@ -182,13 +183,13 @@ class DashboardPage extends Component {
 
                 <div className="fixed-bottom discover-section">
                     <div className="discover-button">
-                        <a href="/propositions">
+                        <NavLink to="/propositions">
                             <img alt="make-me-green button"
                                  src={m_button}
                                  width="70px"
                                  height="70px"
                             />
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
 
