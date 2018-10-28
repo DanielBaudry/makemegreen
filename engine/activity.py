@@ -143,12 +143,15 @@ class GetWeeklyProgress:
             all()
 
         result = list()
+        index = 0
         # We need to do that because .label does not seems to work
         for activity in activities:
             tmp_obj = dict()
+            tmp_obj['id'] = index
             tmp_obj['type'] = activity[0]
             tmp_obj['value'] = activity[1]
             result.append(tmp_obj)
+            index += 1
 
         # Not really beautiful ...
         for type in FootprintType:
@@ -161,9 +164,11 @@ class GetWeeklyProgress:
                         break
                 if not label_is_present:
                     tmp_obj = dict()
+                    tmp_obj['id'] = index
                     tmp_obj['type'] = type
                     tmp_obj['value'] = 0
                     result.append(tmp_obj)
+                    index += 1
 
         result = sorted(result, key=lambda k: k['type'].value.get('label'))
 

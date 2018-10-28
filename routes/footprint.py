@@ -42,9 +42,6 @@ def get_footprints_history():
 @app.route("/dashboard", methods=["GET"])
 @login_required
 def get_info():
-
-    footprints = GetFootprints().execute(current_user)
-
     weekly_progress = GetWeeklyProgress().execute(current_user)
     app.logger.info("Weekly Progress")
     app.logger.info(weekly_progress)
@@ -82,7 +79,6 @@ def get_info():
                             "user_total_saved": current_user_total_saved}
     result['activities'] = {"activity_count": activity_count}
     result['leaderbord'] = {"rank": str(user_rank) + "/" + str(users_count)}
-    result['footprints'] = _serialize_footprints(footprints)
     result['weekly_progress'] = weekly_progress
 
     return jsonify(result)
