@@ -10,6 +10,9 @@ import avatar from '../../assets/avatar.svg'
 import m_button from '../../assets/m_button.png'
 import {THUMBS_URL} from "../../utils/config";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 class DashboardPage extends Component {
 
     constructor (props) {
@@ -19,7 +22,8 @@ class DashboardPage extends Component {
             statistics: [],
             activity_count: 0,
             user_total_saved: 0,
-            user_rank: "0/0"
+            user_rank: "0/0",
+            showInstallMessage: false
         }
     }
 
@@ -40,7 +44,6 @@ class DashboardPage extends Component {
                 const activity_count = get(get(action, 'data.activities'),'activity_count')
                 const user_rank = get(get(action, 'data.leaderbord'),'rank')
                 const user_total_saved = get(get(action, 'data.statistics'),'user_total_saved')
-                console.log(statistics)
                 this.setState({
                     "activity_count": activity_count,
                     "isLoading": false,
@@ -53,8 +56,29 @@ class DashboardPage extends Component {
         }))
     }
 
-    render () {
+    notify () {
+        toast.info("Tu peux installer l'application sur ton iphone : en appuyant sur partages et \"sur l'écra d'accueil\".", {
+            position: toast.POSITION.BOTTOM_CENTER
+        });
+    }
 
+    componentDidMount () {
+        // Detects if device is on iOS
+        const isIos = () => {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            return /iphone|ipad|ipod/.test( userAgent );
+        }
+        // Detects if device is in standalone mode
+        const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+        // Checks if should display install popup notification:
+        if (isIos() && !isInStandaloneMode()) {
+            this.setState({ showInstallMessage: true });
+            this.notify()
+        }
+    }
+
+    render () {
         const { isLoading, activity_count } = this.state
         const { user } = this.props
 
@@ -192,7 +216,15 @@ class DashboardPage extends Component {
                         </NavLink>
                     </div>
                 </div>
+                <div>
+                    <ToastContainer />
+                </div>
 
+                {this.state.showInstallMessage &&
+                    <div>
+                        <ToastContainer />
+                    </div>
+                }
             </div>
         )
     }

@@ -87,7 +87,7 @@ class PropositionsPage extends Component {
                 Propositions
                 <div className="propositions-section" style={{height: '100%'}}>
 
-                    <div id="carousel" className="carousel slide">
+                    <div id="carousel" className="carousel slide" data-interval="false">
                         <div className="carousel-inner">
                             <div className="carousel-item active">
                                 <div className="carousel-item-inside-div">
