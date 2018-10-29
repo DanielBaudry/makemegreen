@@ -76,6 +76,8 @@ class DashboardPage extends Component {
             this.setState({ showInstallMessage: true });
             this.notify()
         }
+
+        // TODO: manage same things for Android
     }
 
     render () {

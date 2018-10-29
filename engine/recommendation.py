@@ -1,4 +1,5 @@
 """ Activity """
+
 from models import BaseObject, User, Recommendation
 
 
@@ -43,7 +44,7 @@ class DiscoverNewRecommendations:
     def __init__(self):
         pass
 
-    def execute(self, user: User, reco_already_attach_to_user: [Recommendation]) -> [Recommendation]:
+    def execute(self, user: User, reco_already_attach_to_user: [Recommendation]) -> list:
         if user is None:
             raise BadUserException()
 
@@ -53,7 +54,18 @@ class DiscoverNewRecommendations:
 
         #  TODO: here we call the discover engine
 
-        return possible_recommendations
+        result = list()
+        first = True
+        for reco in possible_recommendations:
+            tmp_obj = dict(reco._asdict())
+            if first:
+                tmp_obj['first'] = True
+                first = False
+            else:
+                tmp_obj['first'] = False
+            result.append(tmp_obj)
+
+        return result
 
 
 

@@ -4,3 +4,4 @@ import routes.footprint
 import routes.recommendation
 import routes.activity
 import routes.storage
+import routes.proposition

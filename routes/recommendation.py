@@ -53,25 +53,6 @@ def get_recommendation(reco_id):
     return jsonify(recommendation), 200
 
 
-@app.route("/discover", methods=["GET"])
-@login_required
-def discover_recommendations():
-    reco_already_attach_to_user = Activity.query. \
-        with_entities(Activity.recommendation_id). \
-        filter((Activity.status == ActivityStatus.success) |
-               (Activity.status == ActivityStatus.fail) |
-               (Activity.status == ActivityStatus.pending)). \
-        filter_by(user_id=current_user.get_id()).\
-        all()
-
-    recommendations = DiscoverNewRecommendations().execute(current_user, reco_already_attach_to_user)
-
-    result = OrderedDict()
-    result['recommendations'] = _serialize_recommendations(recommendations)
-
-    return jsonify(result), 200
-
-
 def _serialize_recommendations(recommendations):
     return list(map(_serialize_recommendation, recommendations))
 
