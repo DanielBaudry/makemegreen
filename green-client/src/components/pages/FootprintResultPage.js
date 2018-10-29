@@ -37,11 +37,8 @@ class FootPrintResultPage extends Component {
                     </div>
                 </div>
                 <div className="my-5 pt-5 text-center">
-                    <NavLink to="/connexion" className="btn btn-primary btn-lg">
-                        {"Connexion"}
-                    </NavLink>
                     <NavLink to="/inscription" params={footprints} className="btn btn-primary btn-lg">
-                        {"Inscription"}
+                        {"Créer mon compte"}
                     </NavLink>
                 </div>
             </div>
