@@ -18,7 +18,6 @@ def discover_recommendations():
         all()
 
     propositions = DiscoverNewRecommendations().execute(current_user, reco_already_attach_to_user)
-    app.logger.info(propositions)
 
     result = OrderedDict()
     result['propositions'] = propositions

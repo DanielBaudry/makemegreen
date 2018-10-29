@@ -1,4 +1,5 @@
 """ Activity """
+import random
 
 from models import BaseObject, User, Recommendation
 
@@ -53,6 +54,7 @@ class DiscoverNewRecommendations:
         possible_recommendations = query.all()
 
         #  TODO: here we call the discover engine
+        random.shuffle(possible_recommendations)
 
         result = list()
         first = True
