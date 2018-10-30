@@ -7370,6 +7370,11 @@ react-slick@~0.23.1:
     lodash.debounce "^4.0.8"
     resize-observer-polyfill "^1.5.0"
 
+react-stepzilla@^4.7.3:
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/react-stepzilla/-/react-stepzilla-4.7.3.tgz#ca4a912651f8ce97946790ecd43fe686625201df"
+  integrity sha512-zdcZKWEG+DdAC1FjTaxaGzbo2OS0/uGsaqMo3yL8zxWNnp0IFaL6kklgT8+bNeHRZAnjfHm/0e3TTICYaeG0LQ==
+
 react-toastify@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-4.4.0.tgz#b10649c6d95c93c617ba4cadfddd16e6db34b559"

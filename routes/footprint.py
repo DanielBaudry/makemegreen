@@ -13,6 +13,8 @@ from models import Activity, ActivityStatus, User
 def compute():
     app.logger.info("Start footprint computation")
     data = request.json
+    app.logger.info("Compute footprint data:")
+    app.logger.info(data)
     result = ComputeFootprint().execute(data)
 
     return jsonify(result)
