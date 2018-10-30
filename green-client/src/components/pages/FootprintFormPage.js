@@ -28,57 +28,18 @@ class FootPrintFormPage extends Component {
         this.state = {};
 
         this.sampleStore = {
-            // email: '',
-            gender: 1,
             savedToCloud: false
         };
     }
 
-    onSubmitedClick = () => {
-        console.log("Toto")
-        // this.props.dispatch(requestData('POST',
-        //     'footprint/compute',
-        //     {
-        //      body: {"red_meat_frequency" : this.state.red_meat_frequency,
-        //          white_meat_frequency: this.state.white_meat_frequency,
-        //          green_garbage: this.state.green_garbage,
-        //          yellow_garbage: this.state.yellow_garbage,
-        //          bath_or_shower: this.state.bath_or_shower,
-        //          bath_shower_frequency: this.state.bath_shower_frequency,
-        //          clothes_composition: this.state.clothes_composition,
-        //          train_frequency: this.state.train_frequency,
-        //          personal_vehicule_frequency: this.state.personal_vehicule_frequency,
-        //          personal_vehicule_consumption: this.state.personal_vehicule_consumption,
-        //          carpooling_frequency: this.state.carpooling_frequency,
-        //          public_transportation_frequency: this.state.public_transportation_frequency,
-        //          plain_frequency: this.state.plain_frequency
-        //      },
-        //      handleSuccess: () => {
-        //          const { history } = this.props
-        //          history.push(`/result`)
-        //      },
-        //      key: "footprints"
-        //     }))
-    }
-
     send_data () {
+        console.log("Toto")
+        const store = this.getStore()
+        console.log(store)
         this.props.dispatch(requestData('POST',
             'footprint/compute',
             {
-             body: {"red_meat_frequency" : this.state.red_meat_frequency,
-                 white_meat_frequency: this.state.white_meat_frequency,
-                 green_garbage: this.state.green_garbage,
-                 yellow_garbage: this.state.yellow_garbage,
-                 bath_or_shower: this.state.bath_or_shower,
-                 bath_shower_frequency: this.state.bath_shower_frequency,
-                 clothes_composition: this.state.clothes_composition,
-                 train_frequency: this.state.train_frequency,
-                 personal_vehicule_frequency: this.state.personal_vehicule_frequency,
-                 personal_vehicule_consumption: this.state.personal_vehicule_consumption,
-                 carpooling_frequency: this.state.carpooling_frequency,
-                 public_transportation_frequency: this.state.public_transportation_frequency,
-                 plain_frequency: this.state.plain_frequency
-             },
+             body: store,
              handleSuccess: () => {
                  const { history } = this.props
                  history.push(`/result`)
@@ -111,6 +72,8 @@ class FootPrintFormPage extends Component {
         const steps = [
             {name: 'StepOne', component: <QuestionItem
                     id="1"
+                    property_name="red_meat_frequency"
+                    isLastElement={false}
                     getStore={() => (this.getStore())}
                     updateStore={(u) => {this.updateStore(u)}}
                     question_name="A quelle fréquence manges-tu de la viande rouge ?"
@@ -126,9 +89,11 @@ class FootPrintFormPage extends Component {
                             'text': 'à chaque repas'},]}/>},
             {name: 'StepTwo', component: <QuestionItem
                     id="2"
+                    property_name="white_meat_frequency"
+                    isLastElement={false}
                     getStore={() => (this.getStore())}
                     updateStore={(u) => {this.updateStore(u)}}
-                    question_name="A quelle titi manges-tu de la viande rouge ?"
+                    question_name="A quelle fréquence manges-tu de la viande blanche ?"
                     answers={[ {'id': 0,
                         'text': 'jamais'},
                         {'id': 1,
@@ -141,34 +106,55 @@ class FootPrintFormPage extends Component {
                             'text': 'à chaque repas'},]}/>},
             {name: 'StepThree', component: <QuestionItem
                     id="3"
+                    property_name="green_garbage"
+                    isLastElement={false}
                     getStore={() => (this.getStore())}
                     updateStore={(u) => {this.updateStore(u)}}
-                    question_name="A quelle toto manges-tu de la viande rouge ?"
+                    question_name="Combien de poubelle verte prends-tu chaque semaine ?"
                     answers={[ {'id': 0,
-                        'text': 'jamais'},
+                        'text': '0'},
                         {'id': 1,
-                            'text': '1 à 2 fois par semaine'},
+                            'text': '1'},
                         {'id': 2,
-                            'text': '3 à 5 fois par semaine'},
+                            'text': '2'},
                         {'id': 3,
-                            'text': '5 à 7 fois par semaine'},
+                            'text': '3'},
                         {'id': 4,
-                            'text': 'à chaque repas'},]}/>},
+                            'text': 'Plus de 3'},]}/>},
             {name: 'StepFour', component: <QuestionItem
                     id="4"
+                    property_name="yellow_garbage"
+                    isLastElement={true}
                     getStore={() => (this.getStore())}
                     updateStore={(u) => {this.updateStore(u)}}
-                    question_name="A quelle tata manges-tu de la viande rouge ?"
+                    question_name="Combien de poubelle jaune prends-tu chaque semaine ?"
                     answers={[ {'id': 0,
-                        'text': 'jamais'},
+                        'text': '0'},
                         {'id': 1,
-                            'text': '1 à 2 fois par semaine'},
+                            'text': '1'},
                         {'id': 2,
-                            'text': '3 à 5 fois par semaine'},
+                            'text': '2'},
                         {'id': 3,
-                            'text': '5 à 7 fois par semaine'},
+                            'text': '3'},
                         {'id': 4,
-                            'text': 'à chaque repas'},]}/>}
+                            'text': 'Plus de 3'},]}/>},
+            {name: 'FinalStep', component: <QuestionItem
+                    id="5"
+                    property_name="yellow_garbage"
+                    isLastElement={false}
+                    getStore={() => (this.getStore())}
+                    updateStore={(u) => {this.updateStore(u)}}
+                    question_name="Combien de poubelle jaune prends-tu chaque semaine ?"
+                    answers={[ {'id': 0,
+                        'text': '0'},
+                        {'id': 1,
+                            'text': '1'},
+                        {'id': 2,
+                            'text': '2'},
+                        {'id': 3,
+                            'text': '3'},
+                        {'id': 4,
+                            'text': 'Plus de 3'},]}/>}
         ];
 
         return(
@@ -403,9 +389,9 @@ class FootPrintFormPage extends Component {
                                 {/*</div>*/}
                             {/*</div>*/}
 
-                            <button className="btn btn-primary"
-                                    onClick={e => { e.preventDefault(); this.send_data();} }
-                                    type="submit">Calculer mon empreinte écologique</button>
+                            {/*<button className="btn btn-primary"*/}
+                                    {/*onClick={e => { e.preventDefault(); this.send_data();} }*/}
+                                    {/*type="submit">Calculer mon empreinte écologique</button>*/}
                         </form>
                     </div>
             </div>
