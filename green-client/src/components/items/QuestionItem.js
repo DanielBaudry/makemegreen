@@ -37,7 +37,7 @@ class QuestionItem extends Component {
 
         const { isLastElement } = this.props
         const store = this.props.getStore()
-        if ( isLastElement ) {x
+        if ( isLastElement ) {
             this.props.dispatch(requestData('POST',
                 'footprint/compute',
                 {
