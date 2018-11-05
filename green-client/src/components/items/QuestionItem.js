@@ -14,7 +14,6 @@ class QuestionItem extends Component {
             [property_name]: props.getStore()[property_name]
         };
         this.validationCheck = this.validationCheck.bind(this);
-        this.isValidated = this.isValidated.bind(this);
     }
 
     componentDidMount () {}
@@ -63,7 +62,12 @@ class QuestionItem extends Component {
                 <select className="form-control"
                         id="question"
                         ref={property_name}
+                        autoFocus={true}
+                        required={true}
                         onBlur={this.validationCheck} >
+                            <option selected={true}
+                                    value=""
+                                    disabled>Réponse</option>
                         {
                             answers.map(answer => (
                                 <option key={answer.id}

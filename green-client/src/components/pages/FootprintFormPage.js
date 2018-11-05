@@ -62,6 +62,7 @@ class FootPrintFormPage extends Component {
                     question_name="A quelle fréquence manges-tu de la viande rouge ?"
                     answers={[ {'id': 0,
                         'value': 0,
+                        'selected': true,
                         'text': 'jamais'},
                         {'id': 1,
                             'value': 1,
@@ -294,6 +295,7 @@ class FootPrintFormPage extends Component {
                                            nextTextOnFinalActionStep={"Calculer mon empreinte"}
                                            nextButtonText={"suivant"}
                                            backButtonText={"précédent"}
+                                           dontValidate={false}
                                            // startAtStep={window.sessionStorage.getItem('step') ? parseFloat(window.sessionStorage.getItem('step')) : 0}
                                            // onStepChange={(step) => window.sessionStorage.setItem('step', step)}
                                 />
