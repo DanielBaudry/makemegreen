@@ -81,6 +81,7 @@ class EndActivity:
         if activity_id is None or user_id is None:
             raise BadArgException()
 
+
         activity = Activity.query.filter_by(id=activity_id).first()
         activity.set_status(ActivityStatus.fail)
         activity.set_date_end()
