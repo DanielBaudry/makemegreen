@@ -47,7 +47,6 @@
     "react-hot-loader": "^4.3.6",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-stepzilla": "^4.7.3",
     "react-toastify": "^4.4.0",
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0",
