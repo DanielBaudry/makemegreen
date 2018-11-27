@@ -22,23 +22,20 @@ class FootPrintResultPage extends Component {
 
         return(
             <div className={`footprint-result`}>
-                <div className="py-5 text-center">
-                    <h2>Ton empreinte écologique</h2>
-                    <p className="lead">Résultats</p>
+                <div className="footprint-result-title text-center">
+                    <h2>Mon empreinte écologique</h2>
                 </div>
 
-                <div className="container">
-                    <div className="row">
+                <div className="footprint-result-content">
                         {
                             footprints_data.map(footprint => (
                                 <FootprintResultItem key={footprint.id} footprint={footprint} />
                             ))
                         }
-                    </div>
                 </div>
-                <div className="my-5 pt-5 text-center">
-                    <NavLink to="/inscription" params={footprints} className="btn btn-primary btn-lg">
-                        {"Créer mon compte"}
+                <div className="signup-link text-center">
+                    <NavLink to="/inscription" params={footprints}>
+                        {"Je créé mon compte"}
                     </NavLink>
                 </div>
             </div>

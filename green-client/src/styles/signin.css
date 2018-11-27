@@ -186,6 +186,14 @@
     color: white;
 }
 
+.footprint-result{
+    background-color: #EFEFEF;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    /*color: white;*/
+}
+
 .footprint-form h4{
     margin-top: 40px;
 }

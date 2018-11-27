@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
-import RecommendationItem from "../items/RecommendationItem";
 
 class RecommendationFormPage extends Component {
 
