@@ -178,6 +178,27 @@
     background-image: none !important;
 }
 
+.footprint-form{
+    background-color: #519872;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    color: white;
+}
+
+.footprint-form h4{
+    margin-top: 40px;
+}
+
+.footprint-form label{
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.footprint-form .form-group{
+    margin-top: 16%;
+}
+
 .footprint-form .custom-select{
     width: 80%;
 }

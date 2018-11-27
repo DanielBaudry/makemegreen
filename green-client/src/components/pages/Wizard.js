@@ -60,7 +60,7 @@ export default class Wizard extends React.Component {
                 initialValues={values}
                 validate={this.validate}
                 onSubmit={this.handleSubmit}>
-                {({ handleSubmit, submitting, values }) => (
+                {({ handleSubmit, submitting }) => (
                     <form className="footprint-form"
                         onSubmit={handleSubmit}>
                         {activePage}
@@ -73,12 +73,11 @@ export default class Wizard extends React.Component {
                             {!isLastPage && <button className="btn btn-primary" type="submit">Suivant »</button>}
                             {isLastPage && (
                                 <button className="btn btn-primary" type="submit" disabled={submitting}>
-                                    Submit
+                                    Calculer mon empreinte
                                 </button>
                             )}
                         </div>
 
-                        <pre>{JSON.stringify(values, 0, 2)}</pre>
                     </form>
                 )}
             </Form>

@@ -16,8 +16,6 @@ const Error = ({ name }) => (
     />
 )
 
-const required = value => (value ? undefined : 'Required')
-
 
 class FootPrintFormPage extends Component {
 
@@ -27,9 +25,9 @@ class FootPrintFormPage extends Component {
 
         this.store = {
             red_meat_frequency: false,
-            white_meat_frequency: "3",
-            green_garbage: "1",
-            yellow_garbage: "1",
+            white_meat_frequency: false,
+            green_garbage: false,
+            yellow_garbage: false,
             bath_or_shower: "0.25",
             bath_shower_frequency: "1",
             clothes_composition: "1",
@@ -80,7 +78,7 @@ class FootPrintFormPage extends Component {
         return(
             <div className="footprint-form">
                 <div className="text-center">
-                    <h4 className="mb-3">Questionnaire</h4>
+                    <h4 className="mb-3">Bilan écologique</h4>
                     <Wizard
                         initialValues={this.store}
                         onSubmit={ this.onSubmit }
@@ -99,7 +97,6 @@ class FootPrintFormPage extends Component {
                                     id="question_1"
                                     name="red_meat_frequency"
                                     component="select"
-                                    type="text"
                                     placeholder="Votre réponse"
                                 >
                                     <option />
@@ -124,10 +121,9 @@ class FootPrintFormPage extends Component {
                                 <label htmlFor="question_2">A quelle fréquence manges-tu de la viande blanche ?</label>
                                 <Field
                                     className="custom-select"
-                                    id="question_1"
+                                    id="question_2"
                                     name="white_meat_frequency"
                                     component="select"
-                                    type="text"
                                     placeholder="Votre réponse"
                                 >
                                     <option />
@@ -139,6 +135,60 @@ class FootPrintFormPage extends Component {
                                 </Field>
                                 <Error className="invalid-feedback"
                                        name="white_meat_frequency" />
+                            </div>
+                        </Wizard.Page>
+                        <Wizard.Page validate={values => {
+                            const errors = {}
+                            if (!values.green_garbage) {
+                                errors.green_garbage = 'Merci de choisir une réponse'
+                            }
+                            return errors
+                        }}>
+                            <div className="form-group">
+                                <label htmlFor="question_3">Combien de poubelle verte prends-tu chaque semaine ?</label>
+                                <Field
+                                    className="custom-select"
+                                    id="question_3"
+                                    name="green_garbage"
+                                    component="select"
+                                    placeholder="Votre réponse"
+                                >
+                                    <option />
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="5">plus que 3</option>
+                                </Field>
+                                <Error className="invalid-feedback"
+                                       name="green_garbage" />
+                            </div>
+                        </Wizard.Page>
+                        <Wizard.Page validate={values => {
+                            const errors = {}
+                            if (!values.yellow_garbage) {
+                                errors.yellow_garbage = 'Merci de choisir une réponse'
+                            }
+                            return errors
+                        }}>
+                            <div className="form-group">
+                                <label htmlFor="question_4">Combien de poubelle jaune prends-tu chaque semaine ?</label>
+                                <Field
+                                    className="custom-select"
+                                    id="question_4"
+                                    name="yellow_garbage"
+                                    component="select"
+                                    placeholder="Votre réponse"
+                                >
+                                    <option />
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="5">plus que 3</option>
+                                </Field>
+                                <Error className="invalid-feedback"
+                                       name="yellow_garbage" />
                             </div>
                         </Wizard.Page>
                     </Wizard>
