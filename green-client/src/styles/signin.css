@@ -177,3 +177,14 @@
 .carousel-control-prev:hover{
     background-image: none !important;
 }
+
+.footprint-form .custom-select{
+    width: 80%;
+}
+
+.form-error{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
