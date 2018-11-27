@@ -6,6 +6,8 @@ import get from "lodash.get";
 import { compose } from 'redux'
 import {connect} from "react-redux";
 
+import '../../styles/welcome.css'
+
 class LandingPage extends Component {
 
     constructor (props) {
@@ -33,33 +35,59 @@ class LandingPage extends Component {
         const { isLoading } = this.state
 
        return(
-            <div className="text-center">
+            <div>
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Make Me Green</h1>
                 </header>
-                <h1>Make Me Green</h1>
-                <span></span>
 
-                <div className="statistics-section">
-                    {!isLoading ? (
-                        <div>
-                            <p>Depuis le lancement de l'application
-                               Les utilisateurs de MakeMeGreen ont réussi à économier :</p>
-                            <span><strong>{this.state.total_saved} de C0²</strong></span>
-                        </div>
-                    ):(
-                        <div className="text-center">Chargement en cours...</div>
-                    )}
-                </div>
+                <div className="welcome-content">
+                    {/* TODO: à migrer dans le site vitrine */}
+                    {/*<div className="welcome-message">*/}
+                        {/*<h5>Bienvenu</h5>*/}
+                        {/*<span>*/}
+                            {/*Make Me Green est né d'un concept simple, il est temps de changer nos habitudes*/}
+                            {/*afin de pouvoir continuer de profiter des toutes les choses qui rendent la vie agréable.*/}
+                        {/*</span>*/}
+                        {/*<h5>Le concept</h5>*/}
+                        {/*<span>*/}
+                            {/*L'application Make Me Green permet un accompagnement sur mesure pour que chacun puisse*/}
+                            {/*prendre conscience et améliorer son empreinte écologique.*/}
+                            {/*Le service ne demande pas un effort de recherche ni de documentation pour savoir quelle*/}
+                            {/*action sera la plus bénéfique. Nous souhaitons proposer à travers Make Me Green, un outil*/}
+                            {/*sur mesure qui vous accompagnera tout au long de votre démarche.*/}
+                        {/*</span>*/}
+                    {/*</div>*/}
 
-                <div className="my-5 pt-5 text-center">
-                    <NavLink to="/connexion" className="btn btn-primary">
-                        {"Connexion"}
-                    </NavLink>
-                    <NavLink to="/footprint" className="btn btn-primary">
-                        {"Inscription"}
-                    </NavLink>
+                    <div className="statistics-section">
+                        {!isLoading ? (
+                            <div className="text-center">
+                                <span>Depuis le lancement de l'application,
+                                    les utilisateurs de MakeMeGreen ont réussi à économier :
+                                </span>
+                                <br/>
+                                <span>
+                                    <strong>{this.state.total_saved} de C0²</strong>
+                                </span>
+                                <br/>
+                                <span className="text-align">
+                                    Et si vous étiez le prochain à participer cette aventure ?
+                                </span>
+                                <div className="sign-links text-center">
+                                    <NavLink to="/footprint" className="btn btn-primary">
+                                        {"Je m'inscris"}
+                                    </NavLink>
+                                    <div className="connexion-link">
+                                        <NavLink to="/connexion">
+                                            {"J'ai déjà un compte"}
+                                        </NavLink>
+                                    </div>
+                                </div>
+                            </div>
+                        ):(
+                            <div className="text-center">Chargement en cours...</div>
+                        )}
+                    </div>
                 </div>
             </div>
         )

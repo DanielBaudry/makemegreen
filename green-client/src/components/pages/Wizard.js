@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
+import {NavLink} from "react-router-dom";
 
 export default class Wizard extends React.Component {
     static propTypes = {
@@ -78,6 +79,11 @@ export default class Wizard extends React.Component {
                             )}
                         </div>
 
+                        <div className="fixed-bottom">
+                            <NavLink to="/welcome" className="text-left">
+                                Retour à la page d'acceuil
+                            </NavLink>
+                        </div>
                     </form>
                 )}
             </Form>

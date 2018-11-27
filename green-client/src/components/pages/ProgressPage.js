@@ -11,6 +11,14 @@ import avatar from '../../assets/avatar.svg'
 
 class ProgressPage extends Component {
 
+    onSignOutClick = () => {
+        const { history } = this.props
+        this.props.dispatch(requestData('GET', '/users/signout', {
+            handleSuccess: () => {
+                history.push('/connexion')
+            },
+        }))
+    }
 
     constructor () {
         super()

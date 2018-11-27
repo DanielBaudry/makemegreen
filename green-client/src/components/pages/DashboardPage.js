@@ -56,29 +56,29 @@ class DashboardPage extends Component {
         }))
     }
 
-    notify () {
-        toast.info("Tu peux installer l'application sur ton iphone : en appuyant sur partages et \"sur l'écra d'accueil\".", {
-            position: toast.POSITION.BOTTOM_CENTER
-        });
-    }
+    // notify () {
+    //     toast.info("Tu peux installer l'application sur ton iphone : en appuyant sur partages et \"sur l'écra d'accueil\".", {
+    //         position: toast.POSITION.BOTTOM_CENTER
+    //     });
+    // }
 
-    componentDidMount () {
-        // Detects if device is on iOS
-        const isIos = () => {
-            const userAgent = window.navigator.userAgent.toLowerCase();
-            return /iphone|ipad|ipod/.test( userAgent );
-        }
-        // Detects if device is in standalone mode
-        const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-        // Checks if should display install popup notification:
-        if (isIos() && !isInStandaloneMode()) {
-            this.setState({ showInstallMessage: true });
-            this.notify()
-        }
-
-        // TODO: manage same things for Android
-    }
+    // componentDidMount () {
+    //     // Detects if device is on iOS
+    //     const isIos = () => {
+    //         const userAgent = window.navigator.userAgent.toLowerCase();
+    //         return /iphone|ipad|ipod/.test( userAgent );
+    //     }
+    //     // Detects if device is in standalone mode
+    //     const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+    //
+    //     // Checks if should display install popup notification:
+    //     if (isIos() && !isInStandaloneMode()) {
+    //         this.setState({ showInstallMessage: true });
+    //         this.notify()
+    //     }
+    //
+    //     // TODO: manage same things for Android
+    // }
 
     render () {
         const { isLoading, activity_count } = this.state
@@ -87,7 +87,7 @@ class DashboardPage extends Component {
         console.log("User", user)
 
         return(
-            <div className="main">
+            <div className="text-center">
 
                 <div className="header-menu">
                     <nav className="navbar navbar-dark">

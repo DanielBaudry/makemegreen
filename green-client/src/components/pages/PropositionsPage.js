@@ -11,6 +11,14 @@ import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 
 class PropositionsPage extends Component {
 
+    onSignOutClick = () => {
+        const { history } = this.props
+        this.props.dispatch(requestData('GET', '/users/signout', {
+            handleSuccess: () => {
+                history.push('/connexion')
+            },
+        }))
+    }
 
     constructor (props) {
         super(props)

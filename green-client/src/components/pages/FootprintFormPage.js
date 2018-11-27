@@ -5,6 +5,7 @@ import { Field } from 'react-final-form'
 import Wizard from './Wizard'
 import {requestData} from "../../reducers/data";
 
+import '../../styles/footprint-form.css'
 
 const Error = ({ name }) => (
     <Field
@@ -83,6 +84,18 @@ class FootPrintFormPage extends Component {
                         initialValues={this.store}
                         onSubmit={ this.onSubmit }
                     >
+                        <div className="footprint-form-intro">
+                            <blockquote className="blockquote">
+                                <p>Si vous ne pouvez pas le mesurer, vous ne pouvez pas l'améliorer.</p>
+                                <footer className="blockquote-footer">William THOMSON, Lord KELVIN</footer>
+                            </blockquote>
+                            <div className="footprint-form-intro-content">
+                                <p>Avant de pouvoir vous proposer des recommendations adaptées,
+                            nous avons besoin d'en connaitre un peu plus sur vos habitudes. Pour cela, nous avons prévu
+                            un questionaire en 10 étapes.
+                                </p>
+                            </div>
+                        </div>
                         <Wizard.Page validate={values => {
                                          const errors = {}
                                          if (!values.red_meat_frequency) {
