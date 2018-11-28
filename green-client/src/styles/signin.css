@@ -94,9 +94,6 @@
     margin-bottom: 8px;
 }
 
-.footprints-section-title{
-}
-
 .activity-section a{
     color: white;
 }
@@ -133,13 +130,23 @@
 
 .discover-section {
     /*background-color: #519872;*/
-    padding-bottom: 14px;
-    color: white;
+    margin-bottom: 14px;
+    /*color: white;*/
+    /*font-size: 2.1em;*/
+    /*padding-top: 20px;*/
+    /*height: 80px;*/
+    /*width: 80px;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*border-radius: 50px;*/
+    /*-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);*/
+    /*-moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);*/
+    /*box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);*/
 
 }
 .discover-section>discover-button{
     /*margin: 16px;*/
-    background-color: #519872;
+    /*background-color: #519872;*/
 }
 
 .discover-button>a{

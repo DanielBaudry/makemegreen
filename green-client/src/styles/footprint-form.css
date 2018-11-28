@@ -25,24 +25,51 @@
 
 .footprint-result-row-car{
     text-align: center;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    border: solid #EFEFEF;
+    border-width: 10px 16px 0px 16px;
+    height: 25vh;
+    /*padding-top: 60px;*/
+    /*padding-bottom: 60px;*/
     background-color: #519872;
 }
 
 .footprint-result-row-food{
     text-align: center;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    border: solid #EFEFEF;
+    border-width: 10px 16px 0px 16px;
+    height: 25vh;
+    /*padding-top: 60px;*/
+    /*padding-bottom: 60px;*/
     background-color: #74BA94;
 }
 
 .footprint-result-row-home{
     text-align: center;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    border: solid #EFEFEF;
+    border-width: 10px 16px 0px 16px;
+    height: 25vh;
+    /*padding-top: 60px;*/
+    /*padding-bottom: 60px;*/
     background-color: #508991;
     /*background-color: #0c5460;*/
+}
+
+
+.footprint-result-row-image{
+    margin-left: 15vw;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.footprint-result-row-value{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.footprint-row-trend{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 15vw;
 }
 
 .footprint-result-value{

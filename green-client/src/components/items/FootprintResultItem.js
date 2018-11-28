@@ -29,11 +29,11 @@ const FootprintResultItem = ({
     const footprint_value = get(footprint, "value")
 
     return (
-        <div className={"footprint-result-row-" + footprint_color}>
-            <div className="position-absolute ml-5">
+        <div className={"footprint-result-row-" + footprint_color + " media"}>
+            <div className="footprint-result-row-image media-left">
                 <img className="card-img" src={ footprint_img } alt="Card image cap"/>
             </div>
-            <div className="text-center ml-5">
+            <div className="footprint-result-row-value media-body">
                 <strong className="footprint-result-value">  {footprint_value} </strong> kg/CO2/an
             </div>
             {/*<div className="text-center">*/}

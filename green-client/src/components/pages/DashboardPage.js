@@ -13,6 +13,8 @@ import {THUMBS_URL} from "../../utils/config";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+import '../../styles/dashboard.css'
+
 class DashboardPage extends Component {
 
     constructor (props) {
@@ -146,7 +148,7 @@ class DashboardPage extends Component {
                     Cette semaine
                 </div>
 
-                <div className="container footprints-section">
+                <div className="container">
 
                 {!isLoading ? (
                     this.state.footprints.map(footprint => (
@@ -157,55 +159,70 @@ class DashboardPage extends Component {
                 )}
                 </div>
 
-                <div className="activity-section">
+                <div className="leaderbord-section">
                     {!isLoading ? (
-                        <NavLink to="/activities" className="text-center">
-                        {activity_count >0 ? (
-                            <div>
-                                <span>Vous avez { this.state.activity_count } activités en cours !</span>
-                            </div>
-                        ):(
-                            <span>Vous n'avez aucune activité en cours. Besoin d'une recommendations ?</span>
-                        )}
-                        </NavLink>
+                    <div>
+                        <div>
+                            <img alt="" src={THUMBS_URL + "up"} className="leaderbord-avatar" />
+                        </div>
+                        <br />
+                        <span>Score: {this.state.user_total_saved} CO2</span><br />
+                        <span>Placement: <strong>{ this.state.user_rank }</strong></span>
+                    </div>
                     ):(
-                        <span className="text-center">Chargement en cours...</span>
+                    <span className="text-center">Chargement en cours...</span>
                     )}
                 </div>
 
-                <div className="container">
-                <div className="row">
-                    <div className="col-6 leaderbord-section">
-                        {!isLoading ? (
-                            <div>
-                                <div>
-                                    <img alt="" src={THUMBS_URL + "up"} className="leaderbord-avatar" />
-                                </div>
-                                <br />
-                                <span>Score: {this.state.user_total_saved} CO2</span><br />
-                                <span>Placement: <strong>{ this.state.user_rank }</strong></span>
-                            </div>
-                        ):(
-                            <span className="text-center">Chargement en cours...</span>
-                        )}
-                    </div>
+                {/*<div className="activity-section">*/}
+                    {/*{!isLoading ? (*/}
+                        {/*<NavLink to="/activities" className="text-center">*/}
+                        {/*{activity_count >0 ? (*/}
+                            {/*<div>*/}
+                                {/*<span>Vous avez { this.state.activity_count } activités en cours !</span>*/}
+                            {/*</div>*/}
+                        {/*):(*/}
+                            {/*<span>Vous n'avez aucune activité en cours. Besoin d'une recommendations ?</span>*/}
+                        {/*)}*/}
+                        {/*</NavLink>*/}
+                    {/*):(*/}
+                        {/*<span className="text-center">Chargement en cours...</span>*/}
+                    {/*)}*/}
+                {/*</div>*/}
 
-                    <div className="col-6 engine-section">
-                        {!isLoading ? (
-                            <div>
-                                <div>
-                                    <img alt="" src={THUMBS_URL + "food_color"} className="leaderbord-avatar" />
-                                </div>
-                                <br />
-                                {/*<span>Envie de recommendations plus adaptées ? Aide-nous à améliorer notre algorithme !</span>*/}
-                                <span>Découvre notre algorithme !</span>
-                            </div>
-                        ):(
-                            <span className="text-center">Chargement en cours...</span>
-                        )}
-                    </div>
-                </div>
-                </div>
+                {/*<div className="container">*/}
+                {/*<div className="row">*/}
+                    {/*<div className="col-6 leaderbord-section">*/}
+                        {/*{!isLoading ? (*/}
+                            {/*<div>*/}
+                                {/*<div>*/}
+                                    {/*<img alt="" src={THUMBS_URL + "up"} className="leaderbord-avatar" />*/}
+                                {/*</div>*/}
+                                {/*<br />*/}
+                                {/*<span>Score: {this.state.user_total_saved} CO2</span><br />*/}
+                                {/*<span>Placement: <strong>{ this.state.user_rank }</strong></span>*/}
+                            {/*</div>*/}
+                        {/*):(*/}
+                            {/*<span className="text-center">Chargement en cours...</span>*/}
+                        {/*)}*/}
+                    {/*</div>*/}
+
+                    {/*<div className="col-6 engine-section">*/}
+                        {/*{!isLoading ? (*/}
+                            {/*<div>*/}
+                                {/*<div>*/}
+                                    {/*<img alt="" src={THUMBS_URL + "food_color"} className="leaderbord-avatar" />*/}
+                                {/*</div>*/}
+                                {/*<br />*/}
+                                {/*/!*<span>Envie de recommendations plus adaptées ? Aide-nous à améliorer notre algorithme !</span>*!/*/}
+                                {/*<span>Découvre notre algorithme !</span>*/}
+                            {/*</div>*/}
+                        {/*):(*/}
+                            {/*<span className="text-center">Chargement en cours...</span>*/}
+                        {/*)}*/}
+                    {/*</div>*/}
+                {/*</div>*/}
+                {/*</div>*/}
 
                 <div className="fixed-bottom discover-section">
                     <div className="discover-button">
