@@ -24,7 +24,8 @@ class ActivityItem extends Component {
     // TODO: maybe PATCH request
 
     onSuccessClick = () => {
-        this.props.dispatch(requestData('GET',`/activity/validate/${this.state.activity_id}`, {
+        this.props.dispatch(requestData('GET',`/activity/validate/${this.state.activity_id}`,
+            {
                 handleSuccess: (state, action) => {
                     const status = "success"
                     this.setState({
@@ -44,6 +45,19 @@ class ActivityItem extends Component {
                         "status": "fail",
                         "date_end": moment().format('DD MMMM YYYY à HH:mm')
                     })
+                },
+            }))
+    }
+
+    onHoldClick = () => {
+        this.props.dispatch(requestData('GET',`/activity/hold/${this.state.activity_id}`,
+            {
+                handleSuccess: (state, action) => {
+                    this.setState( {
+                        "status": "pending",
+                        "date_end": moment().format('DD MMMM YYYY à HH:mm')
+                    })
+                    console.log(this.state.status)
                 },
             }))
     }
@@ -106,6 +120,13 @@ class ActivityItem extends Component {
                         )}
                         <div className="date-end">
                             Terminé le : { this.state.date_end }
+                        </div>
+                        <div className="date-end">
+                            <button
+                                className="btn btn-secondary"
+                                onClick={e => { e.preventDefault(); this.onHoldClick();} }>
+                                Mettre en pause
+                            </button>
                         </div>
                     </div>
                     )}
