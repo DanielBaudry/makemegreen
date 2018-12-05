@@ -2,7 +2,7 @@
 from flask import current_app as app, jsonify
 from flask_login import current_user, login_required
 from models import Activity
-from engine.activity import StartActivity, EndActivity, ValidateActivity, AlreadyStartedException
+from engine.activity import StartActivity, EndActivity, ValidateActivity, AlreadyStartedException, HoldActivity
 from collections import OrderedDict
 from utils.human_ids import dehumanize
 
@@ -18,6 +18,14 @@ def validate_activity(activity_id):
 
     return jsonify(result)
 
+@app.route("/activity/hold/<activity_id>", methods=["GET"])
+@login_required
+def hold_activity(activity_id):
+    activity_id = dehumanize(activity_id)
+    HoldActivity().execute(activity_id=activity_id, user_id=int(current_user.get_id()))
+    result = dict({"success": "yes"})
+
+    return jsonify(result)
 
 @app.route("/activity/remove/<activity_id>", methods=["GET"])
 @login_required

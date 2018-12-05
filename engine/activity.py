@@ -57,8 +57,8 @@ class StartActivity:
             raise BadArgException()
 
         # TEST IF RECOMMENDATION ALREADY IN ACTIVITY FOR THE USER
-        existing_activity = Activity.query.\
-            filter_by(user_id=user_id).\
+        existing_activity = Activity.query. \
+            filter_by(user_id=user_id). \
             filter_by(recommendation_id=recommendation_id).first()
         if existing_activity:
             raise AlreadyStartedException
@@ -77,7 +77,6 @@ class EndActivity:
         pass
 
     def execute(self, activity_id, user_id) -> Activity:
-
         if activity_id is None or user_id is None:
             raise BadArgException()
 
@@ -95,7 +94,6 @@ class ValidateActivity:
         pass
 
     def execute(self, activity_id, user_id) -> Activity:
-
         if activity_id is None or user_id is None:
             raise BadArgException()
 
@@ -105,8 +103,8 @@ class ValidateActivity:
         activity.set_date_end()
 
         # CREATE NEW : footprint
-        footprint = Footprint.query.\
-            filter_by(user_id=user_id).\
+        footprint = Footprint.query. \
+            filter_by(user_id=user_id). \
             filter_by(type=activity.recommendation.type). \
             order_by(Footprint.date_created.desc()). \
             first()
@@ -120,6 +118,36 @@ class ValidateActivity:
 
         return activity
 
+
+class HoldActivity:
+    def __init__(self):
+        pass
+
+    def execute(sel, activity_id, user_id) -> Activity:
+
+        if activity_id is None or user_id is None:
+            raise BadArgException()
+
+        # UPDATE ACTIVITY
+        activity = Activity.query.filter_by(id=activity_id).first()
+        activity.set_status(ActivityStatus.pending)
+        activity.set_date_end()
+
+        # UPDATE : footprint
+        footprint = Footprint.query. \
+            filter_by(user_id=user_id). \
+            filter_by(type=activity.recommendation.type). \
+            order_by(Footprint.date_created.desc()). \
+            first()
+
+        previous_value = footprint.get_value()
+        new_footprint = Footprint(from_dict=footprint._asdict())
+        new_footprint.set_value(previous_value + activity.recommendation.benefit)
+        new_footprint.set_date_created()
+
+        BaseObject.check_and_save(activity, new_footprint)
+
+        return activity
 
 class GetWeeklyProgress:
     def __init__(self):
@@ -138,8 +166,8 @@ class GetWeeklyProgress:
             filter(Activity.user == user). \
             filter(Activity.date_end > beginning_of_the_week_date). \
             filter((Activity.status == ActivityStatus.success)
-                   | (Activity.status == ActivityStatus.fail)).\
-            group_by(Recommendation.type).\
+                   | (Activity.status == ActivityStatus.fail)). \
+            group_by(Recommendation.type). \
             all()
 
         result = list()
@@ -173,4 +201,3 @@ class GetWeeklyProgress:
         result = sorted(result, key=lambda k: k['type'].value.get('label'))
 
         return result
-
