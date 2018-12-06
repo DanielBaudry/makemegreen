@@ -29,6 +29,8 @@ insert into recommendation VALUES (6, 4, 'Dentifrice solide','Acheter du dentifr
 
 ## Pour déployer le front:
 
+npm install -g netlify-cli@1.2.3
+
 export API_URL=https://api.makemegreen.fr
 export THUMBS_URL=https://api.makemegreen.fr/storage/assets/
 
@@ -39,3 +41,4 @@ yarn build && ./build-webapp.sh && netlify deploy
 
 curl -O https://cli-dl.scalingo.io/install && bash install
 scalingo -a [app_name] pgsql-console
+
