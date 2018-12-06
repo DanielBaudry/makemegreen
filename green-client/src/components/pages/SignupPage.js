@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
+import get from "lodash.get";
 
 class SignupPage extends Component {
 
@@ -11,7 +12,8 @@ class SignupPage extends Component {
         this.state = { email: null,
                        username: null,
                        password: null,
-                       footprints: this.props.footprints }
+                       footprints: this.props.footprints,
+                        errors: null }
     }
 
     componentDidMount () {
@@ -30,6 +32,10 @@ class SignupPage extends Component {
                     // this.state.data.user = r
                     const { history } = this.props
                     history.push(`/home`)
+                },
+                handleFail: (state, action) => {
+                    const errors = get(action, 'errors')
+                    this.setState({ "errors": errors[Object.keys(errors)[0]] });
                 },
                 key: "user"
             }))
@@ -64,6 +70,7 @@ class SignupPage extends Component {
                            onChange={( e ) => this.setState({ password : e.target.value })}
                            value={this.state.password}/>
                     <input type="hidden" value={footprints}/>
+                    <div className="form-error">{this.state.errors}</div>
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
                 </form>
                 <div className="my-5 pt-5 text-center">
