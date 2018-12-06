@@ -30,6 +30,8 @@ insert into recommendation VALUES (6, 4, 'Dentifrice solide','Acheter du dentifr
 ## Pour déployer le front:
 
 npm install -g netlify-cli@1.2.3
+# Se positionner dans le répertoire green-client
+[à la première utilisation seulement : yarn install]
 
 export API_URL=https://api.makemegreen.fr
 export THUMBS_URL=https://api.makemegreen.fr/storage/assets/
