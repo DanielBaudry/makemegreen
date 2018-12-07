@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import FootprintItem from "../items/FootprintItem";
 import withLogin from "../hocs/withLogin"
-import avatar from '../../assets/avatar.svg'
 import m_button from '../../assets/m_button.png'
 import {THUMBS_URL} from "../../utils/config";
 
@@ -14,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import '../../styles/dashboard.css'
+import NavBar from "../items/NavBar";
 
 class DashboardPage extends Component {
 
@@ -91,54 +91,7 @@ class DashboardPage extends Component {
         return(
             <div className="text-center">
 
-                <div className="header-menu">
-                    <nav className="navbar navbar-dark">
-                        <NavLink className="navbar-brand" to="/home">
-                            <span>
-                                <img alt="" src={avatar} className="navbar-avatar" />
-                            </span>
-                            <span>
-                            {user && user.username}
-                            </span>
-                        </NavLink>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav mr-auto">
-                                <li className="nav-item">
-                                    <NavLink to="/home" className="nav-link">
-                                        {"Home"}
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink to="/recommendations" className="nav-link">
-                                        {"Recommandations"}
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink to="/activities" className="nav-link">
-                                        {"Mon activité"}
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink to="/progress" className="nav-link">
-                                        {"Mes progrès"}
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink
-                                        to="#"
-                                        className="nav-link"
-                                        onClick={this.onSignOutClick}>
-                                        Déconnexion
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                <NavBar user={user}/>
 
                 {/*<div className="challenge-section">*/}
                     {/*Un ami vient de t'envoyer un nouveau challenge*/}
