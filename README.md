@@ -38,7 +38,7 @@ npm install -g netlify-cli@1.2.3
 export API_URL=https://api.makemegreen.fr
 export THUMBS_URL=https://api.makemegreen.fr/storage/assets/
 
-yarn build && ./build-webapp.sh && netlify deploy
+yarn build && ./build-webapp.sh && netlify -e [env_to_deploy] deploy
 
 
 ## Pour se connecter à l'API:
