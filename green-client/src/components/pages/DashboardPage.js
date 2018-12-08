@@ -83,19 +83,23 @@ class DashboardPage extends Component {
     // }
 
     render () {
-        const { isLoading, activity_count } = this.state
+        const { isLoading } = this.state
 
         return(
             <div className="text-center">
 
                 <NavBar />
 
+                <div className="title-header">
+                    <h5>Ma semaine</h5>
+                </div>
+
                 {/*<div className="challenge-section">*/}
                     {/*Un ami vient de t'envoyer un nouveau challenge*/}
                 {/*</div>*/}
 
                 <div className="footprints-section-title">
-                    Cette semaine
+                    {/*Cette semaine*/}
                 </div>
 
                 <div className="container">

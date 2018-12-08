@@ -35,7 +35,10 @@ class ActivitiesPage extends Component {
 
                 <NavBar />
 
-                My activities
+                <div className="title-header">
+                    <h5>Mes activités</h5>
+                </div>
+
                 <div className="activities-section">
                     <div className="container">
                         <div className="row justify-content-md-center">

@@ -120,7 +120,10 @@ class ProgressPage extends Component {
 
                 <NavBar />
 
-                My progresses
+                <div className="title-header">
+                    <h5>Mon suivi</h5>
+                </div>
+
                 <div className="progress-section">
                     <div id="container"></div>
                 </div>

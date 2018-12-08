@@ -17,27 +17,27 @@ const NavBar = ({
                 <div className="container">
                     <ul className="nav navbar-nav navbar-right mobile-bar">
                         <li className="nav-item">
-                            <NavLink to="/home" className="nav-link">
+                            <NavLink to="/home" className="nav-link secondary">
                                 <img alt="" src={dashboard} className="navbar-avatar" />
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/activities" className="nav-link">
+                            <NavLink to="/activities" className="nav-link secondary">
                                 <img alt="" src={activities} className="navbar-avatar" />
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/propositions" className="nav-link">
+                            <NavLink to="/propositions" className="nav-link main">
                                 <img alt="" src={propositions} className="navbar-avatar" />
                             </NavLink>
                         </li>
                             <li className="nav-item">
-                            <NavLink to="/progress" className="nav-link">
+                            <NavLink to="/progress" className="nav-link secondary">
                                 <img alt="" src={progress} className="navbar-avatar" />
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/profile" className="nav-link">
+                            <NavLink to="/profile" className="nav-link secondary">
                                 <img alt="" src={avatar} className="navbar-avatar" />
                             </NavLink>
                         </li>
