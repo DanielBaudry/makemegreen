@@ -9,16 +9,19 @@ import './styles/bootstrap/css/bootstrap.css'
 
 import './styles/App.css'
 import './styles/signin.css'
+import NavBar from "./components/items/NavBar";
 
 class App extends Component {
-  render() {
-    const { children } = this.props
-    return (
-      <div className="App">
-          {children}
-      </div>
-    );
-  }
+    render() {
+        const { children } = this.props
+
+        return (
+            <div className="App">
+                <NavBar />
+                {children}
+            </div>
+        );
+    }
 }
 
 export default App;

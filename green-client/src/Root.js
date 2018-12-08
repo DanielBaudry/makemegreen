@@ -13,6 +13,7 @@ import { configureStore } from './utils/store'
 const { store, persistor } = configureStore()
 
 const Root = () => {
+
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

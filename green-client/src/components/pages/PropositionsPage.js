@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import get from "lodash.get";
-import avatar from '../../assets/avatar.svg'
 import PropositionItem from "../items/PropositionItem";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
-import NavBar from "../items/NavBar";
 
 class PropositionsPage extends Component {
 
@@ -43,12 +40,9 @@ class PropositionsPage extends Component {
 
     render () {
         const { isLoading } = this.state
-        const { user } = this.props
 
         return(
             <div className="text-center">
-
-                <NavBar user={user}/>
 
                 Propositions
                 <div className="propositions-section" style={{height: '100%'}}>

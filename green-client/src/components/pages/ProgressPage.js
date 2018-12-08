@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import Highcharts from "highcharts"
 import moment from 'moment'
 import get from "lodash.get";
-import avatar from '../../assets/avatar.svg'
-import NavBar from "../items/NavBar";
 
 class ProgressPage extends Component {
 
@@ -126,12 +123,8 @@ class ProgressPage extends Component {
 
     render () {
 
-        const { user } = this.props
-
         return(
             <div className="text-center">
-
-                <NavBar user={user}/>
 
                 My progresses
                 <div className="progress-section">
