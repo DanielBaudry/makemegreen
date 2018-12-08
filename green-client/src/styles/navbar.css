@@ -24,8 +24,8 @@
 }
 
 .navbar-nav.mobile-bar > .nav-item > .nav-link > img{
-    max-height: 40px;
-    max-width: 40px;
+    max-height: 34px;
+    max-width: 34px;
 }
 
 .navbar-nav.mobile-bar > .nav-item > .nav-link.active{

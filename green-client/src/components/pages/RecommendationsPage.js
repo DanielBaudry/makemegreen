@@ -36,7 +36,10 @@ class RecommendationsPage extends Component {
 
                 <NavBar />
 
-                Recommendations
+                <div className="title-header">
+                    <h5>Les recommendations</h5>
+                </div>
+
                 <div className="recommendations-section">
                     <div className="container">
                         <div className="row justify-content-md-center">

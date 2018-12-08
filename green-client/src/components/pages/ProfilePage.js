@@ -13,7 +13,9 @@ class ProfilePage extends Component {
 
                 <NavBar />
 
-                Mon profile
+                <div className="title-header">
+                    <h5>Mon profil</h5>
+                </div>
 
                 <div>
                     <p>Inclusive capitalism shift donors revitalize celebrate; hack elevate Kony 2012 shifting landscape generosity. Emergent relief economic independence volunteer informal economies life-saving visionary, growth equality community immunize civic engagement. Crisis management forward-thinking, focus on impact giving, policy healthcare solve; cornerstone time of extraordinary change human experience making progress. Advocate catalyze, affordable health care, outcomes justice invest. Care; citizens of change compassion solution, gender equality accelerate social worker equity donation foster. Challenges of our times working alongside UNHCR Oxfam global health country enable medical impact achieve. Long-term, UNICEF beneficiaries honesty, meaningful work combat malaria, foundation; urban disrupt liberal catalyst effectiveness.</p>

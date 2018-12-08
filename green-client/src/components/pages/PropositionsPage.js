@@ -38,7 +38,9 @@ class PropositionsPage extends Component {
 
                 <NavBar />
 
-                Propositions
+                <div className="title-header">
+                    <h5>Mes actions</h5>
+                </div>
 
                 <div className="propositions-section" style={{height: '100%'}}>
 
