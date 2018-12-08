@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import RecommendationItem from "../items/RecommendationItem";
 import get from "lodash.get";
-import avatar from '../../assets/avatar.svg'
-import NavBar from "../items/NavBar";
 
 class RecommendationsPage extends Component {
 
@@ -41,12 +38,9 @@ class RecommendationsPage extends Component {
 
     render () {
         const { isLoading } = this.state
-        const { user } = this.props
 
         return(
             <div className="text-center">
-
-                <NavBar user={user}/>
 
                 Recommendations
                 <div className="recommendations-section">

@@ -84,14 +84,11 @@ class DashboardPage extends Component {
 
     render () {
         const { isLoading, activity_count } = this.state
-        const { user } = this.props
-
-        console.log("User", user)
 
         return(
             <div className="text-center">
 
-                <NavBar user={user}/>
+                {/*<NavBar user={user}/>*/}
 
                 {/*<div className="challenge-section">*/}
                     {/*Un ami vient de t'envoyer un nouveau challenge*/}

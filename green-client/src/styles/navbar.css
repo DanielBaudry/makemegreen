@@ -37,3 +37,7 @@
     max-height: 40px;
     max-width: 40px;
 }
+
+.navbar-nav.mobile-bar > .nav-item > .nav-link.active{
+    border-top: #519872 4px solid;
+}

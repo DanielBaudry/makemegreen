@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import ActivityItem from "../items/ActivityItem";
-import avatar from '../../assets/avatar.svg'
-import NavBar from "../items/NavBar";
 
 class ActivitiesPage extends Component {
 
@@ -35,7 +32,7 @@ class ActivitiesPage extends Component {
     render () {
         let activities_list = []
 
-        const { activities, user } = this.props
+        const { activities } = this.props
         if( activities && activities.length > 0){
             activities_list = activities[0]['activities']
         }
@@ -43,8 +40,6 @@ class ActivitiesPage extends Component {
 
         return(
             <div className="text-center">
-
-                <NavBar user={user}/>
 
                 My activities
                 <div className="activities-section">

@@ -1,6 +1,6 @@
 import React from 'react'
 import activities from '../../assets/activity_green.png'
-import recommendations from '../../assets/mmg_button_green.png'
+import propositions from '../../assets/propositions.png'
 import progress from '../../assets/stats_green.png'
 import dashboard from '../../assets/dashboard_icon_green.png'
 import avatar from '../../assets/avatar_green.png'
@@ -28,8 +28,8 @@ const NavBar = ({
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/recommendations" className="nav-link">
-                                <img alt="" src={recommendations} className="navbar-avatar" />
+                            <NavLink to="/propositions" className="nav-link">
+                                <img alt="" src={propositions} className="navbar-avatar" />
                             </NavLink>
                         </li>
                             <li className="nav-item">
