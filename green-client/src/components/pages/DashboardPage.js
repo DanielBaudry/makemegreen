@@ -177,26 +177,26 @@ class DashboardPage extends Component {
                 {/*</div>*/}
                 {/*</div>*/}
 
-                <div className="fixed-bottom discover-section">
-                    <div className="discover-button">
-                        <NavLink to="/propositions">
-                            <img alt="make-me-green button"
-                                 src={m_button}
-                                 width="70px"
-                                 height="70px"
-                            />
-                        </NavLink>
-                    </div>
-                </div>
-                <div>
-                    <ToastContainer />
-                </div>
+                {/*<div className="fixed-bottom discover-section">*/}
+                    {/*<div className="discover-button">*/}
+                        {/*<NavLink to="/propositions">*/}
+                            {/*<img alt="make-me-green button"*/}
+                                 {/*src={m_button}*/}
+                                 {/*width="70px"*/}
+                                 {/*height="70px"*/}
+                            {/*/>*/}
+                        {/*</NavLink>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                    {/*<ToastContainer />*/}
+                {/*</div>*/}
 
-                {this.state.showInstallMessage &&
-                    <div>
-                        <ToastContainer />
-                    </div>
-                }
+                {/*{this.state.showInstallMessage &&*/}
+                    {/*<div>*/}
+                        {/*<ToastContainer />*/}
+                    {/*</div>*/}
+                {/*}*/}
             </div>
         )
     }
