@@ -5,17 +5,9 @@ import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import RecommendationItem from "../items/RecommendationItem";
 import get from "lodash.get";
+import NavBar from "../items/NavBar";
 
 class RecommendationsPage extends Component {
-
-    onSignOutClick = () => {
-        const { history } = this.props
-        this.props.dispatch(requestData('GET', '/users/signout', {
-            handleSuccess: () => {
-                history.push('/connexion')
-            },
-        }))
-    }
 
     constructor (props) {
         super(props)
@@ -41,6 +33,8 @@ class RecommendationsPage extends Component {
 
         return(
             <div className="text-center">
+
+                <NavBar />
 
                 Recommendations
                 <div className="recommendations-section">

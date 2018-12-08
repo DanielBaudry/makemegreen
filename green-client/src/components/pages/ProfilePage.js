@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import withLogin from "../hocs/withLogin"
+import NavBar from "../items/NavBar";
 
 class ProfilePage extends Component {
 
@@ -9,6 +10,8 @@ class ProfilePage extends Component {
 
         return(
             <div className="text-center">
+
+                <NavBar />
 
                 Mon profile
 

@@ -6,17 +6,9 @@ import withLogin from "../hocs/withLogin"
 import get from "lodash.get";
 import PropositionItem from "../items/PropositionItem";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
+import NavBar from "../items/NavBar";
 
 class PropositionsPage extends Component {
-
-    onSignOutClick = () => {
-        const { history } = this.props
-        this.props.dispatch(requestData('GET', '/users/signout', {
-            handleSuccess: () => {
-                history.push('/connexion')
-            },
-        }))
-    }
 
     constructor (props) {
         super(props)
@@ -44,7 +36,10 @@ class PropositionsPage extends Component {
         return(
             <div className="text-center">
 
+                <NavBar />
+
                 Propositions
+
                 <div className="propositions-section" style={{height: '100%'}}>
 
                     <div id="carousel" className="carousel slide" data-interval="false">
