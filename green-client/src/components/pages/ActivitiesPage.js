@@ -4,17 +4,9 @@ import { connect } from 'react-redux'
 import {requestData} from "../../reducers/data";
 import withLogin from "../hocs/withLogin"
 import ActivityItem from "../items/ActivityItem";
+import NavBar from "../items/NavBar";
 
 class ActivitiesPage extends Component {
-
-    onSignOutClick = () => {
-        const { history } = this.props
-        this.props.dispatch(requestData('GET', '/users/signout', {
-            handleSuccess: () => {
-                history.push('/connexion')
-            },
-        }))
-    }
 
     constructor () {
         super()
@@ -40,6 +32,8 @@ class ActivitiesPage extends Component {
 
         return(
             <div className="text-center">
+
+                <NavBar />
 
                 My activities
                 <div className="activities-section">

@@ -6,17 +6,9 @@ import withLogin from "../hocs/withLogin"
 import Highcharts from "highcharts"
 import moment from 'moment'
 import get from "lodash.get";
+import NavBar from "../items/NavBar";
 
 class ProgressPage extends Component {
-
-    onSignOutClick = () => {
-        const { history } = this.props
-        this.props.dispatch(requestData('GET', '/users/signout', {
-            handleSuccess: () => {
-                history.push('/connexion')
-            },
-        }))
-    }
 
     constructor () {
         super()
@@ -125,6 +117,8 @@ class ProgressPage extends Component {
 
         return(
             <div className="text-center">
+
+                <NavBar />
 
                 My progresses
                 <div className="progress-section">

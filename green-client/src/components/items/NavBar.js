@@ -9,7 +9,6 @@ import {NavLink} from "react-router-dom";
 import '../../styles/navbar.css'
 
 const NavBar = ({
-  user
 }) => {
 
     return (
@@ -44,33 +43,6 @@ const NavBar = ({
                         </li>
                     </ul>
                 </div>
-                {/*<div class="row">*/}
-                    {/*<div class="col">*/}
-                        {/*<NavLink to="/progress" className="nav-link">*/}
-                            {/*<img alt="" src={avatar} className="navbar-avatar" />*/}
-                        {/*</NavLink>*/}
-                    {/*</div>*/}
-                    {/*<div class="col">*/}
-                        {/*<NavLink to="/home" className="nav-link">*/}
-                            {/*<img alt="" src={avatar} className="navbar-avatar" />*/}
-                        {/*</NavLink>*/}
-                    {/*</div>*/}
-                    {/*<div class="col">*/}
-                        {/*<NavLink to="/recommendations" className="nav-link">*/}
-                            {/*<img alt="" src={avatar} className="navbar-avatar" />*/}
-                        {/*</NavLink>*/}
-                    {/*</div>*/}
-                    {/*<div class="col">*/}
-                        {/*<NavLink to="/activities" className="nav-link">*/}
-                            {/*<img alt="" src={avatar} className="navbar-avatar" />*/}
-                        {/*</NavLink>*/}
-                    {/*</div>*/}
-                    {/*<div class="col">*/}
-                        {/*<NavLink to="/progress" className="nav-link">*/}
-                            {/*<img alt="" src={avatar} className="navbar-avatar" />*/}
-                        {/*</NavLink>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
 
                 {/*<NavLink*/}
                     {/*to="#"*/}

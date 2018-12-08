@@ -88,7 +88,7 @@ class DashboardPage extends Component {
         return(
             <div className="text-center">
 
-                {/*<NavBar user={user}/>*/}
+                <NavBar />
 
                 {/*<div className="challenge-section">*/}
                     {/*Un ami vient de t'envoyer un nouveau challenge*/}
