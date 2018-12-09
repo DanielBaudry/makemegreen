@@ -6,6 +6,36 @@ users_data = [
         "username": "John",
         "email": "john@john.com",
         "password": "testpsswd"
+    },
+    {
+        "username": "Karl",
+        "email": "karl@karl.com",
+        "password": "testpsswd"
+    },
+    {
+        "username": "Ninnie",
+        "email": "ninnie@ninnie.com",
+        "password": "testpsswd"
+    },
+    {
+        "username": "Ninnie1",
+        "email": "ninnie1@ninnie.com",
+        "password": "testpsswd"
+    },
+    {
+        "username": "Ninnie2",
+        "email": "ninnie2@ninnie.com",
+        "password": "testpsswd"
+    },
+    {
+        "username": "Ninnie3",
+        "email": "ninnie3@ninnie.com",
+        "password": "testpsswd"
+    },
+    {
+        "username": "Ninnie4",
+        "email": "ninnie4@ninnie.com",
+        "password": "testpsswd"
     }
 ]
 
@@ -48,6 +78,31 @@ properties_data = [
         "property_name": "yellow_garbage",
     },
 ]
+# # Properties
+# properties_data = [
+#     {
+#         "property_name": "Tu manges beaucoup de viandes?"
+#     },
+#     {
+#         "property_name": "Tu prends beaucoup la voiture?"
+#     },
+#     {
+#         "property_name": "Tu te laves?"
+#
+#     },
+#     {
+#         "property_name": "Tu chauffes ton appartement?"
+#
+#     },
+#     {
+#         "property_name": "Tu achètes local?"
+#
+#     },
+#     {
+#         "property_name": "Tu fais du vélo?"
+#
+#     }
+# ]
 
 # FOOTPRINTS
 footprints_data = [

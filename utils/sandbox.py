@@ -3,7 +3,7 @@
 from tests.data import sandbox_data
 
 from models import *
-
+import numpy
 
 def do_sandbox():
 
@@ -55,3 +55,52 @@ def do_sandbox():
             recommendations.append(reco)
         else:
             recommendations.append(query.one())
+
+    properties = []
+    for prop_data in sandbox_data.properties_data:
+        query = Property.query.filter_by(property_name=prop_data['property_name'])
+        if query.count() == 0:
+            prop = Property(from_dict=prop_data)
+            BaseObject.check_and_save(prop)
+            print("Object: property CREATED")
+            properties.append(prop)
+        else:
+            properties.append(query.one())
+
+    user_properties = []
+    for idx_user in range(len(users)):
+        count = len(properties)
+        if idx_user == 1:
+            count -= 1
+        for idx_property in range(count):
+            query = UserProperty.query.filter_by(user_id=idx_user + 1).filter_by(property_id=idx_property + 1)
+            if query.count() == 0:
+                userProp = UserProperty()
+                userProp.user_id = idx_user + 1
+                userProp.property_id = idx_property + 1
+                userProp.value = numpy.random.randint(10) + 1
+                BaseObject.check_and_save(userProp)
+                print("Object : userproperty CREATED")
+                user_properties.append(userProp)
+            else:
+                user_properties.append(query.one())
+
+    propositions = []
+    for idx_user in range(len(users)):
+        count = numpy.random.randint(len(recommendations)) + 1
+        for idx_rec in range(count):
+            query = Proposition.query.filter_by(user_id=idx_user + 1).filter_by(recommendation_id=idx_rec + 1)
+            if query.count() == 0:
+                prop = Proposition()
+                prop.user_id = idx_user + 1
+                prop.recommendation_id = idx_rec + 1
+                prop.state = numpy.random.randint(3) - 1
+                prop.probability = 0.1
+                BaseObject.check_and_save(prop)
+                print("Object : proposition CREATED")
+                propositions.append(prop)
+            else:
+                propositions.append(query.one())
+
+
+
