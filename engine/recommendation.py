@@ -1,8 +1,11 @@
 """ Activity """
 import random
 
-from models import BaseObject, User, Recommendation
-
+from models import BaseObject, User, Recommendation, UserProperty
+from flask import current_app as app
+import numpy as np
+from models.db import db
+from sqlalchemy import func
 
 class BadUserException(Exception):
     pass
@@ -52,6 +55,23 @@ class DiscoverNewRecommendations:
         query = Recommendation.query. \
             filter(Recommendation.id.notin_(reco_already_attach_to_user))
         possible_recommendations = query.all()
+
+
+        all_userproperties = UserProperty.query.order_by(UserProperty.user_id).all()
+        nb_users           = len(UserProperty.query.with_entities(UserProperty.user_id).group_by(UserProperty.user_id).all())
+        nb_properties      = len(UserProperty.query.with_entities(UserProperty.property_id).group_by(UserProperty.property_id).all())
+
+        array_properties = np.zeros([nb_users, nb_properties])
+
+        for uprop in all_userproperties:
+            array_properties[uprop.user_id - 1, uprop.property_id - 1] = uprop.value
+
+        myuser_properties = array_properties[user.id - 1]
+        indexes_nonzero   = myuser_properties.nonzero()[0]
+        norm_arrayppties  = np.linalg.norm(array_properties[:, indexes_nonzero], axis=1)
+        dotproduct_ppties = np.matmul(array_properties[:, indexes_nonzero], myuser_properties[indexes_nonzero])
+        distances         = dotproduct_ppties/(norm_arrayppties * norm_arrayppties[user.id - 1])
+        app.logger.info(distances)
 
         #  TODO: here we call the discover engine
         random.shuffle(possible_recommendations)
