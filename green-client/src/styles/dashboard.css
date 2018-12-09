@@ -22,7 +22,7 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    padding-bottom: 16px;
+    padding-bottom: 8px;
     margin-bottom: 16px;
 }
 
@@ -39,7 +39,6 @@
     box-shadow: 0px 1px rgba(232,232,232,1);
     color: #519872;
     margin-top: 10px;
-    margin-bottom: 10px;
     padding-top: 4px;
     padding-left: 10px;
     padding-bottom: 6px;
@@ -47,7 +46,8 @@
 
 
 .earth-consumption{
-    border: #508991 solid 6px;
+    background: url('../assets/earth_consumption.png') no-repeat center center;
+    /*border: #508991 solid 6px;*/
     border-radius: 130px;
     height: 130px;
     width: 130px;
@@ -119,19 +119,27 @@
 }
 
 
-
+/*
+ Ma communauté
+*/
+.list-group-item{
+    padding: 0px;
+}
 
 .contact-image{
-    max-height: 50px;
-    max-width: 50px;
+    max-height: 40px;
+    max-width: 40px;
 }
 
 .contact-footprint{
     padding-top: 10px;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .contact-footprint-value{
     margin-right: 12px;
+}
+
+.contact-reco-title{
+    margin-top: 6px;
 }
