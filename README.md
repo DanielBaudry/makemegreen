@@ -29,13 +29,20 @@ insert into recommendation VALUES (6, 4, 'Dentifrice solide','Acheter du dentifr
 
 ## Pour déployer le front:
 
+Télécharger node
+Télécharger yarn: https://yarnpkg.com/fr/
+npm install -g netlify-cli@1.2.3
+### Se positionner dans le répertoire green-client
+[à la première utilisation seulement : yarn install]
+
 export API_URL=https://api.makemegreen.fr
 export THUMBS_URL=https://api.makemegreen.fr/storage/assets/
 
-yarn build && ./build-webapp.sh && netlify deploy
+yarn build && ./build-webapp.sh && netlify -e [env_to_deploy] deploy
 
 
 ## Pour se connecter à l'API:
 
 curl -O https://cli-dl.scalingo.io/install && bash install
 scalingo -a [app_name] pgsql-console
+

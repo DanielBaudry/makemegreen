@@ -8,13 +8,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import App from './App'
 import NoMatchPage from './components/pages/NoMatchPage'
-// import persistor from './utils/persistor'
 import routes from './utils/routes'
-// import store from './utils/store'
 import { configureStore } from './utils/store'
 const { store, persistor } = configureStore()
 
 const Root = () => {
+
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

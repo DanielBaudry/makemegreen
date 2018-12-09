@@ -10,8 +10,18 @@ from models.base_object import BaseObject
 
 
 class PropositionStatus(enum.Enum):
-    accepted = {'label': "acceptée"}
-    refused = {'label': "refusée"}
+    accepted = {
+        'label': "acceptée",
+        'value': 1
+    }
+    refused = {
+        'label': "refusée",
+        'value': -1
+    }
+    skipped = {
+        'label': "passée",
+        'value': 0
+    }
 
     def _asdict(self):
         result = OrderedDict()

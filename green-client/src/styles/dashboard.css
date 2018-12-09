@@ -1,41 +1,100 @@
-.footprints-section-title{
-    margin-top: 40px;
+/*.diminution{*/
+    /*background-color: #74B3CE;*/
+    /*border-radius: 120px;*/
+    /*height: 120px;*/
+    /*width: 120px;*/
+    /*font-weight: bold;*/
+    /*display: table;*/
+    /*margin: auto;*/
+/*}*/
+
+/*.diminution span{*/
+    /*vertical-align: middle;*/
+    /*display: table-cell;*/
+    /*font-size: 28px;*/
+/*}*/
+
+.dashboard-card{
+    background-color: white;
+    -webkit-box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.dashboard-card-content{
+    padding-top: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #4e555b;
+}
+
+.dashboard-card-title{
+    -webkit-box-shadow: 0px 1px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 1px rgba(232,232,232,1);
+    box-shadow: 0px 1px rgba(232,232,232,1);
+    color: #519872;
+    margin-top: 10px;
+    padding-top: 4px;
+    padding-left: 10px;
+    padding-bottom: 6px;
+}
+
+
+.earth-consumption{
+    background: url('../assets/earth_consumption.png') no-repeat center center;
+    /*border: #508991 solid 6px;*/
+    border-radius: 130px;
+    height: 130px;
+    width: 130px;
+    font-weight: bold;
+    display: table;
+    margin: auto;
+}
+
+.earth-consumption span {
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 28px;
+}
+
+.overall-consumption{
+    padding-top: 20px;
+}
+
+.leaderboard{
+    display: table;
+    height: 120px;
+    width: 120px;
+    margin: auto;
+}
+
+.leaderboard span {
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 44px;
 }
 
 .footprint-row-car{
     text-align: center;
-    border: solid #EFEFEF;
-    /*border-width: 0px 16px 0px 16px;*/
-    height: 15vh;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 60px;*/
-    background-color: #45BDDC;
-}
-
-.footprint-row-food{
-    text-align: center;
-    border: solid #EFEFEF;
-    /*border-width: 10px 16px 0px 16px;*/
-    height: 15vh;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 60px;*/
-    background-color: #508991;
+    height: 10vh;
 }
 
 .footprint-row-home{
     text-align: center;
-    border: solid #EFEFEF;
-    /*border-width: 10px 16px 0px 16px;*/
-    height: 15vh;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 60px;*/
-    background-color: #74BA94;
-    /*background-color: #0c5460;*/
+    height: 10vh;
 }
 
+.footprint-row-food{
+    text-align: center;
+    height: 10vh;
+}
 
 .footprint-row-image{
-    margin-left: 15vw;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -45,6 +104,42 @@
     margin-bottom: auto;
 }
 
+.footprint-row-trend{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.details-img{
+    height: 20px;
+    width: 20px;
+}
+
 .footprint-value{
     font-size: 2.3em;
+}
+
+
+/*
+ Ma communauté
+*/
+.list-group-item{
+    padding: 0px;
+}
+
+.contact-image{
+    max-height: 40px;
+    max-width: 40px;
+}
+
+.contact-footprint{
+    padding-top: 10px;
+    font-size: 1.2em;
+}
+
+.contact-footprint-value{
+    margin-right: 12px;
+}
+
+.contact-reco-title{
+    margin-top: 6px;
 }

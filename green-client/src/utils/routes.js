@@ -13,6 +13,7 @@ import LandingPage from "../components/pages/LandingPage";
 import ActivitiesPage from "../components/pages/ActivitiesPage";
 import ProgressPage from "../components/pages/ProgressPage";
 import PropositionsPage from "../components/pages/PropositionsPage";
+import ProfilePage from "../components/pages/ProfilePage";
 
 const routes = [
     {
@@ -78,6 +79,11 @@ const routes = [
         component: PropositionsPage,
         path: '/propositions',
         title: "Propositions",
+    },
+    {
+        component: ProfilePage,
+        path: '/profile',
+        title: "Profile",
     },
 ]
 

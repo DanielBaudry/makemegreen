@@ -11,14 +11,15 @@ import './styles/App.css'
 import './styles/signin.css'
 
 class App extends Component {
-  render() {
-    const { children } = this.props
-    return (
-      <div className="App">
-          {children}
-      </div>
-    );
-  }
+    render() {
+        const { children } = this.props
+
+        return (
+            <div className="App">
+                {children}
+            </div>
+        );
+    }
 }
 
 export default App;
