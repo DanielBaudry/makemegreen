@@ -39,14 +39,17 @@ class ActivitiesPage extends Component {
                     <h5>Mes activités</h5>
                 </div>
 
-                <div className="activities-section">
-                    <div className="container">
-                        <div className="row justify-content-md-center">
-                                {
-                                    activities_list.map(activity => (
-                                        <ActivityItem key={activity.id} activity={activity} />
-                                    ))
-                                }
+                <div className="content">
+
+                    <div className="activities-section">
+                        <div className="container">
+                            <div className="row justify-content-md-center">
+                                    {
+                                        activities_list.map(activity => (
+                                            <ActivityItem key={activity.id} activity={activity} />
+                                        ))
+                                    }
+                            </div>
                         </div>
                     </div>
                 </div>

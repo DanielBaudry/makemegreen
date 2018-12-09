@@ -40,25 +40,22 @@ class RecommendationsPage extends Component {
                     <h5>Les recommendations</h5>
                 </div>
 
-                <div className="recommendations-section">
-                    <div className="container">
-                        <div className="row justify-content-md-center">
-                            {!isLoading ? (
-                                    this.state.recommendations.map(recommendation => (
-                                        <RecommendationItem key={recommendation.id} recommendation={recommendation} />
-                            ))
-                            ):(
-                                <div>Chargement en cours...</div>
-                            )
-                                }
+                <div className="content">
+                    <div className="recommendations-section">
+                        <div className="container">
+                            <div className="row justify-content-md-center">
+                                {!isLoading ? (
+                                        this.state.recommendations.map(recommendation => (
+                                            <RecommendationItem key={recommendation.id} recommendation={recommendation} />
+                                ))
+                                ):(
+                                    <div>Chargement en cours...</div>
+                                )
+                                    }
+                            </div>
                         </div>
                     </div>
                 </div>
-                {/*<div className="my-5 pt-5 text-center">*/}
-                    {/*<NavLink to="/recommendation" className="btn btn-primary">*/}
-                        {/*{"Ajouter ma recommandation"}*/}
-                    {/*</NavLink>*/}
-                {/*</div>*/}
             </div>
         )
     }

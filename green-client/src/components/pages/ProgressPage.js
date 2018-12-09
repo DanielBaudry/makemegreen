@@ -124,8 +124,10 @@ class ProgressPage extends Component {
                     <h5>Mon suivi</h5>
                 </div>
 
-                <div className="progress-section">
-                    <div id="container"></div>
+                <div className="content">
+                    <div className="progress-section">
+                        <div id="container"></div>
+                    </div>
                 </div>
             </div>
         )

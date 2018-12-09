@@ -1,38 +1,79 @@
-.footprints-section-title{
-    margin-top: 40px;
+/*.diminution{*/
+    /*background-color: #74B3CE;*/
+    /*border-radius: 120px;*/
+    /*height: 120px;*/
+    /*width: 120px;*/
+    /*font-weight: bold;*/
+    /*display: table;*/
+    /*margin: auto;*/
+/*}*/
+
+/*.diminution span{*/
+    /*vertical-align: middle;*/
+    /*display: table-cell;*/
+    /*font-size: 28px;*/
+/*}*/
+
+.earth-consumption{
+    border: #508991 solid 10px;
+    border-radius: 130px;
+    height: 130px;
+    width: 130px;
+    font-weight: bold;
+    display: table;
+    margin: auto;
 }
+
+.earth-consumption span {
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 28px;
+}
+
+.overall-consumption{
+    padding-top: 20px;
+}
+
+.leaderboard{
+    display: table;
+    height: 120px;
+    width: 120px;
+    margin: auto;
+}
+
+.leaderboard span {
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 44px;
+}
+
+.earth-consumption-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 
 .footprint-row-car{
     text-align: center;
-    border: solid #EFEFEF;
-    /*border-width: 0px 16px 0px 16px;*/
-    height: 15vh;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 60px;*/
-    background-color: #45BDDC;
-}
-
-.footprint-row-food{
-    text-align: center;
-    border: solid #EFEFEF;
-    /*border-width: 10px 16px 0px 16px;*/
-    height: 15vh;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 60px;*/
-    background-color: #508991;
+    border: solid #f9f9f9;
+    height: 10vh;
+    background-color: #7ed0a4;
 }
 
 .footprint-row-home{
     text-align: center;
-    border: solid #EFEFEF;
-    /*border-width: 10px 16px 0px 16px;*/
-    height: 15vh;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 60px;*/
-    background-color: #74BA94;
-    /*background-color: #0c5460;*/
+    border: solid #f9f9f9;
+    height: 10vh;
+    background-color: #7ed0a4;
 }
 
+.footprint-row-food{
+    text-align: center;
+    border: solid #f9f9f9;
+    height: 10vh;
+    background-color: #7ed0a4;
+}
 
 .footprint-row-image{
     margin-left: 15vw;
@@ -47,4 +88,19 @@
 
 .footprint-value{
     font-size: 2.3em;
+}
+
+.contact-image{
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.contact-footprint{
+    padding-top: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.contact-footprint-value{
+    margin-right: 12px;
 }
