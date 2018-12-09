@@ -36,6 +36,9 @@ body{
     padding: 10px;
 }
 
+.title-header > h5{
+    font-weight: bold;
+}
 
 .content{
     margin-top: 10px;

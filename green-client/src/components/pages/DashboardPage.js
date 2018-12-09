@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import '../../styles/dashboard.css'
 import NavBar from "../items/NavBar";
+import {THUMBS_URL} from "../../utils/config";
 
 class DashboardPage extends Component {
 
@@ -56,30 +57,6 @@ class DashboardPage extends Component {
         }))
     }
 
-    // notify () {
-    //     toast.info("Tu peux installer l'application sur ton iphone : en appuyant sur partages et \"sur l'écra d'accueil\".", {
-    //         position: toast.POSITION.BOTTOM_CENTER
-    //     });
-    // }
-
-    // componentDidMount () {
-    //     // Detects if device is on iOS
-    //     const isIos = () => {
-    //         const userAgent = window.navigator.userAgent.toLowerCase();
-    //         return /iphone|ipad|ipod/.test( userAgent );
-    //     }
-    //     // Detects if device is in standalone mode
-    //     const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-    //
-    //     // Checks if should display install popup notification:
-    //     if (isIos() && !isInStandaloneMode()) {
-    //         this.setState({ showInstallMessage: true });
-    //         this.notify()
-    //     }
-    //
-    //     // TODO: manage same things for Android
-    // }
-
     render () {
         const { isLoading } = this.state
 
@@ -90,9 +67,7 @@ class DashboardPage extends Component {
 
                 <div className="title-header text-center">
                     <h5>
-                        <strong>
-                            Ma progression
-                        </strong>
+                        Ma progression
                     </h5>
                 </div>
 
@@ -149,53 +124,86 @@ class DashboardPage extends Component {
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">
                                     <div className="row">
-                                        <div className="col text-center">
-                                            <img className="contact-image" src={ contact } alt="Contact"/>
-                                            <div>Anne</div>
-                                        </div>
-                                        <div className="col text-center">
+                                        <div className="col-5">
                                             <div className="contact-footprint">
+                                                <img className="contact-image" src={ contact } alt="Contact"/>
+                                                <span>Anne</span>
+                                            </div>
+                                        </div>
+                                        <div className="col contact-footprint">
+                                            <span>
+                                                <strong>
+                                                    1<sup>er</sup>
+                                                </strong>
+                                            </span>
+                                        </div>
+                                        <div className="col">
+                                            <div className="contact-footprint text-right">
                                                 <span className="contact-footprint-value">0,98</span>
                                                 <img className="contact-image" src={ earth } alt="Contact"/>
                                             </div>
                                         </div>
-                                        <div className="col">
-                                            <div>Dernière activitié :</div>
-                                        </div>
+                                    </div>
+                                    <div className="contact-reco-title">
+                                        <em>
+                                            Je débranche ma box quand je ne suis pas à la maison
+                                        </em>
                                     </div>
                                 </li>
                                 <li className="list-group-item">
                                     <div className="row">
-                                        <div className="col text-center">
-                                            <img className="contact-image" src={ contact } alt="Contact"/>
-                                            <div>Jérémy</div>
-                                        </div>
-                                        <div className="col text-center">
+                                        <div className="col-5">
                                             <div className="contact-footprint">
+                                                <img className="contact-image" src={ contact } alt="Contact"/>
+                                                <span>Jérémy</span>
+                                            </div>
+                                        </div>
+                                        <div className="col contact-footprint">
+                                            <span>
+                                                <strong>
+                                                    2<sup>ème</sup>
+                                                </strong>
+                                            </span>
+                                        </div>
+                                        <div className="col">
+                                            <div className="contact-footprint text-right">
                                                 <span className="contact-footprint-value">1,34</span>
                                                 <img className="contact-image" src={ earth } alt="Contact"/>
                                             </div>
                                         </div>
-                                        <div className="col">
-                                            <div>Dernière activitié :</div>
-                                        </div>
+                                    </div>
+                                    <div className="contact-reco-title">
+                                        <em>
+                                            J'évite la voiture et je prends les transports en commun
+                                        </em>
                                     </div>
                                 </li>
                                 <li className="list-group-item">
                                     <div className="row">
-                                        <div className="col text-center">
-                                            <img className="contact-image" src={ contact } alt="Contact"/>
-                                            <div>Clément</div>
-                                        </div>
-                                        <div className="col text-center">
+                                        <div className="col-5">
                                             <div className="contact-footprint">
+                                                <img className="contact-image" src={ contact } alt="Contact"/>
+                                                <span>Clément</span>
+                                            </div>
+                                        </div>
+                                        <div className="col contact-footprint">
+                                            <span>
+                                                <strong>
+                                                    3<sup>ème</sup>
+                                                </strong>
+                                            </span>
+                                        </div>
+                                        <div className="col">
+                                            <div className="contact-footprint text-right">
                                                 <span className="contact-footprint-value">0,71</span>
                                                 <img className="contact-image" src={ earth } alt="Contact"/>
                                             </div>
                                         </div>
-                                        <div className="col">
-                                            <div>Dernière activitié :</div>
-                                        </div>
+                                    </div>
+                                    <div className="contact-reco-title">
+                                        <em>
+                                            Je pense à éteindre mon frigo pendant mes vacances prolongées
+                                        </em>
                                     </div>
                                 </li>
                             </ul>
