@@ -9,3 +9,4 @@ simplejson
 requests
 pytest
 pytest-flask
+numpy
