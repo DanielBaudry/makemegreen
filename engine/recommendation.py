@@ -60,6 +60,8 @@ class DiscoverNewRecommendations:
         all_userproperties = UserProperty.query.order_by(UserProperty.user_id).all()
         nb_users           = len(UserProperty.query.with_entities(UserProperty.user_id).group_by(UserProperty.user_id).all())
         nb_properties      = len(UserProperty.query.with_entities(UserProperty.property_id).group_by(UserProperty.property_id).all())
+        # TODO : this last part can be optimized by only selecting the properties (of every user) which has been answered
+        # TODO : by the user of interest!!!
 
         array_properties = np.zeros([nb_users, nb_properties])
 
