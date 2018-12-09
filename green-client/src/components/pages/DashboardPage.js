@@ -89,15 +89,20 @@ class DashboardPage extends Component {
                 <NavBar />
 
                 <div className="title-header text-center">
-                    <h5>Ma semaine</h5>
+                    <h5>
+                        <strong>
+                            Ma progression
+                        </strong>
+                    </h5>
                 </div>
 
                 <div className="container content">
 
-                    <div>
-                        <div className="earth-consumption-title">
+                    <div className="dashboard-card">
+                        <div className="dashboard-card-title">
                             Mon empreinte globale
                         </div>
+                        <div className="dashboard-card-content">
                         {!isLoading ? (
                             <div className="row">
                                 <div className="col">
@@ -118,12 +123,14 @@ class DashboardPage extends Component {
                         ):(
                             <span>Chargement en cours...</span>
                         )}
+                        </div>
                     </div>
 
-                    <div className="earth-consumption-title">
-                        Ma semaine
-                    </div>
-                    <div>
+                    <div className="dashboard-card">
+                        <div className="dashboard-card-title">
+                            Ma semaine
+                        </div>
+                        <div className="dashboard-card-content">
                         {!isLoading ? (
                             this.state.footprints.map(footprint => (
                                 <FootprintItem key={footprint.id} footprint={footprint} />
@@ -131,14 +138,14 @@ class DashboardPage extends Component {
                         ):(
                             <div>Chargement en cours...</div>
                         )}
+                        </div>
                     </div>
 
-                    <div className="earth-consumption-title">
-                        Ma communauté
-                    </div>
-
-                    <div>
-                        <div>
+                    <div className="dashboard-card">
+                        <div className="dashboard-card-title">
+                            Ma communauté
+                        </div>
+                        <div className="dashboard-card-content">
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">
                                     <div className="row">

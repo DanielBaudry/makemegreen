@@ -1,6 +1,8 @@
 import get from 'lodash.get'
 import React from 'react'
 
+
+import details from '../../assets/details.png'
 import {THUMBS_URL} from "../../utils/config";
 
 const FootprintItem = ({
@@ -15,19 +17,19 @@ const FootprintItem = ({
         case 'carbon':
             footprint_color = "car"
             footprint_category = "Sur la route"
-            footprint_img = THUMBS_URL + "car"
+            footprint_img = THUMBS_URL + "car_color"
             footprint_trend = THUMBS_URL + "down"
             break;
         case 'water':
             footprint_color = "food"
             footprint_category = "Dans mon assiette"
-            footprint_img = THUMBS_URL + "food"
+            footprint_img = THUMBS_URL + "food_color"
             footprint_trend = THUMBS_URL + "up"
             break;
         case 'waste':
             footprint_color = "home"
             footprint_category = "Chez moi"
-            footprint_img = THUMBS_URL + "home"
+            footprint_img = THUMBS_URL + "home_color"
             footprint_trend = THUMBS_URL + "down"
             break;
     }
@@ -40,25 +42,11 @@ const FootprintItem = ({
                 <img className="card-img" src={ footprint_img } alt="Card image cap"/>
             </div>
             <div className="footprint-row-value media-body">
-                <strong className="footprint-result-value">  {footprint_value} </strong> kg/CO2/an
+                <strong className="footprint-result-value">- {footprint_value} </strong> kg/CO2/an
             </div>
             <div className="footprint-row-trend media-right">
-                <img src={ footprint_trend } alt="Card image cap"/>
+                <img className="details-img" src={ details } alt="go to details"/>
             </div>
-        {/*<div className="row footprint-card">*/}
-            {/*<div className="col">*/}
-                {/*<img className="card-img" src={ footprint_img } alt="Card image cap"/>*/}
-            {/*</div>*/}
-            {/*<div className="col card-value">*/}
-                {/*<strong>*/}
-                    {/*{ footprint_value }*/}
-                {/*</strong>*/}
-                {/*<span className="text-muted"> kg/CO2</span>*/}
-            {/*</div>*/}
-            {/*<div className="col card-trend">*/}
-                {/*<img src={ footprint_trend } alt="Card image cap"/>*/}
-            {/*</div>*/}
-        {/*</div>*/}
         </div>
     )
 }
