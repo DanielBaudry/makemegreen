@@ -42,43 +42,45 @@ class PropositionsPage extends Component {
                     <h5>Mes actions</h5>
                 </div>
 
-                <div className="propositions-section" style={{height: '100%'}}>
+                <div className="content">
+                    <div className="propositions-section" style={{height: '100%'}}>
 
-                    <div id="carousel" className="carousel slide" data-interval="false">
-                        <div className="carousel-inner">
-                            {/*<div className="carousel-item active">*/}
-                                {/*<div className="carousel-item-inside-div">*/}
-                                    {/*<div className="carousel-center">*/}
-                                        {/*<div>Voici la liste des recommedations que nous avons sélectionnées pour vous !</div>*/}
+                        <div id="carousel" className="carousel slide" data-interval="false">
+                            <div className="carousel-inner">
+                                {/*<div className="carousel-item active">*/}
+                                    {/*<div className="carousel-item-inside-div">*/}
+                                        {/*<div className="carousel-center">*/}
+                                            {/*<div>Voici la liste des recommedations que nous avons sélectionnées pour vous !</div>*/}
+                                        {/*</div>*/}
+                                        {/*<div className="carousel-center"></div>*/}
+                                        {/*<div className="carousel-caption">Tutoriel</div>*/}
                                     {/*</div>*/}
-                                    {/*<div className="carousel-center"></div>*/}
-                                    {/*<div className="carousel-caption">Tutoriel</div>*/}
                                 {/*</div>*/}
-                            {/*</div>*/}
-                            {!isLoading ? (
-                                this.state.propositions.map(proposition => (
-                                    <PropositionItem key={proposition.id}
-                                                     proposition={proposition} />
-                                ))
-                            ):(
-                                <div>Chargement en cours...</div>
-                            )
-                            }
-                        </div>
-                        <div>
-                            <a className="left carousel-control-prev" href="#carousel" data-slide="prev">
-                            <span className="leftControl">
-                                <i className="icon icon-chevron-left"></i>
-                            </span>
-                            </a>
-                            <a className="right carousel-control-next" href="#carousel" data-slide="next">
-                                <span className="rightControl">
-                                    <i className="icon icon-chevron-right"></i>
+                                {!isLoading ? (
+                                    this.state.propositions.map(proposition => (
+                                        <PropositionItem key={proposition.id}
+                                                         proposition={proposition} />
+                                    ))
+                                ):(
+                                    <div>Chargement en cours...</div>
+                                )
+                                }
+                            </div>
+                            <div>
+                                <a className="left carousel-control-prev" href="#carousel" data-slide="prev">
+                                <span className="leftControl">
+                                    <i className="icon icon-chevron-left"></i>
                                 </span>
-                            </a>
+                                </a>
+                                <a className="right carousel-control-next" href="#carousel" data-slide="next">
+                                    <span className="rightControl">
+                                        <i className="icon icon-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         )
