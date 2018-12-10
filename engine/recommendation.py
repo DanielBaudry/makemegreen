@@ -4,6 +4,7 @@ import random
 from models import BaseObject, User, Recommendation, UserProperty, Proposition, Property
 from flask import current_app as app
 import numpy as np
+from datetime import datetime
 from models.db import db
 from sqlalchemy import func
 
@@ -57,16 +58,22 @@ class DiscoverNewRecommendations:
         possible_recommendations = query.all()
 
 
-        # Retrieve information on nb_users, nb_properties and nb_recommendations
-        nb_users           = User.query.count()
-        nb_properties      = Property.query.count()
-        nb_recommendations = Recommendation.query.count()
+        # Retrieve information from database
+        nb_users             = User.query.count()
+        nb_properties        = Property.query.count()
+        nb_recommendations   = Recommendation.query.count()
+        all_userproperties   = UserProperty.query.all()
+        all_userpropositions = Proposition.query.all()
+        freq_recommendations = Recommendation.query.with_entities(Recommendation.id, \
+                                                func.count(Proposition.recommendation_id)). \
+                                                join(Proposition, Recommendation.id == Proposition.recommendation_id).\
+                                                group_by(Recommendation.id).\
+                                                order_by(Recommendation.id).all()
 
-        # TODO : these parts can be optimized by only selecting the properties/propositions (of every user)
-        # TODO :  which has been answered by the user of interest!!!
+        # TODO : these parts can be optimized by only selecting the properties (of every user)
+        # TODO :  which has been answered by the user of interest!!! this is not the case for the propositions
 
         # distance with user properties
-        all_userproperties = UserProperty.query.all()
         array_properties   = np.zeros([nb_users, nb_properties])
 
         for uprop in all_userproperties:
@@ -80,11 +87,13 @@ class DiscoverNewRecommendations:
         distances_ppties   = np.nan_to_num(distances_ppties)
 
         # distance with user recommendations
-        all_userpropositions = Proposition.query.all()
         array_propositions   = np.zeros([nb_users, nb_recommendations])
+        myuser_dates         = np.zeros(nb_recommendations)
 
         for uprop in all_userpropositions:
             array_propositions[uprop.user_id - 1, uprop.recommendation_id - 1] = uprop.state.value['value']
+            if uprop.user_id == user.id and uprop.state.value['value'] == 0:
+                myuser_dates[uprop.recommendation_id - 1] = (datetime.utcnow() - uprop.date_write).days + 1 # datetime.utcnow()
 
         myuser_propositions  = array_propositions[user.id - 1]
         propositions_nonzero = myuser_propositions.nonzero()[0]
@@ -102,12 +111,29 @@ class DiscoverNewRecommendations:
 
         # use the distance and recommendations to obtain the propensity of the recommendation to be correct
         propensity = np.sum(array_propositions * np.expand_dims(distances, -1), axis=0)/np.sum(np.abs(distances))
-        ## todo redo everything, problem here is that the 0 of the proposition is actually constraining
-        ## todo if a person has answer "skipped", we should not offer him again this proposition before some time
+        ## done if a person has answer "skipped", we should not offer him again this proposition before some time
+        ## done : need to boost the probabilities of the rarely accepted/declined options
+        # parameters
+        gamma                              = 0.8
+        beta                               = 4
+        time_for_skip                      = 30
+        # transform propensity to probabilities with a softmax function
+        probability                        = 1./(1 + np.exp(-propensity * beta))
+        ## take out the recommendations which have been previously accepted or declined
+        probability[propositions_nonzero]  = 0
+        ## diminish the probability when the subject has skipped
+        myuser_dates_nonzeros              = myuser_dates.nonzero()[0]
+        myuser_dates                       = np.maximum(time_for_skip + 1, myuser_dates)
+        probability[myuser_dates_nonzeros] = probability[myuser_dates_nonzeros] * gamma**(time_for_skip - (myuser_dates[myuser_dates_nonzeros] - 1))
+        ## augment the probability of the overall non-visited recommendations
+        freq_recommendations = np.array(freq_recommendations)[:,1]
+        freq_recommendations = np.max(freq_recommendations) - freq_recommendations + 1
+        probability          = probability * freq_recommendations/np.sum(freq_recommendations)
+        # normalize
+        probability          = probability/sum(probability)
 
-        app.logger.info(distances)
-        app.logger.info(propensity)
-        app.logger.info(myuser_propositions)
+        app.logger.info(probability)
+        app.logger.info(possible_recommendations)
         #  TODO: here we call the discover engine, it is ongoing
         random.shuffle(possible_recommendations)
 
