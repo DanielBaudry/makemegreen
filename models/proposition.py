@@ -40,6 +40,8 @@ class Proposition(BaseObject, Model):
 
     state = Column(Enum(PropositionStatus), nullable=True)
 
+    date_write = Column(DateTime, nullable=True)
+
     date_created = Column(DateTime, nullable=False,  default=datetime.utcnow)
 
     def get_id(self):
