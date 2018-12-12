@@ -6,6 +6,8 @@ import withLogin from "../hocs/withLogin"
 import ActivityItem from "../items/ActivityItem";
 import NavBar from "../items/NavBar";
 
+import '../../styles/activities.css'
+
 class ActivitiesPage extends Component {
 
     constructor () {
@@ -31,25 +33,25 @@ class ActivitiesPage extends Component {
 
 
         return(
-            <div className="text-center">
+            <div>
 
                 <NavBar />
 
                 <div className="title-header">
-                    <h5>Mes activités</h5>
+                    <h5>
+                        Mes activités
+                    </h5>
                 </div>
 
-                <div className="content">
+                <div className="container content">
 
                     <div className="activities-section">
-                        <div className="container">
-                            <div className="row justify-content-md-center">
-                                    {
-                                        activities_list.map(activity => (
-                                            <ActivityItem key={activity.id} activity={activity} />
-                                        ))
-                                    }
-                            </div>
+                        <div>
+                                {
+                                    activities_list.map(activity => (
+                                        <ActivityItem key={activity.id} activity={activity} />
+                                    ))
+                                }
                         </div>
                     </div>
                 </div>

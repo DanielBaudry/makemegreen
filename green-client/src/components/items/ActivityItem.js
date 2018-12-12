@@ -2,7 +2,6 @@ import get from 'lodash.get'
 import moment from 'moment'
 import {requestData} from "../../reducers/data";
 import React, {Component} from 'react'
-import withLogin from "../hocs/withLogin";
 import {connect} from "react-redux";
 
 
@@ -18,7 +17,8 @@ class ActivityItem extends Component {
             date_end: null,
             status: null,
             reco_title: null,
-            reco_benefit: null}
+            reco_benefit: null,
+            reco_type: null}
     }
 
     // TODO: maybe PATCH request
@@ -72,9 +72,9 @@ class ActivityItem extends Component {
         const date_start = moment(get(activity, "date_start")).format('DD MMMM YYYY à HH:mm')
         const date_end = moment(get(activity, "date_end")).format('DD MMMM YYYY à HH:mm')
         const status = get(get(activity, "status"),"label")
-        console.log("Status: ", status)
         const reco_title = get(get(activity, "recommendation"),"title")
         const reco_benefit = get(get(activity, "recommendation"),"benefit")
+        const reco_type = get(get(get(activity, "recommendation"),"type"),"label")
 
 
         this.setState( { "user_id": user_id,
@@ -85,54 +85,52 @@ class ActivityItem extends Component {
                         "date_end": date_end,
                         "status" : status,
                         "reco_title": reco_title,
-                        "reco_benefit": reco_benefit
+                        "reco_benefit": reco_benefit,
+                        "reco_type": reco_type,
                     } )
     }
 
     render(){
 
         return (
-            <div className={"col-md-3 reco-card " + this.state.status}>
-                <h5> { this.state.reco_title } </h5>
-                <h6 className="text-muted"> { this.state.status } </h6>
+            <div className="dashboard-card">
+                <div className={"activity-title " + this.state.reco_type }>
+                        { this.state.reco_title }
+                </div>
+                <div className="text-center">
+                    <h6 className="text-muted">
+                        { this.state.status }
+                    </h6>
+                </div>
                     { this.state.status == "pending" ? (
-                    <div className="card-body">
-                        <div> Gain pour la planète : { this.state.reco_benefit } </div>
-                        <div className="btn-group">
-                            <button
-                                className="btn btn-secondary"
-                                onClick={e => { e.preventDefault(); this.onSuccessClick();} }>
-                                C'est fait !
-                            </button>
-                            <button
-                                className="btn btn-danger"
-                                onClick={e => { e.preventDefault(); this.onFailClick();} }>
-                                Impossible
-                            </button>
+                        <div className="text-center">
+                            <div className="btn-group">
+                                <button
+                                    className="btn"
+                                    onClick={e => { e.preventDefault(); this.onSuccessClick();} }>
+                                    C'est fait !
+                                </button>
+                                <button
+                                    className="btn"
+                                    onClick={e => { e.preventDefault(); this.onFailClick();} }>
+                                    Plus intéressé
+                                </button>
+                            </div>
                         </div>
-                    </div>
                     ) : (
-                    <div className="card-body">
-                        { this.state.status == "success" ? (
-                            <strong> +{ this.state.reco_benefit } </strong>
-                        ) : (
-                            <div></div>
-                        )}
+                    <div className="text-center">
                         <div className="date-end">
                             Terminé le : { this.state.date_end }
                         </div>
                         <div className="date-end">
                             <button
-                                className="btn btn-secondary"
+                                className="btn"
                                 onClick={e => { e.preventDefault(); this.onHoldClick();} }>
-                                Mettre en pause
+                                J'ai changé
                             </button>
                         </div>
                     </div>
                     )}
-                <div className="card-footer">
-                    <small className="text-muted">Débuter le : { this.state.date_start }</small>
-                </div>
             </div>
         )
     }

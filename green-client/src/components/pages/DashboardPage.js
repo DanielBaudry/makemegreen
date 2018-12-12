@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import '../../styles/dashboard.css'
 import NavBar from "../items/NavBar";
-import {THUMBS_URL} from "../../utils/config";
 
 class DashboardPage extends Component {
 
@@ -65,7 +64,7 @@ class DashboardPage extends Component {
 
                 <NavBar />
 
-                <div className="title-header text-center">
+                <div className="title-header">
                     <h5>
                         Ma progression
                     </h5>

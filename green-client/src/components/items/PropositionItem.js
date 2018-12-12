@@ -78,7 +78,11 @@ class PropositionItem extends Component {
                         <h6>
                             { this.state.reco_type } -<strong>{ this.state.reco_benefit }</strong>
                         </h6>
-                        <span> { this.state.reco_content } </span>
+                        <div className="reco-content">
+                            <span>
+                                { this.state.reco_content }
+                            </span>
+                        </div>
                         <div className="text-muted">Difficulté: { this.state.reco_difficulty_level } </div>
                     </div>
                     <div className="carousel-caption">

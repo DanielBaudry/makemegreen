@@ -34,6 +34,7 @@ body{
     background-color: #519872;
     max-height: 46px;
     padding: 10px;
+    text-align: center;
 }
 
 .title-header > h5{
