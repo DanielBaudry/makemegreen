@@ -17,19 +17,19 @@ const FootprintItem = ({
         case 'carbon':
             footprint_color = "car"
             footprint_category = "Sur la route"
-            footprint_img = THUMBS_URL + "car_color"
+            footprint_img = THUMBS_URL + "car_filled_color"
             footprint_trend = THUMBS_URL + "down"
             break;
         case 'water':
             footprint_color = "food"
             footprint_category = "Dans mon assiette"
-            footprint_img = THUMBS_URL + "food_color"
+            footprint_img = THUMBS_URL + "food_filled_color"
             footprint_trend = THUMBS_URL + "up"
             break;
         case 'waste':
             footprint_color = "home"
             footprint_category = "Chez moi"
-            footprint_img = THUMBS_URL + "home_color"
+            footprint_img = THUMBS_URL + "home_filled_color"
             footprint_trend = THUMBS_URL + "down"
             break;
     }

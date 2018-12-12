@@ -1,0 +1,38 @@
+/* HOME color
+#FFAF87
+*/
+
+/* CAR color
+#4CE0B3
+*/
+
+/* FOOD color
+#F08700
+*/
+
+.activity-title{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    -webkit-box-shadow: 0px 1px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 1px rgba(232,232,232,1);
+    box-shadow: 0px 1px rgba(232,232,232,1);
+    margin-top: 10px;
+    padding: 6px 10px 2px 10px;
+    font-size: 1.1em;
+}
+
+/*TODO: rename water, carbon, waste */
+.activity-title.water{
+    background-color: #56E39F;
+    /*background-color: #4CE0B3;*/
+}
+
+.activity-title.carbon{
+    /*background-color: #F08700;*/
+    background-color: #FFC04C;
+}
+
+.activity-title.waste{
+    background-color: #FFAF87;
+}
+
