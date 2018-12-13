@@ -17,6 +17,8 @@ services:
     image: postgres:10.1
     env_file:
       - docker/env_file
+    ports:
+      - '3452:5432'
     networks:
       - db_nw
     command: postgres -c logging_collector=on -c log_destination=stderr -c log_min_duration_statement=0 -c log_statement=all -c log_duration=on

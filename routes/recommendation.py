@@ -27,6 +27,12 @@ def add_recommendations():
     return jsonify(result)
 
 
+@app.route("/recommendations/search", methods=["GET"])
+def search_recommendations():
+    in_title = request.args.get("search")
+    result = OrderedDict()
+    return jsonify(result), 200
+
 @app.route("/recommendations", methods=["GET"])
 @login_required
 def list_recommendations():
@@ -41,8 +47,7 @@ def list_recommendations():
     result = OrderedDict()
     result['recommendations'] = _serialize_recommendations(recommendations)
 
-    return jsonify(result), 200
-
+    return jsonify(result)
 
 @app.route('/recommendations/<reco_id>', methods=['GET'])
 @login_required
