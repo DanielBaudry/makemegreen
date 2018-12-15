@@ -9,7 +9,6 @@ from collections import OrderedDict
 # TODO: login_required or not for GET and list methods?
 from utils.token import check_token
 
-
 @app.route("/recommendations", methods=["POST"])
 def add_recommendations():
     token = request.args.get('token')
@@ -25,13 +24,6 @@ def add_recommendations():
     result = dict({"success": "yes"})
 
     return jsonify(result)
-
-
-@app.route("/recommendations/search", methods=["GET"])
-def search_recommendations():
-    in_title = request.args.get("search")
-    result = OrderedDict()
-    return jsonify(result), 200
 
 @app.route("/recommendations", methods=["GET"])
 @login_required
@@ -57,6 +49,20 @@ def get_recommendation(reco_id):
     recommendation = query.first_or_404()
     return jsonify(recommendation), 200
 
+
+@app.route("/recommendations/search", methods=["GET"])
+def search_recommendations():
+    in_title = request.args.get("search_form")
+    word_list = in_title.split()
+    recommendations = list()
+    for word in word_list:
+        query = Recommendation.query. \
+            filter(Recommendation.title.ilike('%'+word+'%'))
+        recommendations += query.all()
+    recommendations_unique = list(set(recommendations))
+    result = OrderedDict()
+    result['recommendations'] = _serialize_recommendations(recommendations_unique)
+    return jsonify(result)
 
 def _serialize_recommendations(recommendations):
     return list(map(_serialize_recommendation, recommendations))
