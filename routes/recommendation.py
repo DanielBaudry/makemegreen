@@ -52,7 +52,7 @@ def get_recommendation(reco_id):
 
 @app.route("/recommendations/search", methods=["GET"])
 def search_recommendations():
-    in_title = request.args.get("search_form")
+    in_title = request.args.get("title")
     word_list = in_title.split()
     recommendations = list()
     for word in word_list:
