@@ -41,30 +41,29 @@ class ComputeFootprint:
 
     def execute(self, data):
 
-        return dict({"footprints": [
-                            {
-                                "id": 1,
-                                "type": {
-                                    "label": "carbon"
-                                },
-                                "value": self.getCO2Footprint(data)
-                            },
-                            {
-                                "id": 2,
-                                "type": {
-                                    "label": "waste"
-                                },
-                                "value": self.getTrashFootprint(data)
-                            },
-                            {
-                                "id": 3,
-                                "type": {
-                                    "label": "water"
-                                },
-                                "value": self.getWaterFootprint(data)
-                            }
+        return [
+                {
+                    "id": 1,
+                    "type": {
+                        "label": "carbon"
+                    },
+                    "value": self.getCO2Footprint(data)
+                },
+                {
+                    "id": 2,
+                    "type": {
+                        "label": "waste"
+                    },
+                    "value": self.getTrashFootprint(data)
+                },
+                {
+                    "id": 3,
+                    "type": {
+                        "label": "water"
+                    },
+                    "value": self.getWaterFootprint(data)
+                }
         ]
-        })
 
 
 class GetFootprintHistory:

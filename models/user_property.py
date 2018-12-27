@@ -1,5 +1,5 @@
 """User model"""
-from sqlalchemy import Column, Integer, BigInteger, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, BigInteger, ForeignKey, DateTime, Float
 from datetime import datetime
 
 from models.db import Model
@@ -13,7 +13,7 @@ class UserProperty(BaseObject, Model):
 
     property_id = Column(BigInteger, ForeignKey('property.id'), nullable=False)
 
-    value = Column(Integer, nullable=False)
+    value = Column(Float, nullable=False)
 
     date_created = Column(DateTime, nullable=False, default=datetime.utcnow())
 

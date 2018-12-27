@@ -86,10 +86,28 @@ class ProfilePage extends Component {
                                 <div className="dashboard-card-content">
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item profile-item">
-                                            J'ai changé mes habitudes
+                                            <NavLink to="/habits">
+                                                <div className="row">
+                                                    <div className="col text-left">
+                                                        J'ai changé mes habitudes
+                                                    </div>
+                                                    <div className="col-2 text-center">
+                                                        <img className="details-img" src={ details } alt="go to details"/>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
                                         </li>
                                         <li className="list-group-item profile-item">
-                                            Je veux donner plus d'informations
+                                            <NavLink to="/friends">
+                                                <div className="row">
+                                                    <div className="col text-left">
+                                                        Je veux donner plus d'informations
+                                                    </div>
+                                                    <div className="col-2 text-center">
+                                                        <img className="details-img" src={ details } alt="go to details"/>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
                                         </li>
                                     </ul>
                                 </div>
