@@ -10,6 +10,17 @@
 #F08700
 */
 
+.activity-card{
+    background-color: white;
+    -webkit-box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
 .activity-title{
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -18,10 +29,89 @@
     box-shadow: 0px 1px rgba(232,232,232,1);
     margin-top: 10px;
     padding: 6px 10px 2px 10px;
-    font-size: 1.1em;
+    font-size: 1.05em;
 }
 
-/*TODO: rename water, carbon, waste */
+.activity-content{
+    padding: 8px 6px 8px 6px;
+    color: #4e555b;
+}
+
+.reco-benefit{
+    padding-bottom: 8px;
+}
+
+.reco-benefit-value{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #519872;
+}
+
+.reco-benefit-value:hover{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #519872;
+    text-decoration: none;
+}
+
+.reco-benefit-value:focus{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #519872;
+    text-decoration: none;
+}
+
+.reco-benefit-calcul{
+    margin-left: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+.reco-why{
+    padding-bottom: 8px;
+}
+
+.reco-howto{
+}
+
+.activity-actions{
+    -webkit-box-shadow: 0px -1px rgba(232,232,232,1);
+    -moz-box-shadow: 0px -1px rgba(232,232,232,1);
+}
+
+.activity-actions-section{
+    padding-top: 6px;
+    padding-bottom: 8px;
+    font-size: 1.05em;
+}
+
+.activity-actions-section:hover{
+    cursor: pointer;
+}
+
+.activity-actions-section.section-left{
+    color: #519872;
+    border-bottom-left-radius: 10px;
+    -webkit-box-shadow: 1px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 1px 0px rgba(232,232,232,1);
+}
+
+.activity-actions-section.section-middle{
+    color: #062c33;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-box-shadow: 1px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 1px 0px rgba(232,232,232,1);
+}
+
+.activity-actions-section.section-right{
+    color: #062c33;
+    border-bottom-right-radius: 10px;
+    -webkit-box-shadow: 1px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 1px 0px rgba(232,232,232,1);
+}
+
+/*TODO: rename water, carbon, waste in car, food, home */
 .activity-title.water{
     background-color: #56E39F;
     /*background-color: #4CE0B3;*/

@@ -14,6 +14,7 @@ import ActivitiesPage from "../components/pages/ActivitiesPage";
 import ProgressPage from "../components/pages/ProgressPage";
 import PropositionsPage from "../components/pages/PropositionsPage";
 import ProfilePage from "../components/pages/ProfilePage";
+import DetailsPage from "../components/pages/DetailsPage";
 
 const routes = [
     {
@@ -54,6 +55,11 @@ const routes = [
         component: DashboardPage,
         path: '/home',
         title: "Dashboard",
+    },
+    {
+        component: DetailsPage,
+        path: '/details',
+        title: "Details",
     },
     {
         component: RecommendationsPage,

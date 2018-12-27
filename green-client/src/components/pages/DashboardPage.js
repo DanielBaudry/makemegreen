@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import '../../styles/dashboard.css'
 import NavBar from "../items/NavBar";
+import {NavLink} from "react-router-dom";
 
 class DashboardPage extends Component {
 
@@ -89,7 +90,11 @@ class DashboardPage extends Component {
                                         <ul>
                                         <li><strong>{this.state.user_total_saved}</strong> kgCO2/an</li>
                                         <li><strong>32%</strong> de diminution</li>
-                                        <li><strong>{this.state.activity_count}</strong> activités</li>
+                                        <li>
+                                            <NavLink to="/activities">
+                                                <strong>{this.state.activity_count}</strong> activités
+                                            </NavLink>
+                                        </li>
                                         </ul>
                                     </div>
                                 </div>

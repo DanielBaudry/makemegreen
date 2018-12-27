@@ -33,7 +33,6 @@ class ProgressPage extends Component {
                 let series_waste = []
                 history.map(footprints => (
                     footprints.map(footprint => {
-                            console.log(footprint)
                             if (get(get(footprint, 'type'), 'label') == "carbon") {
                                 series_carbon.push([moment(get(footprint, 'date_created')).valueOf(), get(footprint, 'value')])
                             }
@@ -45,9 +44,6 @@ class ProgressPage extends Component {
                             }
                         }))
                 )
-                console.log(series_carbon)
-                console.log(series_waste)
-                console.log(series_water)
 
                 Highcharts.chart('container', {
 

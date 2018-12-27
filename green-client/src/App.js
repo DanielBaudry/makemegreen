@@ -9,6 +9,7 @@ import './styles/bootstrap/css/bootstrap.css'
 
 import './styles/App.css'
 import './styles/signin.css'
+import './styles/shared.css'
 
 class App extends Component {
     render() {

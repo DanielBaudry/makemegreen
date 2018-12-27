@@ -11,7 +11,7 @@ class PropositionItem extends Component {
         super()
         this.state = { reco_id: null,
             reco_type: null,
-            reco_name: null,
+            reco_title: null,
             reco_benefit: null,
             reco_content: null,
             reco_difficulty_level: null}
@@ -26,7 +26,7 @@ class PropositionItem extends Component {
 
         const reco_id = get(proposition, "id")
         const reco_type = get(get(proposition, "type"),"label")
-        const reco_name = get(proposition, "name")
+        const reco_title = get(proposition, "title")
         const reco_benefit = get(proposition, "benefit")
         const reco_content = get(proposition, "content")
         const reco_difficulty_level = get(proposition, "difficulty_level")
@@ -34,7 +34,7 @@ class PropositionItem extends Component {
 
         this.setState( { "reco_id": reco_id,
                         "reco_type": reco_type,
-                        "reco_name": reco_name,
+                        "reco_title": reco_title,
                         "reco_benefit": reco_benefit,
                         "reco_content": reco_content,
                         "reco_difficulty_level": reco_difficulty_level,
@@ -74,16 +74,20 @@ class PropositionItem extends Component {
                 <div className="carousel-item-inside-div">
                     <div className="carousel-center">
                         <img className="card-img" src={ reco_img } alt="Card image cap"/>
-                        <h5> { this.state.reco_name } </h5>
-                        <h6>
-                            { this.state.reco_type } -<strong>{ this.state.reco_benefit }</strong>
-                        </h6>
-                        <div className="reco-content">
-                            <span>
-                                { this.state.reco_content }
-                            </span>
+                        <div>
+                            <strong className="footprint-result-value">
+                                {this.state.reco_benefit}
+                            </strong> kg/CO2/an
                         </div>
-                        <div className="text-muted">Difficulté: { this.state.reco_difficulty_level } </div>
+                        <div className="reco-title">
+                            { this.state.reco_title }
+                        </div>
+                        <div className="reco-content">
+                            { this.state.reco_content }
+                        </div>
+                        <div className="text-muted">
+                            Difficulté: { this.state.reco_difficulty_level }
+                        </div>
                     </div>
                     <div className="carousel-caption">
                         <button

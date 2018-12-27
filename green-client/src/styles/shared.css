@@ -1,0 +1,13 @@
+.back-img{
+    height: 30px;
+    width: 30px;
+}
+
+.back-div{
+    position: absolute;
+    left: 10px;
+}
+
+.back-div:hover{
+    cursor: pointer;
+}
