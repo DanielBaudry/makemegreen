@@ -3,8 +3,18 @@ from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required, logout_user, login_user
 
 from models import BaseObject, User, Footprint
+from utils.logger import logger
 from utils.includes import USER_INCLUDES
 from utils.credentials import get_user_with_credentials
+
+# TODO: faudrait bouger cete méthode quelque part
+#  peut-être la renomer également
+@app.route("/profile", methods=['POST'])
+@login_required
+def update_profile():
+    data = request.json
+    logger.info(data)
+    return jsonify("ok"), 200
 
 
 @app.route("/users/current", methods=["GET"])

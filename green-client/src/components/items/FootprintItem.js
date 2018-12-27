@@ -4,6 +4,7 @@ import React from 'react'
 
 import details from '../../assets/details.png'
 import {THUMBS_URL} from "../../utils/config";
+import {NavLink} from "react-router-dom";
 
 const FootprintItem = ({
   footprint
@@ -33,7 +34,10 @@ const FootprintItem = ({
             footprint_trend = THUMBS_URL + "down"
             break;
     }
-    const footprint_value = get(footprint, "value")
+    let footprint_value = get(footprint, "value")
+    if (footprint_value != 0){
+        footprint_value = '- ' + footprint_value
+    }
 
     return (
 
@@ -42,10 +46,12 @@ const FootprintItem = ({
                 <img className="card-img" src={ footprint_img } alt="Card image cap"/>
             </div>
             <div className="footprint-row-value media-body">
-                <strong className="footprint-result-value">- {footprint_value} </strong> kg/CO2/an
+                <strong className="footprint-result-value"> { footprint_value } </strong> kg/CO2/an
             </div>
             <div className="footprint-row-trend media-right">
-                <img className="details-img" src={ details } alt="go to details"/>
+                <NavLink to={"/details?" + footprint_type }>
+                    <img className="details-img" src={ details } alt="go to details"/>
+                </NavLink>
             </div>
         </div>
     )

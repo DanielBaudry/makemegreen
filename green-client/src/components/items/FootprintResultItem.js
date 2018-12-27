@@ -36,20 +36,6 @@ const FootprintResultItem = ({
             <div className="footprint-result-row-value media-body">
                 <strong className="footprint-result-value">  {footprint_value} </strong> kg/CO2/an
             </div>
-            {/*<div className="text-center">*/}
-                {/*<span className="card-title">{footprint_category}</span>*/}
-            {/*</div>*/}
-            {/*<div className="card footprint-card">*/}
-                {/*<div className="card-body">*/}
-                    {/*<span className="card-title">{footprint_category}</span>*/}
-                    {/*<p className="card-text">*/}
-                        {/*<strong>  {footprint_value}  </strong>*/}
-                    {/*</p>*/}
-                    {/*<div className="card-details">*/}
-                        {/*<a href="/home" className="btn btn-secondary">Details</a>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
-            {/*</div>*/}
         </div>
     )
 }

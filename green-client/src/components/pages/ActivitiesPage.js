@@ -7,30 +7,30 @@ import ActivityItem from "../items/ActivityItem";
 import NavBar from "../items/NavBar";
 
 import '../../styles/activities.css'
+import get from "lodash.get";
 
 class ActivitiesPage extends Component {
 
     constructor () {
         super()
-        this.state = { name: null,
-                       content: null,
-                       benefit: null,
-                       type: null,
-                       difficulty_level: null}
+        this.state = { isLoading: true,
+            activities: []}
     }
 
     componentDidMount () {
-        this.props.dispatch(requestData('GET', 'activities'))
+        this.props.dispatch(requestData('GET', 'activities', {
+            handleSuccess: (state, action) => {
+            const activities = get(action, 'data.activities')
+            this.setState({
+                "activities": activities,
+                "isLoading": false,
+            })
+        },}))
     }
 
     render () {
-        let activities_list = []
 
-        const { activities } = this.props
-        if( activities && activities.length > 0){
-            activities_list = activities[0]['activities']
-        }
-
+        const { isLoading } = this.state
 
         return(
             <div>
@@ -44,25 +44,20 @@ class ActivitiesPage extends Component {
                 </div>
 
                 <div className="container content">
-
-                    <div className="activities-section">
-                        <div>
-                                {
-                                    activities_list.map(activity => (
-                                        <ActivityItem key={activity.id} activity={activity} />
-                                    ))
-                                }
-                        </div>
-                    </div>
+                    {!isLoading ? (
+                        this.state.activities.map(activity => (
+                            <ActivityItem key={activity.id} activity={activity} />
+                        ))
+                    ):(
+                        <span>Chargement en cours...</span>
+                    )}
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({ activities: state.data.activities})
-
 export default compose(
     withLogin({ failRedirect: '/welcome' }),
-    connect(mapStateToProps)
+    connect()
 )(ActivitiesPage)

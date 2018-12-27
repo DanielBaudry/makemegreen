@@ -47,15 +47,6 @@ class PropositionsPage extends Component {
 
                         <div id="carousel" className="carousel slide" data-interval="false">
                             <div className="carousel-inner">
-                                {/*<div className="carousel-item active">*/}
-                                    {/*<div className="carousel-item-inside-div">*/}
-                                        {/*<div className="carousel-center">*/}
-                                            {/*<div>Voici la liste des recommedations que nous avons sélectionnées pour vous !</div>*/}
-                                        {/*</div>*/}
-                                        {/*<div className="carousel-center"></div>*/}
-                                        {/*<div className="carousel-caption">Tutoriel</div>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
                                 {!isLoading ? (
                                     this.state.propositions.map(proposition => (
                                         <PropositionItem key={proposition.id}
