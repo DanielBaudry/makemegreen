@@ -138,33 +138,6 @@
     /*font-size: 16px;*/
 }
 
-.propositions-section{
-    padding: 2px;
-}
-
-.carousel-item-inside-div{
-    height: 400px;
-    width: 100%;
-}
-
-.leftControl > i{
-    color: black !important;
-}
-
-.rightControl > i {
-    color: black !important;
-}
-
-.carousel-control.right:hover,
-.carousel-control-next:hover {
-    background-image: none !important;
-}
-
-.carousel-control.left:hover,
-.carousel-control-prev:hover{
-    background-image: none !important;
-}
-
 .footprint-form{
     background-color: #519872;
     height: 100%;

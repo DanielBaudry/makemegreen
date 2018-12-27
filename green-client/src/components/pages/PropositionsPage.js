@@ -8,6 +8,9 @@ import PropositionItem from "../items/PropositionItem";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import NavBar from "../items/NavBar";
 
+import '../../styles/propositions.css'
+
+
 class PropositionsPage extends Component {
 
     constructor (props) {
@@ -34,44 +37,39 @@ class PropositionsPage extends Component {
         const { isLoading } = this.state
 
         return(
-            <div className="text-center">
-
+            <div>
                 <NavBar />
 
                 <div className="title-header">
                     <h5>Mes actions</h5>
                 </div>
 
-                <div className="content">
-                    <div className="propositions-section" style={{height: '100%'}}>
-
-                        <div id="carousel" className="carousel slide" data-interval="false">
-                            <div className="carousel-inner">
-                                {!isLoading ? (
-                                    this.state.propositions.map(proposition => (
+                <div className="container content">
+                    {!isLoading || this.state.propositions.length > 0 ? (
+                        <div className="propositions-section">
+                            <div id="carousel" className="carousel slide" data-interval="false">
+                                <div className="carousel-inner">
+                                    {this.state.propositions.map(proposition => (
                                         <PropositionItem key={proposition.id}
                                                          proposition={proposition} />
-                                    ))
-                                ):(
-                                    <div>Chargement en cours...</div>
-                                )
-                                }
+                                    ))}
+                                </div>
                             </div>
-                            <div>
-                                <a className="left carousel-control-prev" href="#carousel" data-slide="prev">
+                            <a className="left carousel-control-prev" href="#carousel" data-slide="prev">
                                 <span className="leftControl">
                                     <i className="icon icon-chevron-left"></i>
                                 </span>
-                                </a>
-                                <a className="right carousel-control-next" href="#carousel" data-slide="next">
-                                    <span className="rightControl">
-                                        <i className="icon icon-chevron-right"></i>
-                                    </span>
-                                </a>
-                            </div>
+                            </a>
+                            <a className="right carousel-control-next" href="#carousel" data-slide="next">
+                                <span className="rightControl">
+                                    <i className="icon icon-chevron-right"></i>
+                                </span>
+                            </a>
                         </div>
-
-                    </div>
+                    ):(
+                        <div>Il semblerait qu'il n'y ait plus de nouvelles propositions pour le moment...</div>
+                    )
+                    }
                 </div>
             </div>
         )

@@ -135,9 +135,9 @@ class ActivityItem extends Component {
                                 <img className="reco-benefit-calcul" src={ calcul } alt="calculation details"/>
                             </a>
                         </div>
-                        <div class="collapse"
+                        <div className="collapse"
                              id={"calcul"+ this.state.activity_id }>
-                            <div class="card card-body">
+                            <div className="card card-body">
                                 {/*{ this.state.reco_calcul }*/}
                                 1g de plastique ~= 0,045 kgCO2<br />
                                 1 tube de dentifrice = 50g de plastique<br />
@@ -169,14 +169,14 @@ class ActivityItem extends Component {
                 </div>
                 { this.state.status == "pending" ? (
                 <div className="activity-actions row">
-                        <div className="activity-actions-section section-left text-center col"
-                            onClick={e => { e.preventDefault(); this.onSuccessClick();} }>
-                            C'est fait !
-                        </div>
-                        <div className="activity-actions-section section-right text-center col"
-                            onClick={e => { e.preventDefault(); this.onFailClick();} }>
-                            Plus intéressé
-                        </div>
+                    <div className="activity-actions-section section-left text-center col"
+                        onClick={e => { e.preventDefault(); this.onSuccessClick();} }>
+                        C'est fait !
+                    </div>
+                    <div className="activity-actions-section section-right text-center col"
+                        onClick={e => { e.preventDefault(); this.onFailClick();} }>
+                        Plus intéressé
+                    </div>
                 </div>
                 ) : (
                 <div className="activity-actions row">

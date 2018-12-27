@@ -1,0 +1,105 @@
+.propositions-section{
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-center{
+    z-index: 1;
+    width: 85%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 80vh;
+    overflow:auto;
+}
+
+.proposition-img{
+    height: 60px;
+    width: 60px;
+}
+
+.proposition-title{
+    margin-top: 6px;
+    margin-bottom: 16px;
+    font-size: 1.3em;
+}
+
+.proposition-difficulty{
+    padding-bottom: 12px;
+}
+
+.proposition-didyouknow{
+    -webkit-box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    -moz-box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    box-shadow: 0px 3px 12px 0px rgba(232,232,232,1);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    padding: 10px;
+}
+
+.prop-water{
+    background-color: #FFC04C;
+}
+
+.prop-carbon{
+    background-color: #56E39F;
+}
+
+.prop-waste{
+    background-color: #FFAF87;
+}
+
+
+.carousel-caption{
+    z-index: 999;
+    background-color: white;
+}
+
+.proposition-actions{
+    margin-top: 20px;
+}
+
+.proposition-add{
+    color: #519872;
+    -webkit-box-shadow: 0px -1px rgba(232,232,232,1);
+    -moz-box-shadow: 0px -1px rgba(232,232,232,1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.proposition-drop{
+    color: #062c33;
+    -webkit-box-shadow: 0px -1px rgba(232,232,232,1);
+    -moz-box-shadow: 0px -1px rgba(232,232,232,1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+
+
+
+/* Carousel part */
+
+.carousel-item-inside-div{
+    height: 80vh;
+}
+
+.leftControl > i{
+    color: black !important;
+}
+
+.rightControl > i {
+    color: black !important;
+}
+
+.carousel-control.right:hover,
+.carousel-control-next:hover {
+    background-image: none !important;
+}
+
+.carousel-control.left:hover,
+.carousel-control-prev:hover{
+    background-image: none !important;
+}
