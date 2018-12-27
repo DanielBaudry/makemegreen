@@ -28,15 +28,6 @@ class DashboardPage extends Component {
         }
     }
 
-    onSignOutClick = () => {
-        const { history } = this.props
-        this.props.dispatch(requestData('GET', '/users/signout', {
-            handleSuccess: () => {
-                history.push('/connexion')
-            },
-        }))
-    }
-
     componentWillMount () {
         this.props.dispatch(requestData('GET', '/dashboard', {
             handleSuccess: (state, action) => {
