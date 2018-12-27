@@ -168,8 +168,7 @@ class ActivityItem extends Component {
                     </div>
                 </div>
                 { this.state.status == "pending" ? (
-                <div className="activity-actions container">
-                    <div className="row">
+                <div className="activity-actions row">
                         <div className="activity-actions-section section-left text-center col"
                             onClick={e => { e.preventDefault(); this.onSuccessClick();} }>
                             C'est fait !
@@ -178,10 +177,9 @@ class ActivityItem extends Component {
                             onClick={e => { e.preventDefault(); this.onFailClick();} }>
                             Plus intéressé
                         </div>
-                    </div>
                 </div>
                 ) : (
-                <div className="activity-actions">
+                <div className="activity-actions row">
                     <div className="activity-actions-section section-middle text-center col"
                             onClick={e => { e.preventDefault(); this.onHoldClick();} }>
                             J'ai changé

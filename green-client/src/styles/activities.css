@@ -100,8 +100,6 @@
     color: #062c33;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    -webkit-box-shadow: 1px 0px rgba(232,232,232,1);
-    -moz-box-shadow: 1px 0px rgba(232,232,232,1);
 }
 
 .activity-actions-section.section-right{
