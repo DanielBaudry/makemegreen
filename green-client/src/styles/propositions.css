@@ -50,6 +50,20 @@
     background-color: #FFAF87;
 }
 
+.proposition-detail{
+    color: #519872;
+    text-decoration: none;
+}
+
+.proposition-detail:hover{
+    color: #519872;
+    text-decoration: none;
+}
+
+.proposition-detail:focus{
+    color: #519872;
+    text-decoration: none;
+}
 
 .carousel-caption{
     z-index: 999;
