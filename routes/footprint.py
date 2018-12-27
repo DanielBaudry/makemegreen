@@ -11,11 +11,11 @@ from models import Activity, ActivityStatus, User
 
 @app.route("/footprint/compute", methods=["POST"])
 def compute():
-    app.logger.info("Start footprint computation")
     data = request.json
     app.logger.info("Compute footprint data:")
-    app.logger.info(data)
-    result = ComputeFootprint().execute(data)
+    footprints = ComputeFootprint().execute(data)
+    result = {"footprints": footprints, "answers": data}
+    app.logger.info(result)
 
     return jsonify(result)
 

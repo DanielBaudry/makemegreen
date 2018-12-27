@@ -16,6 +16,7 @@ import PropositionsPage from "../components/pages/PropositionsPage";
 import ProfilePage from "../components/pages/ProfilePage";
 import DetailsPage from "../components/pages/DetailsPage";
 import FriendsPage from "../components/pages/FriendsPage";
+import HabitsPage from "../components/pages/HabitsPage";
 
 const routes = [
     {
@@ -96,6 +97,11 @@ const routes = [
         component: FriendsPage,
         path: '/friends',
         title: "Mes amis",
+    },
+    {
+        component: HabitsPage,
+        path: '/habits',
+        title: "Mes habitudes",
     },
 ]
 
