@@ -15,6 +15,7 @@ import ProgressPage from "../components/pages/ProgressPage";
 import PropositionsPage from "../components/pages/PropositionsPage";
 import ProfilePage from "../components/pages/ProfilePage";
 import DetailsPage from "../components/pages/DetailsPage";
+import FriendsPage from "../components/pages/FriendsPage";
 
 const routes = [
     {
@@ -89,7 +90,12 @@ const routes = [
     {
         component: ProfilePage,
         path: '/profile',
-        title: "Profile",
+        title: "Mon profil",
+    },
+    {
+        component: FriendsPage,
+        path: '/friends',
+        title: "Mes amis",
     },
 ]
 

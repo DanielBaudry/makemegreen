@@ -3,13 +3,56 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import withLogin from "../hocs/withLogin"
 import NavBar from "../items/NavBar";
+import {requestData} from "../../reducers/data";
+import get from "lodash.get";
+import avatar from '../../assets/avatar_green.png';
+import details from '../../assets/details.png';
+import "../../styles/profile.css";
+import {NavLink} from "react-router-dom";
 
 class ProfilePage extends Component {
 
+    constructor (props) {
+        super(props)
+        this.state = { isLoading: true,
+            friend_email: '',
+            username: null,
+            email: null
+        }
+    }
+
+    onAddFriendClick = () => {
+        console.log(this.state.friend_email)
+    }
+
+    onSignOutClick = () => {
+        const { history } = this.props
+        this.props.dispatch(requestData('GET', '/users/signout', {
+            handleSuccess: () => {
+                history.push('/welcome')
+            },
+        }))
+    }
+
+    componentWillMount () {
+        this.props.dispatch(requestData('GET', '/users/current', {
+            handleSuccess: (state, action) => {
+                const username = get(action, 'data.username')
+                const email = get(action, 'data.email')
+                this.setState({
+                    "isLoading": false,
+                    "username": username,
+                    "email": email,
+                })
+            },
+        }))
+    }
+
     render () {
+        const { isLoading } = this.state
 
         return(
-            <div className="text-center">
+            <div>
 
                 <NavBar />
 
@@ -17,18 +60,131 @@ class ProfilePage extends Component {
                     <h5>Mon profil</h5>
                 </div>
 
-                <div className="content">
-                    <div>
-                        <p>Inclusive capitalism shift donors revitalize celebrate; hack elevate Kony 2012 shifting landscape generosity. Emergent relief economic independence volunteer informal economies life-saving visionary, growth equality community immunize civic engagement. Crisis management forward-thinking, focus on impact giving, policy healthcare solve; cornerstone time of extraordinary change human experience making progress. Advocate catalyze, affordable health care, outcomes justice invest. Care; citizens of change compassion solution, gender equality accelerate social worker equity donation foster. Challenges of our times working alongside UNHCR Oxfam global health country enable medical impact achieve. Long-term, UNICEF beneficiaries honesty, meaningful work combat malaria, foundation; urban disrupt liberal catalyst effectiveness.</p>
+                <div className="container content">
+                    {!isLoading ? (
+                        <div>
+                            <div className="profile-identity">
+                                <div className="row">
+                                    <div className="col text-center">
+                                        <img src={ avatar } alt="profile picture"/>
+                                    </div>
+                                    <div className="col text-left">
+                                        <h4>
+                                            {this.state.username}
+                                        </h4>
+                                        <div>
+                                            {this.state.email}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="dashboard-card">
+                                <div className="dashboard-card-title">
+                                    Mes informations
+                                </div>
+                                <div className="dashboard-card-content">
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item profile-item">
+                                            J'ai changé mes habitudes
+                                        </li>
+                                        <li className="list-group-item profile-item">
+                                            Je veux donner plus d'informations
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="dashboard-card">
+                                <div className="dashboard-card-title">
+                                    Mes amis
+                                </div>
+                                <div className="dashboard-card-content">
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item profile-item">
+                                            <a data-toggle="collapse"
+                                               href="#add-friend-form"
+                                               aria-expanded="false"
+                                               aria-controls="add-friend-form">
+                                                Ajouter un ami
+                                            </a>
+                                            <div className="collapse"
+                                                 id="add-friend-form">
+                                                <div className="card card-body">
+                                                    <form className="form-inline"
+                                                        onSubmit={e => { e.preventDefault();
+                                                          this.onAddFriendClick();} }>
+                                                        <div className="form-group mb-2">
+                                                            <input type="email"
+                                                                   id="friend_email"
+                                                                   className="form-control"
+                                                                   placeholder="Email de mon ami"
+                                                                   onChange={( e ) => this.setState({ friend_email : e.target.value })}
+                                                                   value={this.state.friend_email}
+                                                                   required />
+                                                        </div>
+                                                        <button className="btn btn-primary mb-2"
+                                                                type="submit">
+                                                            Ajouter
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li className="list-group-item profile-item">
+                                            <NavLink to="/friends">
+                                                <div className="row">
+                                                    <div className="col text-left">
+                                                        Voir la liste de mes amis
+                                                    </div>
+                                                    <div className="col-2 text-center">
+                                                        <img className="details-img" src={ details } alt="go to details"/>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    ):(
+                        <div>Chargement en cours ...</div>
+                    )
+                    }
+
+                    <div className="dashboard-card">
+                        <div className="dashboard-card-title">
+                            Mon compte
+                        </div>
+                        <div className="dashboard-card-content">
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item profile-item">
+                                    <NavLink to="#">
+                                        Recevoir la newsletter
+                                    </NavLink>
+                                </li>
+                                <li className="list-group-item profile-item">
+                                    <NavLink to="#">
+                                        Changer mon mot de passe
+                                    </NavLink>
+                                </li>
+                                <li className="list-group-item profile-item">
+                                    <NavLink to="#"
+                                             onClick={this.onSignOutClick}>
+                                        Me déconnecter
+                                    </NavLink>
+                                </li>
+                                <li className="list-group-item profile-item">
+                                    <NavLink to="#"
+                                             className="delete-account">
+                                        Supprimer mon compte
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div>
-                        <p>Network working families, Aga Khan, collaborative consumption plumpy'nut end hunger poverty readiness legitimize proper resources social good humanitarian relief medical supplies. Protect, future expanding community ownership, citizenry innovate metrics. Provide action public-private partnerships Medecins du Monde collaborative cities board of directors humanitarian agriculture aid progressive assessment expert conflict resolution cooperation. Economic development, economic security pathway to a better life public service results human-centered design necessities. Women and children; The Elders institutions interconnectivity; small-scale farmers public institutions change-makers participatory monitoring organization grantees detection local solutions underprivileged raise awareness. Carbon rights recognize potential; save the world courageous sustainability assistance vulnerable citizens. Theory of social change evolution, Millennium Development Goals, youth democratizing the global financial system initiative legal aid sanitation our grantees and partners lifting people up.</p>
-                    </div>
-
-                    <div>
-                        <p>Cross-cultural, global leaders equal opportunity social, social movement insurmountable challenges breakthrough insights honor. Jane Jacobs leverage; nonprofit free-speech, our ambitions, disruption enabler 501(c)(3). Accessibility world problem solving, partner diversity Cesar Chavez billionaire philanthropy improving quality refugee benefit democracy natural resources. Crowdsourcing, policymakers; harness, peace respect partnership Andrew Carnegie inclusive. Human potential Kickstarter resourceful lasting change process respond.</p>
-                    </div>
                 </div>
             </div>
         )

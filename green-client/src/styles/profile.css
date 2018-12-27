@@ -1,0 +1,15 @@
+.delete-account,
+    .delete-account:hover,
+    .delete-account:focus{
+    color: #b21f2d;
+    text-decoration: none;
+}
+
+.profile-identity{
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.profile-item{
+    padding: 4px;
+}
