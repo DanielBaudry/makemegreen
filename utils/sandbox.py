@@ -21,6 +21,17 @@ def do_sandbox():
             users.append(query.one())
             test_user_id = int(users[0].get_id())
 
+    properties = []
+    query = Property.query
+    if query.count() == 0:
+        for property_data in sandbox_data.properties_data:
+            property_obj = Property(from_dict=property_data)
+            BaseObject.check_and_save(property_obj)
+            print("Object: property CREATED")
+            properties.append(property_obj)
+    else:
+        properties.append(query.all())
+
     footprints = []
     query = Footprint.query.filter_by(user_id=test_user_id)
     if query.count() == 0:

@@ -9,6 +9,46 @@ users_data = [
     }
 ]
 
+# PROPERTY
+properties_data = [
+    {
+        "property_name": "bath_or_shower",
+    },
+    {
+        "property_name": "bath_shower_frequency",
+    },
+    {
+        "property_name": "carpooling_frequency",
+    },
+    {
+        "property_name": "clothes_composition",
+    },
+    {
+        "property_name": "personal_vehicule_consumption",
+    },
+    {
+        "property_name": "personal_vehicule_frequency",
+    },
+    {
+        "property_name": "plain_frequency",
+    },
+    {
+        "property_name": "public_transportation_frequency",
+    },
+    {
+        "property_name": "red_meat_frequency",
+    },
+    {
+        "property_name": "train_frequency",
+    },
+    {
+        "property_name": "white_meat_frequency",
+    },
+    {
+        "property_name": "yellow_garbage",
+    },
+]
+
 # FOOTPRINTS
 footprints_data = [
     {
@@ -62,5 +102,13 @@ recommendations_data = [
         "difficulty_level": 2,
         "benefit": 30,
         "type": "waste"
+    },
+    {
+        "title": "Je pense à éteindre mon frigo pendant mes vacances",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum feugiat eleifend. Vivamus non condimentum mauris. Pellentesque venenatis mauris quis diam dapibus, at dignissim turpis commodo. Pellentesque lacinia, lorem vitae faucibus efficitur, justo nulla ornare purus, ac ultricies magna nulla vel dolor. Sed tempor finibus sapien. Donec rutrum odio mi, in tempus est sollicitudin eget. Duis mollis arcu dui, sit amet feugiat orci laoreet non. In bibendum diam nec dui aliquam maximus. Nullam ac justo sem. Curabitur at ante porta, efficitur leo in, lacinia dui. In nec lectus in mauris vulputate gravida. Suspendisse quis feugiat leo, et luctus nibh. Praesent diam felis, dignissim nec ante vitae, laoreet accumsan diam.",
+        "estimated_success_time": 6,
+        "difficulty_level": 2,
+        "benefit": 45,
+        "type": "carbon"
     },
 ]
