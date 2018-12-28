@@ -49,20 +49,27 @@ def get_recommendation(reco_id):
     recommendation = query.first_or_404()
     return jsonify(recommendation), 200
 
-
 @app.route("/recommendations/search", methods=["GET"])
 def search_recommendations():
-    in_title = request.args.get("title")
-    word_list = in_title.split()
-    recommendations = list()
-    for word in word_list:
-        query = Recommendation.query. \
-            filter(Recommendation.title.ilike('%'+word+'%'))
-        recommendations += query.all()
-    recommendations_unique = list(set(recommendations))
     result = OrderedDict()
-    result['recommendations'] = _serialize_recommendations(recommendations_unique)
-    return jsonify(result)
+    if 'title' in request.args:
+        in_title = request.args.get("title")
+        word_list = in_title.split()
+        recommendations = list()
+        for word in word_list:
+            query = Recommendation.query. \
+                filter(Recommendation.title.ilike('%'+word+'%'))
+            recommendations += query.all()
+        if len(recommendations) == 0:
+            result['error'] = "No recommendation found"
+            return jsonify(result), 400
+        else:
+            recommendations_unique = list(set(recommendations))
+            result['recommendations'] = _serialize_recommendations(recommendations_unique)
+            return jsonify(result), 200
+    else:
+        result['error'] = "Wrong field"
+        return jsonify(result), 400
 
 def _serialize_recommendations(recommendations):
     return list(map(_serialize_recommendation, recommendations))
