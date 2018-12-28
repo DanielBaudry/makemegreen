@@ -32,7 +32,7 @@ class HabitsPage extends Component {
 
     componentWillMount () {
         this.props.dispatch(requestData('GET',
-            '/profile',
+            '/property',
             {
                 handleSuccess: (state, action) => {
                     const answers = get(state, 'data.answers')
@@ -45,7 +45,7 @@ class HabitsPage extends Component {
 
     onSubmitedClick = () => {
         this.props.dispatch(requestData('POST',
-            '/profile',
+            '/property',
             {
                 body: this.state,
                 handleSuccess: () => {
@@ -110,7 +110,7 @@ class HabitsPage extends Component {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="q_green_garbage">Combien de poubelle verte prends-tu chaque semaine ?</label>
+                            <label htmlFor="q_green_garbage">Combien de poubelle verte remplis-tu chaque semaine ?</label>
                             <select className="form-control"
                                     id="q_green_garbage"
                                     onChange={( e ) => this.setState({ green_garbage : e.target.value })}
@@ -125,7 +125,7 @@ class HabitsPage extends Component {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="q_yellow_garbage">Combien de poubelle jaune prends-tu chaque semaine ?</label>
+                            <label htmlFor="q_yellow_garbage">Combien de poubelle jaune remplis-tu chaque semaine ?</label>
                             <select className="form-control"
                                     id="q_yellow_garbage"
                                     onChange={( e ) => this.setState({ yellow_garbage : e.target.value })}
@@ -171,7 +171,7 @@ class HabitsPage extends Component {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="q_clothes_composition">Vos vêtements sont-ils en cotton ou en laine/polyster ?</label>
+                            <label htmlFor="q_clothes_composition">Vos vêtements sont-ils en coton ou en laine / polyster ?</label>
                             <select className="form-control"
                                     id="q_clothes_composition"
                                     onChange={( e ) => this.setState({ clothes_composition : e.target.value })}
@@ -188,7 +188,7 @@ class HabitsPage extends Component {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="q_train_frequency">Quels distance parcours-tu en train chaque semaine ?</label>
+                            <label htmlFor="q_train_frequency">Quelle distance parcours-tu en train chaque semaine ?</label>
                             <select className="form-control"
                                     id="q_train_frequency"
                                     onChange={( e ) => this.setState({ train_frequency : e.target.value })}
@@ -209,7 +209,7 @@ class HabitsPage extends Component {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="q_personal_vehicule_frequency">Quels distance parcours-tu en véhicule à moteur (hors transports en commun) par semaine ?</label>
+                            <label htmlFor="q_personal_vehicule_frequency">Quelle distance parcours-tu en véhicule à moteur (hors transports en commun) par semaine ?</label>
                             <select className="form-control"
                                     id="q_personal_vehicule_frequency"
                                     onChange={( e ) => this.setState({ personal_vehicule_frequency : e.target.value })}
