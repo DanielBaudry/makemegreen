@@ -3,46 +3,8 @@ from flask import current_app as app, jsonify, request
 from flask_login import current_user, login_required, logout_user, login_user
 
 from models import BaseObject, User, Footprint, UserProperty, Property
-from utils.logger import logger
 from utils.includes import USER_INCLUDES
 from utils.credentials import get_user_with_credentials
-
-
-# TODO: faudrait bouger cete méthode quelque part
-#  peut-être la renomer également
-@app.route("/profile", methods=['POST'])
-@login_required
-def update_profile():
-    data = request.json
-    object_to_save = []
-    for key, value in data.items():
-        property_obj = Property.query.filter_by(property_name=key).first()
-        if property_obj is not None:
-            user_property = UserProperty()
-            user_property.user_id = current_user.id
-            user_property.property_id = property_obj.id
-            user_property.value = float(value)
-            object_to_save.append(user_property)
-
-    BaseObject.check_and_save(*object_to_save)
-    return jsonify("ok"), 200
-
-
-@app.route("/profile", methods=['GET'])
-@login_required
-def get_answers():
-    properties = Property.query.all()
-    obj = dict()
-    for property_obj in properties:
-        user_answers = UserProperty.query.\
-            filter_by(user_id=current_user.id).\
-            filter_by(property_id=property_obj.id).\
-            first()
-        obj[property_obj.property_name] = user_answers.value
-    logger.info(obj)
-
-    return jsonify(obj), 200
-
 
 
 @app.route("/users/current", methods=["GET"])

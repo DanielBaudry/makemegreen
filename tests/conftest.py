@@ -5,7 +5,7 @@ from unittest.mock import Mock
 import pytest
 from flask import Flask
 
-from models import User
+from models import User, Property, UserProperty
 from models.db import db
 from models.install import install_models
 
@@ -27,6 +27,8 @@ def clean_database(f):
     @wraps(f)
     def decorated_function(app, *args, **kwargs):
         """ Order of deletions matters because of foreign key constraints """
+        UserProperty.query.delete()
+        Property.query.delete()
         User.query.delete()
         return f(app, *args, **kwargs)
 

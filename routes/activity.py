@@ -18,6 +18,7 @@ def validate_activity(activity_id):
 
     return jsonify(result)
 
+
 @app.route("/activity/hold/<activity_id>", methods=["GET"])
 @login_required
 def hold_activity(activity_id):
@@ -26,6 +27,7 @@ def hold_activity(activity_id):
     result = dict({"success": "yes"})
 
     return jsonify(result)
+
 
 @app.route("/activity/remove/<activity_id>", methods=["GET"])
 @login_required
@@ -36,8 +38,6 @@ def end_activity(activity_id):
 
     return jsonify(result)
 
-
-# TODO: login_required or not for GET and list methods?
 
 @app.route("/activity/<reco_id>", methods=["GET"])
 @login_required
