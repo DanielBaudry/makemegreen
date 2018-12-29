@@ -7,6 +7,8 @@ import numpy as np
 from datetime import datetime
 from models.db import db
 from sqlalchemy import func
+from engine.ml_modules.ensemble_model import ensemble_model
+from engine.ml_modules.modules.container import container
 
 class BadUserException(Exception):
     pass
@@ -55,87 +57,59 @@ class DiscoverNewRecommendations:
 
         query = Recommendation.query. \
             filter(Recommendation.id.notin_(reco_already_attach_to_user))
-        possible_recommendations = query.all()
+        possible_recommendations = np.array(query.all())
 
 
         # Retrieve information from database
         nb_users             = User.query.count()
         nb_properties        = Property.query.count()
         nb_recommendations   = Recommendation.query.count()
-        all_userproperties   = UserProperty.query.all()
-        all_userpropositions = Proposition.query.all()
+        all_userproperties   = UserProperty.query.with_entities(UserProperty.id, UserProperty.user_id,\
+                                                                UserProperty.property_id, UserProperty.value).all()
+        all_userpropositions = Proposition.query.with_entities(Proposition.id, Proposition.user_id, \
+                                                                Proposition.recommendation_id, Proposition.state, \
+                                                                Proposition.date_write).all()
         freq_recommendations = Recommendation.query.with_entities(Recommendation.id, \
                                                 func.count(Proposition.recommendation_id)). \
                                                 join(Proposition, Recommendation.id == Proposition.recommendation_id).\
                                                 group_by(Recommendation.id).\
                                                 order_by(Recommendation.id).all()
+        recommendations     = Recommendation.query.all()
 
-        # TODO : these parts can be optimized by only selecting the properties (of every user)
-        # TODO :  which has been answered by the user of interest!!! this is not the case for the propositions
-
-        # distance with user properties
-        array_properties   = np.zeros([nb_users, nb_properties])
-
+        # convert to numpy arrays
+        # user properties
+        arr_ppties   = np.zeros([nb_users, nb_properties])
         for uprop in all_userproperties:
-            array_properties[uprop.user_id - 1, uprop.property_id - 1] = uprop.value
+            arr_ppties[uprop.user_id - 1, uprop.property_id - 1] = uprop.value
 
-        myuser_properties  = array_properties[user.id - 1]
-        properties_nonzero = myuser_properties.nonzero()[0]
-        norm_arrproperties = np.linalg.norm(array_properties[:, properties_nonzero], axis=1)
-        dotproduct_ppties  = np.matmul(array_properties[:, properties_nonzero], myuser_properties[properties_nonzero])
-        distances_ppties   = dotproduct_ppties/(norm_arrproperties * norm_arrproperties[user.id - 1])
-        distances_ppties   = np.nan_to_num(distances_ppties)
-
-        # distance with user recommendations
-        array_propositions   = np.zeros([nb_users, nb_recommendations])
-        myuser_dates         = np.zeros(nb_recommendations)
-
+        # user propositions
+        arr_pptions     = np.zeros([nb_users, nb_recommendations])
+        myuser_dates    = np.ones(nb_recommendations, dtype=object) # initialized far in the past
+        myuser_dates[:] = datetime(2016, 1, 1)
         for uprop in all_userpropositions:
-            array_propositions[uprop.user_id - 1, uprop.recommendation_id - 1] = uprop.state.value['value']
+            arr_pptions[uprop.user_id - 1, uprop.recommendation_id - 1] = uprop.state.value['value']
             if uprop.user_id == user.id and uprop.state.value['value'] == 0:
-                myuser_dates[uprop.recommendation_id - 1] = (datetime.utcnow() - uprop.date_write).days + 1 # datetime.utcnow()
+                myuser_dates[uprop.recommendation_id - 1] = uprop.date_write
 
-        myuser_propositions  = array_propositions[user.id - 1]
-        propositions_nonzero = myuser_propositions.nonzero()[0]
-        norm_arrpropositions = np.linalg.norm(array_propositions[:, propositions_nonzero], axis=1)
-        dotproduct_proptions = np.matmul(array_propositions[:, propositions_nonzero], myuser_propositions[propositions_nonzero])
-        distances_proptions  = dotproduct_proptions/(norm_arrpropositions * norm_arrpropositions[user.id - 1])
-        distances_proptions  = np.nan_to_num(distances_proptions)
-
-        # pooling both distances to obtain overall distance between users
-        weight_ppties          = len(properties_nonzero)/nb_properties
-        weight_proptions       = len(propositions_nonzero)/nb_recommendations
-        sum_weights            = weight_ppties + weight_proptions
-        distances              = distances_ppties * weight_ppties/sum_weights + distances_proptions * weight_proptions/sum_weights
-        distances[user.id - 1] = 0 # set the user to same user distance to 0
-
-        # use the distance and recommendations to obtain the propensity of the recommendation to be correct
-        propensity = np.sum(array_propositions * np.expand_dims(distances, -1), axis=0)/np.sum(np.abs(distances))
-        ## done if a person has answer "skipped", we should not offer him again this proposition before some time
-        ## done : need to boost the probabilities of the rarely accepted/declined options
-        # parameters
-        gamma                              = 0.8
-        beta                               = 4
-        time_for_skip                      = 30
-        # transform propensity to probabilities with a softmax function
-        probability                        = 1./(1 + np.exp(-propensity * beta))
-        ## take out the recommendations which have been previously accepted or declined
-        probability[propositions_nonzero]  = 0
-        ## diminish the probability when the subject has skipped
-        myuser_dates_nonzeros              = myuser_dates.nonzero()[0]
-        myuser_dates                       = np.maximum(time_for_skip + 1, myuser_dates)
-        probability[myuser_dates_nonzeros] = probability[myuser_dates_nonzeros] * gamma**(time_for_skip - (myuser_dates[myuser_dates_nonzeros] - 1))
-        ## augment the probability of the overall non-visited recommendations
+        # recommendation frequency
         freq_recommendations = np.array(freq_recommendations)[:,1]
-        freq_recommendations = np.max(freq_recommendations) - freq_recommendations + 1
-        probability          = probability * freq_recommendations/np.sum(freq_recommendations)
-        # normalize
-        probability          = probability/sum(probability)
+        impact_recommend     = np.zeros(nb_recommendations)
+        for rec in recommendations:
+            impact_recommend[rec.id - 1] = rec.benefit
 
-        app.logger.info(probability)
-        app.logger.info(possible_recommendations)
-        #  TODO: here we call the discover engine, it is ongoing
-        random.shuffle(possible_recommendations)
+        # launch algorithm for suggesting propositions
+        label ='propositions'
+        data  = container(arr_ppties, arr_pptions, user.id - 1, label) # python indexes starts at 0, thus the user.id - 1
+        type_ = 'memory_based' # type of model used
+        model = ensemble_model(data, type_, myuser_dates=myuser_dates, freq_recomm=freq_recommendations, recomm_impact=impact_recommend)
+
+        result_model = model.sample()
+        if result_model is not False:
+            possible_recommendations = [recommendations[result_model[i]] for i in range(len(result_model))]
+        else:
+            random.shuffle(possible_recommendations)
+
+        #app.logger.info(possible_recommendations)
 
         result = list()
         first = True
