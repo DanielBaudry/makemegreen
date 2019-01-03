@@ -4,41 +4,24 @@ import string
 from datetime import datetime, timedelta, timezone
 from os import path
 from pathlib import Path
-
+from sqlalchemy.orm import load_only
 import requests as req
 
-from models.user import User
-from models.footprint import Footprint
+from tests.data import test_data
+from models import *
 from utils.token import random_token
 
 API_URL = "http://localhost:5000"
 
-def req_with_auth(email=None, password=None):
-    request = req.Session()
-    if email is None:
-        request.auth = ('pctest.admin@btmx.fr', 'pctestadmin')
-    elif password is not None:
-        request.auth = (email, password)
-    else:
-        json_path = Path(path.dirname(path.realpath(__file__))) / '..' / 'mock' / 'jsons' / 'users.json'd
-
-        with open(json_path) as json_file:
-            for user_json in json.load(json_file):
-                print('user_json', user_json)
-                if email == user_json['email']:
-                    request.auth = (user_json['email'], user_json['password'])
-                    break
-                raise ValueError("Utilisateur inconnu: " + email)
-    return request
-
 
 def create_user(email='john.doe@test.com', 
-                password='totallysafepsswd'):
+                password='totallysafepsswd',
+                name = 'john'):
     user = User()
     user.email = email
     user.setPassword(password)
+    user.username = name
     return user
-
 
 def create_footprint(user):
     footprint = Footprint()
@@ -46,3 +29,26 @@ def create_footprint(user):
     footprint.carbon_footprint = 45
     footprint.waste_footprint = 500
     footprint.water_footprint = 1000
+
+def create_recommendation(title='titre test de la reco'):
+    reco = Recommendation()
+    reco.title = title
+    return reco
+
+def create_reco(reco_dict):
+
+    test_user_id = 1
+    recommendations = []
+    if reco_dict == "recommendations_data_test":
+        for reco_data in test_data.recommendations_data_test:
+            query = Recommendation.query.filter_by(title=reco_data['title'])
+            if query.count() == 0:
+                reco = Recommendation(from_dict=reco_data)
+                reco.user_id = test_user_id
+                BaseObject.check_and_save(reco)
+                print("Object: recommendation CREATED")
+                recommendations.append(reco)
+            else:
+                recommendations.append(query.one())
+    else:
+        print("Wrong Param")

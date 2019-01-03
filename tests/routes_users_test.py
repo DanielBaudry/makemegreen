@@ -130,4 +130,3 @@ def test_get_profile_should_return_the_users_profile_without_password_hash(app):
     user_json = r.json()
     assert r.status_code == 200
     assert user_json['email'] == 'test@test.fr'
-
