@@ -1,7 +1,7 @@
 """ dataTest """
 
 # RECOMMENDATIONS
-recommendations_data_classique = [
+recommendations_data_test = [
     {
         "title": "Prends ton vélo",
         "content": "Un vélo ça polue vraiment moins qu'une voiture quand même !",
@@ -26,9 +26,6 @@ recommendations_data_classique = [
         "benefit": 30,
         "type": "waste"
     },
-]
-
-recommendations_data_special_char = [
     {
         "title": "vélo ça ",
         "content": "Un vélo ça polue vraiment moins qu'une voiture quand même !",
