@@ -4,7 +4,7 @@ import string
 from datetime import datetime, timedelta, timezone
 from os import path
 from pathlib import Path
-
+from sqlalchemy.orm import load_only
 import requests as req
 
 from tests.data import test_data
@@ -15,10 +15,12 @@ API_URL = "http://localhost:5000"
 
 
 def create_user(email='john.doe@test.com', 
-                password='totallysafepsswd'):
+                password='totallysafepsswd',
+                name = 'john'):
     user = User()
     user.email = email
     user.setPassword(password)
+    user.username = name
     return user
 
 def create_footprint(user):
@@ -35,10 +37,10 @@ def create_recommendation(title='titre test de la reco'):
 
 def create_reco(reco_dict):
 
-    test_user_id = 2
+    test_user_id = 1
     recommendations = []
-    if reco_dict == "recommendations_data_special_char":
-        for reco_data in test_data.recommendations_data_special_char:
+    if reco_dict == "recommendations_data_test":
+        for reco_data in test_data.recommendations_data_test:
             query = Recommendation.query.filter_by(title=reco_data['title'])
             if query.count() == 0:
                 reco = Recommendation(from_dict=reco_data)
