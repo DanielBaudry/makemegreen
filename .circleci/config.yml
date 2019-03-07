@@ -29,14 +29,6 @@ jobs:
           - v1-dependencies-{{ checksum "requirements.txt" }}
           - v1-dependencies-
       - run:
-          name: Install dockerize
-          command: |
-            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-            sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-            rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-          environment:
-            DOCKERIZE_VERSION: v0.6.1
-      - run:
           name: install dependencies
           command: |
             python3 -m venv venv
@@ -56,5 +48,4 @@ jobs:
           name: Run API tests
           command: |
             . venv/bin/activate
-            dockerize -wait http://localhost:5000/health -timeout 2m -wait-retry-interval 5s
             pytest tests
