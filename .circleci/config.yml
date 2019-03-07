@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/api
+    docker:
+      - image: circleci/python:3.6.1
+        environment:
+          POSTGRES_USER: mmg_postgres
+          POSTGRES_PASSWORD: mmg_postgres_local
+          POSTGRES_DB: mmg_db
+          DATABASE_URL: postgresql://mmg_postgres:mmg_postgres_local@localhost:5432/mmg_db
+          EXPORT_TOKEN: token_ci
+          RECO_ENGINE: 0
+      - image: circleci/postgres:10.1
+        environment:
+          POSTGRES_USER: mmg_postgres
+          POSTGRES_PASSWORD: mmg_postgres_local
+          POSTGRES_DB: mmg_db
+
+    steps:
+      - checkout
+      - run:
+          name: Init engine
+          command: |
+            git submodule init
+            git submodule update --remote
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-
+      - run:
+          name: Install dockerize
+          command: |
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+      - run:
+          name: Start API server
+          command: |
+            . venv/bin/activate
+            python app.py
+          background: true
+      - run:
+          name: Run API tests
+          command: |
+            . venv/bin/activate
+            dockerize -wait http://localhost:5000/health -timeout 2m -wait-retry-interval 5s
+            pytest tests
