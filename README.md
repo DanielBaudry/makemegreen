@@ -1,6 +1,7 @@
 # Make Me Green
 Main repo for makemegreen
 
+[![Coverage Status](https://coveralls.io/repos/github/DanielBaudry/makemegreen/badge.svg?branch=master)](https://coveralls.io/github/DanielBaudry/makemegreen?branch=master)
 
 ## Pour débuter
 
